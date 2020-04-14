@@ -89,7 +89,8 @@ take uploaded, **temporary**, file and upload it into new "empty" File
 ```php
 foreach($files as $file){
 	$local_file = 	new \FileManager\File( $file["tmp_name"] );
-	$server_file = 	new \FileManager\File(new \UrlParser\Url( ["root/a", $file["name"]] ));
+	$server_file = 	new \FileManager\File( new \UrlParser\Url( ["root/a", $file["name"]] ) );
 
 	$server_file->upload($local_file);
+}
 ```
