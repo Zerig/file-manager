@@ -61,6 +61,7 @@ $file->move(new \UrlParser\Url("root/aaa/b"));
 $file->url->getString => "root/aaa/b/file.txt"
 ```
 
+<hr>
 
 ## copy($copy_name = null)
 $copy_name [string]
