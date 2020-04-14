@@ -1,0 +1,27 @@
+{
+    "name": "zerig/url-parser",
+    "type": "library",
+    "description": "class of object which parse url and can work with it.",
+    "keywords": [
+        "url parser",
+        "url"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jeronym pelikovsky",
+            "email": "pelikovsky@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : ">=5.6.0",
+		"zerig/url-parser": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "UrlParser\\": "src/"
+        }
+    },
+	"minimum-stability": "dev"
+}
