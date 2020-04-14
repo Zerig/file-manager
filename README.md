@@ -48,9 +48,3 @@ $ff->move(new \UrlParser\Url("root/aaa/b"));
 
 $ff->url->getString => "root/aaa/b/file.txt"
 ```
-
-
-<hr>
-
-# FILE MANAGER \ File
-**class File extends FF**<br>
