@@ -61,10 +61,15 @@ $file->move(new \UrlParser\Url("root/aaa/b"));
 $file->url->getString => "root/aaa/b/file.txt"
 ```
 
+
+
+<br>
 <hr>
+<br>
+
 
 ## copy($copy_name = null)
-$copy_name [string]
+$copy_name [string]<br>
 Copy File in the same folder. If you don't use $copy_name of new file, the file get "-copy" <br>
 
 ```php
@@ -78,16 +83,13 @@ $copy_file->getString() => "root/aaa/bbb/new_file.txt"
 ```
 
 ## upload(File $local_file)
-$local_file [File]
-take uploaded, **temporary**, file and upload it into erver Url
-Copy File in the same folder. If you don't use $copy_name of new file, the file get "-copy" <br>
+$local_file [File]<br>
+take uploaded, **temporary**, file and upload it into new "empty" File
 
 ```php
-$file = new \FileManager\File("root/aaa/bbb/file.txt");
-$copy_file = $file->copy();
-$copy_file->getString() => "root/aaa/bbb/file-copy.txt"
+foreach($files as $file){
+	$local_file = 	new \FileManager\File( $file["tmp_name"] );
+	$server_file = 	new \FileManager\File(new \UrlParser\Url( ["root/a", $file["name"]] ));
 
-$file = new \FileManager\File("root/aaa/bbb/file.txt");
-$copy_file = $file->copy("new_file.txt");
-$copy_file->getString() => "root/aaa/bbb/new_file.txt"
+	$server_file->upload($local_file);
 ```

@@ -54,7 +54,7 @@ foreach($files as $file){
 
 	$server_file = new \FileManager\File(new \UrlParser\Url( ["root/a", $file["name"]] ));
 	echo $local_file->url->getString()." => ".$server_file->url->getString()."<br>";
-	//$server_file->upload($local_file);
+	$server_file->upload($local_file);
 	echo print_r($server_file);
 	echo "<br>---------------------------------------------<br><br>";
 }
