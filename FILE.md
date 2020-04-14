@@ -1,22 +1,29 @@
 # FILE MANAGER \ FILE
-- class File extends FF
-- need \UrlParser\Url class
+- class File extends **\FileManager\FF**
+- need **\UrlParser\Url** class
 works with Files
 
 
 ```php
 // BOTH variant are possile ↓
-$ff = new \FileManager\FF("root/aaa/bbb/file.txt");
-$ff = new \FileManager\FF( new \UrlParser\Url("root/aaa/bbb/file.txt") );
+$ff = new \FileManager\File("root/aaa/bbb/file.txt");
+$ff = new \FileManager\File( new \UrlParser\Url("root/aaa/bbb/file.txt") );
 
+// These ↓ are in parent class FF
 public $url => \UrlParser\Url::getString() => "root/aaa/bbb/file.txt"
 public $size => 80
 public $name => "file.txt"
 public $mode => 0777
 public $dir => \UrlParser\Url::getString() => "root/aaa/bbb"
+
+// These are specific for File class
+public $filename	=> "file"
+public $extension	=> "txt"
+public $mime	=> "text/plain"
+
 ```
 
-## exist()
+## <small>parent::</small>exist()
 Check if File/Folder really exist<br>
 @return [boolean]
 

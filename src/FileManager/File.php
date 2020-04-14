@@ -14,9 +14,6 @@ class File extends FF{
 	public $extension;		// jpg
 	public $mime;			// image/jpeg
 
-	public $tmp_name;		// image/jpeg
-
-
 
 	public function __construct($file_url){
 		$file_str = (is_a($file_url, "\UrlParser\Url"))? $file_url->getString() : $file_url;
