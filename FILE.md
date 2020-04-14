@@ -24,8 +24,7 @@ public $mime		=> "text/plain"
 ```
 
 ## exist()
-* parent::
-
+=> parent::	in FF
 Check if File/Folder really exist<br>
 @return [boolean]
 
@@ -38,8 +37,7 @@ $file->mode => null	// when doesn't exist
 
 
 ## rename($new_name)
-* parent::
-
+=> parent::	in FF
 Change name of file/folder<br>
 $new_name [string]
 
@@ -50,8 +48,7 @@ $file->url->getString => "root/aaa/bbb/ffile.txt"
 ```
 
 ## move($new_dir)
-* parent::
-
+=> parent::	in FF
 Change dir, not name of file/folder<br>
 $new_dir [string]
 
