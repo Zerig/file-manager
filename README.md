@@ -1,5 +1,5 @@
 # FILE MANAGER \ FF
- parent class of every File and Folder
+ parent class of every File and Folder => FF
 
 
 ```php
@@ -13,4 +13,14 @@ public $name => "file.txt"
 public $mode => 0777
 
 public $dir => \UrlParser\Url::getString() => "root/aaa/bbb"
+```
+
+
+## rename($new_name)
+Change name of file/folder
+
+```php
+$ff = new \FileManager\FF("root/aaa/bbb/file.txt");
+$ff->rename("ffile.txt");
+$ff->name => "ffile.txt"
 ```
