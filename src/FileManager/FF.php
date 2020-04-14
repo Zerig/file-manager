@@ -10,15 +10,14 @@ class FF{
 
 
 	public function __construct($ff_url){
-		if(is_a($ff_url, "\UrlParser\Url"))		self::set($ff_url->getString());
-		else  									self::set($ff_url);
+		self::set($ff_url);
 	}
 
 	/**
 	 * set all necessary FF public variables
 	 */
 	public function set($ff_url){
-		$this->url = 		new \UrlParser\Url($ff_url);
+		$this->url = 		self::setUrl($ff_url);					// SAVE as \UrlParser\Url
 		$this->name = 		end( $this->url->getPath("array") );
 
 		if(self::exist()){
@@ -31,8 +30,19 @@ class FF{
 		$this->dir->pop();
 	}
 
+
+
+	public function setUrl($ff_url){
+		if(is_a($ff_url, "\UrlParser\Url"))		return $ff_url;
+		else  									return new \UrlParser\Url($ff_url);
+	}
+
+
+
+
+
 	public function exist(){
-		return (is_dir($this->url->getString()) || is_file($this->url->getString()));
+		return ( is_dir($this->url->getString()) || is_file($this->url->getString()) );
 	}
 
 
@@ -42,13 +52,13 @@ class FF{
 	 * @param string $new_name		name of new file
 	 */
 	public function rename($new_name){
-		$source_ff_url =	$this->url;
+		$source_ff_url =	$this->url;		// \UrlParser\Url
 		// Create new URL object with right name
 		$target_ff_url = 	clone $this->dir;
 		$target_ff_url->addPath($new_name);
 
 		rename($source_ff_url->getString(), $target_ff_url->getString());
-		self::set($target_ff_url->getString());
+		self::set($target_ff_url);
 	}
 
 	/**
@@ -61,7 +71,7 @@ class FF{
 		$target_ff_url = 	(is_a($new_dir, "\UrlParser\Url"))? $new_dir->addPath($this->name) : new \UrlParser\Url([$new_dir, $this->name]);
 
 		rename($source_ff_url->getString(), $target_ff_url->getString());
-		self::set($target_ff_url->getString());
+		self::set($target_ff_url);
 	}
 
 }

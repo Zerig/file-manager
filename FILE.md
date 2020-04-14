@@ -1,5 +1,7 @@
-# FILE MANAGER \ FF
- parent class of every File and Folder => FF
+# FILE MANAGER \ FILE
+- class File extends FF
+- need \UrlParser\Url class
+works with Files
 
 
 ```php
@@ -48,9 +50,3 @@ $ff->move(new \UrlParser\Url("root/aaa/b"));
 
 $ff->url->getString => "root/aaa/b/file.txt"
 ```
-
-
-<hr>
-
-# FILE MANAGER \ File
-**class File extends FF**<br>

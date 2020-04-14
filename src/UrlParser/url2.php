@@ -12,7 +12,7 @@ class Url{
 	public $query;		// ["clen" => "ja", "vek" => "15"]
 	public $fragment;	// "nadpis"
 
-	private $sign;		// char of directory separator => usualy "/"
+	public $sign = '/';
 
 	/**
 	 * CONNECT input into one correct URL
@@ -20,14 +20,13 @@ class Url{
 	 * @param [array of string / string] $array_url 		// ["aaa/bbb/", "/ccc". "name.html"] or "aa/bb//ccc/name.html"
 	 * @return string 										// "aa/bb/ccc/name.html"
 	 */
-	public function __construct($url_path, $sign = "/"){
-		$this->sign = $sign;
-
+	public function __construct($url_path, $sign = '/'){
 		$url_path = self::makeItString($url_path);
 		$parse_url = parse_url($url_path);
 
 		if(isset($parse_url["scheme"]))		$this->scheme = $parse_url["scheme"];		// set SCHEME
 		if(isset($parse_url["host"]))		$this->host = $parse_url["host"];			// set HOST
+		if(isset($parse_url["path"]))		self::setSign($parse_url["path"]);			// set PATH
 		if(isset($parse_url["path"]))		self::setPath($parse_url["path"]);			// set PATH
 		if(isset($parse_url["path"]))		self::setRoot();							// set ROOT and rewrite PATH
 		if(isset($parse_url["query"]))		self::setQuery($parse_url["query"]);		// set QUERY
@@ -70,6 +69,15 @@ class Url{
 		}
 
 		return implode($this->sign, $fin_url_array);
+	}
+
+
+
+
+
+	public function setSign($url_path){
+		echo "<br>*".$url_path."*<br>";
+		$this->sign = (isset($url_path[0]))? $url_path[0] : "/";
 	}
 
 
