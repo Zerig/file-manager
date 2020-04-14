@@ -91,6 +91,6 @@ foreach($files as $file){
 	$local_file = 	new \FileManager\File( $file["tmp_name"] );
 	$server_file = 	new \FileManager\File( new \UrlParser\Url( ["root/a", $file["name"]] ) );
 
-	$server_file->upload($local_file);
+	$server_file->upload($local_file);	// upload file into "root/a"
 }
 ```
