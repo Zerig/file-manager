@@ -76,3 +76,18 @@ $file = new \FileManager\File("root/aaa/bbb/file.txt");
 $copy_file = $file->copy("new_file.txt");
 $copy_file->getString() => "root/aaa/bbb/new_file.txt"
 ```
+
+## upload(File $local_file)
+$local_file [File]
+take uploaded, **temporary**, file and upload it into erver Url
+Copy File in the same folder. If you don't use $copy_name of new file, the file get "-copy" <br>
+
+```php
+$file = new \FileManager\File("root/aaa/bbb/file.txt");
+$copy_file = $file->copy();
+$copy_file->getString() => "root/aaa/bbb/file-copy.txt"
+
+$file = new \FileManager\File("root/aaa/bbb/file.txt");
+$copy_file = $file->copy("new_file.txt");
+$copy_file->getString() => "root/aaa/bbb/new_file.txt"
+```
