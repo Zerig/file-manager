@@ -52,7 +52,7 @@ class FF{
 	 */
 	public function move($new_dir){
 		$source_ff_url =	$this->url;	// obj \UrlParser\Url
-		$target_ff_url = 	new \UrlParser\Url([$new_dir, $this->name]);
+		$target_ff_url = 	(is_a($new_dir, "\UrlParser\Url"))? $new_dir->addPath($this->name) : new \UrlParser\Url([$new_dir, $this->name]);
 
 		rename($source_ff_url->getString(), $target_ff_url->getString());
 		self::set($target_ff_url->getString());

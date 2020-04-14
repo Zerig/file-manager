@@ -17,10 +17,24 @@ public $dir => \UrlParser\Url::getString() => "root/aaa/bbb"
 
 
 ## rename($new_name)
-Change name of file/folder
+Change name of file/folder<br>
+$new_name [string]
 
 ```php
 $ff = new \FileManager\FF("root/aaa/bbb/file.txt");
 $ff->rename("ffile.txt");
-$ff->name => "ffile.txt"
+$ff->url->getString => "root/aaa/bbb/ffile.txt"
+```
+
+## move($new_dir)
+Change dir, not name of file/folder<br>
+$new_dir [string]
+
+```php
+$ff = new \FileManager\FF("root/aaa/bbb/file.txt");
+// BOTH variant are possile ↓
+$ff->move("root/aaa/b");
+$ff->move(new \UrlParser\Url("root/aaa/b"));
+
+$ff->url->getString => "root/aaa/b/file.txt"
 ```
