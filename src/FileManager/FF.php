@@ -6,7 +6,6 @@ class FF{
 	public $size;			// 79949
 	public $name;			// file.jpg
 	public $mode;			// 0777
-
 	public $dir;			// UrlParser\Url::www/_img/
 
 
@@ -21,12 +20,19 @@ class FF{
 	public function set($ff_url){
 		$this->url = 		new \UrlParser\Url($ff_url);
 		$this->name = 		end( $this->url->getPath("array") );
-		$this->size = 		filesize($this->url->getString());
-		$this->mode = 		substr(sprintf('%o', fileperms($this->url->getString())), -4);
+
+		if(self::exist()){
+			$this->size = 		filesize($this->url->getString());
+			$this->mode = 		substr(sprintf('%o', fileperms($this->url->getString())), -4);
+		}
 
 		// set dir
 		$this->dir = clone $this->url;
 		$this->dir->pop();
+	}
+
+	public function exist(){
+		return (is_dir($this->url->getString()) || is_file($this->url->getString()));
 	}
 
 

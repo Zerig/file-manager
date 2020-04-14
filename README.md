@@ -11,8 +11,18 @@ public $url => \UrlParser\Url::getString() => "root/aaa/bbb/file.txt"
 public $size => 80
 public $name => "file.txt"
 public $mode => 0777
-
 public $dir => \UrlParser\Url::getString() => "root/aaa/bbb"
+```
+
+## exist()
+Check if File/Folder really exist<br>
+@return [boolean]
+
+```php
+$ff = new \FileManager\FF("root/aaa/bbb/file.txt");
+$ff->exist();
+$ff->mode => 0666	// when exist
+$ff->mode => 		// when doesn't exist
 ```
 
 

@@ -5,8 +5,10 @@ namespace FileManager;
 class File extends FF{
 	public $url;			// www/_img/file.jpg
 	public $size;			// 79949
-	public $dir;			// www/_img/
 	public $name;			// file.jpg
+	public $mode;			// 0777
+	public $dir;			// www/_img/
+
 
 	public $filename;		// file
 	public $extension;		// jpg
@@ -15,8 +17,7 @@ class File extends FF{
 
 
 	public function __construct($file_url){
-		parent::__construct($file_url);	// SET obj without existing File
-
+		parent::__construct($file_url);		// SET obj without existing File
 		if(self::exist())	self::set();	// WHEN FILE exist create OBJ
 	}
 
@@ -26,20 +27,20 @@ class File extends FF{
 		parent::set();	// universal settings
 
 		$path_info = pathinfo($this->url);
-		$this->filename = 	 $path_info["filename"];
-		$this->extension =	 $path_info["extension"];
+		$this->filename = 	$path_info["filename"];
+		$this->extension =	$path_info["extension"];
 
-		$this->mime = 		 mime_content_type($this->url);
+		$this->mime = 		mime_content_type($this->url);
 	}
 
 
 
 
 	public function exist(){
-		if(file_exists($this->url) && !is_dir($this->url))	throw new \MSG($this, "File exist", 1);
+		/*if(file_exists($this->url) && !is_dir($this->url))	throw new \MSG($this, "File exist", 1);
 		else  												throw new \MSG($this, "File not exist", 0);
 
-		return file_exists($this->url) && !is_dir($this->url);
+		return file_exists($this->url) && !is_dir($this->url);*/
 	}
 
 
