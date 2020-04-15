@@ -83,7 +83,7 @@ $copy_folder->getString() => "root/aaa/bbb/new_folder"
 
 ## scan()
 @return [array of File/Folder]
-Scan Folder and return array of all items inside
+elete Folder and return array of all items inside
 
 ```php
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");
@@ -93,5 +93,16 @@ foreach($scan_array as $scan_item){
 	$scan_item->url->getString();
 }
 => "root/aaa/bbb/folder/file.txt"
-=> "root/aaa/bbb/folder/nex_folder"
+=> "root/aaa/bbb/folder/next_folder"
+```
+
+
+## delete()
+Remove Folder and everything inside
+
+```php
+$folder = new \FileManager\Folder("root/aaa/bbb/folder");
+$folder->delete();
+
+$folder->exist()	=> 0
 ```
