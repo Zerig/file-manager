@@ -4,7 +4,6 @@ This NAMESPACE group specializes in File/Folder structures. It loads files and f
 
 
 ## FILE MANAGER \ FF
-- needs **\UrlParser\Url** class
 This class is universal for File/Folder. Another classes inherit from this class.
 
 ```php
@@ -48,7 +47,6 @@ public $dir => \UrlParser\Url::getString() => "root/aaa/bbb"
 
 ## FILE MANAGER \ FILE
 - class File extends **\FileManager\FF**
-- needs **\UrlParser\Url** class
 
 This class is extends FF. It specializes in Files.
 
@@ -114,7 +112,6 @@ public $mime		=> "text/plain"
 
 ## FILE MANAGER \ FOLDER
 - class File extends **\FileManager\FF**
-- needs **\UrlParser\Url** class
 - needs **\FileManager\File** class
 
 This class is extends FF. It specializes in Files.
