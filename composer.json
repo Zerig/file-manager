@@ -1,27 +1,28 @@
 {
-    "name": "zerig/url-parser",
+    "name": "zerig/file-manager",
+    "description": "This NAMESPACE group specializes in File/Folder structures. It loads files and folders into class.",
     "type": "library",
-    "description": "class of object which parse url and can work with it.",
-    "keywords": [
-        "url parser",
-        "url"
+	"keywords": [
+        "file manager",
+        "file",
+        "folder"
     ],
-    "license": "MIT",
+	"license": "MIT",
     "authors": [
         {
-            "name": "Jeronym pelikovsky",
+            "name": "Jeronym Pelikovsky",
             "email": "pelikovsky@gmail.com",
-            "role": "Developer"
+			"role": "Developer"
         }
     ],
     "require": {
-        "php" : ">=5.6.0",
-		"zerig/url-parser": "@dev"
+		"php" : ">=5.6.0",
+        "zerig/url-parser": "dev-master"
     },
-    "autoload": {
+	"autoload": {
         "psr-4": {
-            "UrlParser\\": "src/"
+            "FileManager\\": "src/"
         }
     },
-	"minimum-stability": "dev"
+    "minimum-stability": "dev"
 }
