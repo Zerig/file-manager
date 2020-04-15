@@ -33,9 +33,10 @@ $folder->exist() => 0	// when doesn't exist
 
 
 ## rename($new_name)
-=> parent::	in FF
+- parent::	in FF
+- $new_name [string]
+
 Change name of file/folder<br>
-$new_name [string]
 
 ```php
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");
@@ -44,9 +45,10 @@ $folder->url->getString => "root/aaa/bbb/ffile.txt"
 ```
 
 ## move($new_dir)
-=> parent::	in FF
+- parent::	in FF
+- $new_dir [string]
+
 Change dir, not name of file/folder<br>
-$new_dir [string]
 
 ```php
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");
