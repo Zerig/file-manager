@@ -86,11 +86,41 @@ $copy_file->getString() => "root/aaa/bbb/new_file.txt"
 $local_file [File]<br>
 take uploaded, **temporary**, file and upload it into new "empty" File
 
+```html
+<form method="POST" enctype="multipart/form-data">
+	<input type="file" name="file[]" multiple>
+	<input type="submit" value="Upload" name="submit">
+</form>
+```
+
 ```php
+$files = my__multipleFiles($_FILES);
+
 foreach($files as $file){
 	$local_file = 	new \FileManager\File( $file["tmp_name"] );
 	$server_file = 	new \FileManager\File( new \UrlParser\Url( ["root/a", $file["name"]] ) );
 
 	$server_file->upload($local_file);	// upload file into "root/a"
+}
+
+function my__multipleFiles($_files){
+	$files = [];
+
+	if(is_array($_files["file"]["tmp_name"])){
+		for($i = 0; $i < count($_files["file"]["tmp_name"]); $i++){
+			$files[] = [
+				"name" => $_files["file"]["name"][$i],
+				"type" => $_files["file"]["type"][$i],
+				"tmp_name" => $_files["file"]["tmp_name"][$i],
+				"error" => $_files["file"]["error"][$i],
+				"size" => $_files["file"]["size"][$i]
+			];
+
+		}
+	}else{
+		$files[] = $_files["file"];
+	}
+
+	return $files;
 }
 ```

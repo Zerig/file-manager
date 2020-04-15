@@ -50,9 +50,8 @@ $files = my__multipleFiles($_FILES);
 
 foreach($files as $file){
 	$local_file = new \FileManager\File( $file["tmp_name"] );
-
-
 	$server_file = new \FileManager\File(new \UrlParser\Url( ["root/a", $file["name"]] ));
+
 	echo $local_file->url->getString()." => ".$server_file->url->getString()."<br>";
 	$server_file->upload($local_file);
 	echo print_r($server_file);
