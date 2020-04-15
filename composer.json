@@ -24,5 +24,5 @@
             "FileManager\\": "src/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "v1.0.1"
 }
