@@ -17,7 +17,8 @@
     ],
     "require": {
 		"php" : ">=5.6.0",
-        "zerig/file-manager": "@dev"
+        "zerig/file-manager": "@dev",
+        "zerig/url-parser": "@dev"
     },
 	"autoload": {
         "psr-4": {
