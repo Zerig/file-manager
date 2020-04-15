@@ -129,7 +129,7 @@ function my__multipleFiles($_files){
 
 
 ## delete()
-Delete concrete File
+Remove concrete File not object
 
 ```php
 // OLD name with "-copy"
