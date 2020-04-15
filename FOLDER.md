@@ -140,7 +140,7 @@ $scan_array[2]->getString() => "folder/second_file.txt"
 
 // scan returns array of string from obj (name)
 $scan_array = $folder->scan("name");
-Array(
+$scan_array => Array(
 	[0] => "file.txt"
 	[1] => Array(
 		[0] => "next_folder"

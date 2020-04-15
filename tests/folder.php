@@ -12,7 +12,7 @@ echo "<br>---------------------------------------------<br><br>";
 echo "<br>---------------------------------------------<br><br>";
 
 
-/*
+
 
 $folder = new \FileManager\Folder(new \UrlParser\Url("root/aaa/bbb/folder"));
 echo print_r($folder);
@@ -29,7 +29,7 @@ $folder = new \FileManager\Folder(new \UrlParser\Url("root/aaa/bbb/folder"));
 $folder->rename("ffolder");
 echo print_r($folder);
 
-*/
+
 echo "<br>---------------------------------------------<br><br> COPY";
 echo "<br>---------------------------------------------<br><br>";
 
@@ -40,7 +40,7 @@ echo "COPY FFOLDER EXIST(): ".$copy_folder->exist()."<br>";
 
 echo "<br>---------------------------------------------<br><br>";
 
-$folder = new \FileManager\Folder(new \UrlParser\Url("root/aaa/bbb/folder"));
+$folder = new \FileManager\Folder(new \UrlParser\Url("root/aaa/bbb/ffolder"));
 echo "URL: ".$folder->url->getString()."<br>";
 $copy_folder = $folder->copy();
 echo "COPY FFOLDER EXIST(): ".$copy_folder->exist()."<br>";
@@ -50,7 +50,7 @@ echo "COPY FFOLDER EXIST(): ".$copy_folder->exist()."<br>";
 echo "<br>---------------------------------------------<br><br> SCAN";
 echo "<br>---------------------------------------------<br><br>";
 
-$folder = new \FileManager\Folder(new \UrlParser\Url("root/aaa/bbb/folder-copy"));
+$folder = new \FileManager\Folder(new \UrlParser\Url("root/aaa/bbb/ffolder-copy"));
 echo "SCAN URL: ".$folder->url->getString()."<br>";
 echo '$folder->scan()<br>';
 $scan_array = $folder->scan();
@@ -68,7 +68,7 @@ foreach($scan_column_array as $key => $val){
 echo "<br>---------------------------------------------<br><br> DELETE";
 echo "<br>---------------------------------------------<br><br>";
 
-$folder = new \FileManager\Folder(new \UrlParser\Url("root/aaa/bbb/folder-copy"));
+$folder = new \FileManager\Folder(new \UrlParser\Url("root/aaa/bbb/ffolder-copy"));
 echo "DELETE URL: ".$folder->url->getString()."<br>";
 $folder->delete();
 echo get_class($item)." EXIST? ".$folder->url->getString().": ".$folder->exist()."<br>";
@@ -100,3 +100,12 @@ echo "<br>---------------------------------------------<br><br>";
 $folder = new \FileManager\Folder(new \UrlParser\Url("root"));
 echo "SCAN TREE URL: ".$folder->url->getString()."<br>";
 echo print_r($folder->scanTree("name"));
+
+/*
+echo "<br>---------------------------------------------<br><br> DELETE FOLDERS and SUBFOLDERS";
+echo "<br>---------------------------------------------<br><br>";
+
+$folder = new \FileManager\Folder(new \UrlParser\Url("root"));
+echo "DELETE URL: ".$folder->url->getString()."<br>";
+$folder->delete();
+*/
