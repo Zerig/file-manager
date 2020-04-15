@@ -77,7 +77,7 @@ class File inherits FF{
 	public function isTemporary($file_url){}	// check if file is temporary => "***.tmp"
 	public function copy($copy_name = null){}	// copy file and return new obj
 	public function upload(File $local_file){}	// upload temporary file into object and folder
-	public function delete(){}		// delete file NOT obj
+	public function delete(){}			// delete file NOT obj
 
 
 }
