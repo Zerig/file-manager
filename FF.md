@@ -1,32 +1,6 @@
-# FILE MANAGER
-This NAMESPACE group specializes in File/Folder structures. It loads files and folders into class.
+# FILE MANAGER \ FF
+ parent class of every File and Folder => FF
 
-
-## FILE MANAGER \ FF
-This class is universal for File/Folder. Another classes inherit from this class.
-
-```php
-namespace FileManager;
-
-class FF{
-	public $url;			// UrlParser\Url::www/_img/file.jpg
-	public $size;			// 79949
-	public $name;			// file.jpg
-	public $mode;			// 0777
-	public $dir;			// UrlParser\Url::www/_img/
-
-	public function __construct($ff_url){}	// get Url and create class
-	public function set($ff_url){}		// set all init class variables
-	public function setUrl($ff_url){}	// set URL variable as obj \UrlParser\Url
-
-	public function isDir(){}	// 
-	public function isFile(){}	//
-	public function exist(){}	//
-
-	public function rename($new_name){}	//
-	public function move($new_dir){}	//
-}
-```
 
 ```php
 // BOTH variant are possile ↓
