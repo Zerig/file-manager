@@ -52,9 +52,16 @@ echo "<br>---------------------------------------------<br><br>";
 
 $folder = new \FileManager\Folder(new \UrlParser\Url("root/aaa/bbb/folder-copy"));
 echo "SCAN URL: ".$folder->url->getString()."<br>";
+echo '$folder->scan()<br>';
 $scan_array = $folder->scan();
 foreach($scan_array as $key => $item){
 	echo "[".$key."] ".get_class($item)." EXIST? ".$item->url->getString().": ".$item->exist()."<br>";
+}
+echo "<br>";
+echo '$folder->scan("name")<br>';
+$scan_column_array = $folder->scan("name");
+foreach($scan_column_array as $key => $val){
+	echo "[".$key."] ".$val."<br>";
 }
 
 
@@ -84,3 +91,12 @@ echo get_class($item)." EXIST? ".$folder->url->getString().": ".$folder->exist()
 foreach($scan_array as $key => $item){
 	echo "[".$key."] ".get_class($item)." EXIST? ".$item->url->getString().": ".$item->exist()."<br>";
 }
+
+
+
+echo "<br>---------------------------------------------<br><br> SCAN TREE";
+echo "<br>---------------------------------------------<br><br>";
+
+$folder = new \FileManager\Folder(new \UrlParser\Url("root"));
+echo "SCAN TREE URL: ".$folder->url->getString()."<br>";
+echo print_r($folder->scanTree("name"));

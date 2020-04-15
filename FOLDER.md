@@ -81,9 +81,12 @@ $copy_folder->getString() => "root/aaa/bbb/new_folder"
 
 
 
-## scan()
-@return [array of File/Folder]
-elete Folder and return array of all items inside
+## scan($column = null)
+$column [string]	<br>
+@return [array of File/Folder / array of string]<br>
+Delete Folder and return array of all items inside<br>
+When column is null scan return array of obj File/FOLDER<br>
+When column has value "name" scan returns array of names
 
 ```php
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");

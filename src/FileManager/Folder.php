@@ -52,7 +52,7 @@ class Folder extends FF{
 
 
 
-	public function scan(){
+	public function scan($column = null){
 		$array_file = array_diff( scandir($this->url->getString()), array('..', '.') );
 		$array_obj_file = [];
 
@@ -61,7 +61,8 @@ class Folder extends FF{
 			$file_url = clone $this->url;		// \UrlParser\Url
 			$file_url->addPath($file);
 
-			$array_obj_file[] = ( $file_url->isDir() )? new Folder($file_url) : new File($file_url);
+			if($column == null)	$array_obj_file[] = ( $file_url->isDir() )? new Folder($file_url) : new File($file_url);
+			else   				$array_obj_file[] = ( $file_url->isDir() )? (new Folder($file_url))->$column : (new File($file_url))->$column;
 		}
 
 		return $array_obj_file;
@@ -97,18 +98,21 @@ class Folder extends FF{
 
 
 
-	public function scanTree(){
-		$array_obj_child = self::scan();
+	public function scanTree($column = null){
+		$array_obj_child = self::scan();	// array of \FileManager\File/Folder
 		$array_tree = [];
+
 
 
 		foreach($array_obj_child as $child){
 			// IF finded children is FOLDER
-			if(is_dir($child->url) && !empty($child->scan()) ){
-				$array_tree[] = [$child, $child->scanTree()];
+			if($child->url->isDir() && !empty($child->scan()) ){
+				if($column == null) $array_tree[] = [$child, $child->scanTree($column)];
+				else   				$array_tree[] = [$child->$column, $child->scanTree($column)];
 
 			}else{
-				$array_tree[] = $child;		// file or empty folder
+				if($column == null) $array_tree[] = $child;		// file or empty folder
+				else   				$array_tree[] = $child->$column;
 			}
 
 		}
