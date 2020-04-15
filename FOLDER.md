@@ -83,7 +83,7 @@ $copy_folder = $folder->copy("new_folder");
 $copy_folder->getString() => "root/aaa/bbb/new_folder"
 ```
 
-
+<hr>
 
 ## scan($column = null)
 - $column [string]
@@ -154,11 +154,11 @@ $scan_array => Array(
 ```
 
 
-
+<hr>
 
 
 ## delete()
-Remove Folder and everything inside
+Remove Folder and everything inside with all subfolders
 
 ```php
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");
