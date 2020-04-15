@@ -86,11 +86,12 @@ $copy_folder->getString() => "root/aaa/bbb/new_folder"
 Scan Folder and return array of all items inside
 
 ```php
-// OLD name with "-copy"
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");
 $scan_array = $folder->scan();
 
 foreach($scan_array as $scan_item){
-	$scan_item->url->getString();	=> "root/aaa/bbb/folder/file.txt"
+	$scan_item->url->getString();
 }
+=> "root/aaa/bbb/folder/file.txt"
+=> "root/aaa/bbb/folder/nex_folder"
 ```
