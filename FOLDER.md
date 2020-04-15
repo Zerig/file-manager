@@ -122,8 +122,9 @@ When column has value "name" scan returns array of names
 folder/
 ├── file.txt
 └── next_folder
-	├── next_file.txt
-	└── another_folder
+│	├── next_file.txt
+│	└── another_folder
+└── second_file.txt
 ```
 
 ```php
@@ -135,6 +136,7 @@ $scan_array[0]->getString() => "folder/file.txt"
 $scan_array[1][0]->getString()=> "folder/next_folder"
 $scan_array[1][0][0]->getString()=> "folder/next_file.txt"
 $scan_array[1][0][1]->getString()=> "folder/another_folder"
+$scan_array[2]->getString() => "folder/second_file.txt"
 
 // scan returns array of string from obj (name)
 $scan_array = $folder->scan("name");
@@ -147,6 +149,7 @@ Array(
 			[1] => "another_folder"
 		)
 	)
+	[2] => "second_file.txt"
 )
 ```
 
