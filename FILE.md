@@ -23,10 +23,12 @@ public $mime		=> "text/plain"
 
 ```
 
-## exist()
-=> parent::	in FF
+## exist(), isDir(), isFile()
+- parent::	in FF
+- @return [boolean]
+
 Check if File/Folder really exist<br>
-@return [boolean]
+
 
 ```php
 $file = new \FileManager\File("root/aaa/bbb/file.txt");
@@ -37,9 +39,10 @@ $file->exist() => 0	// when doesn't exist
 
 
 ## rename($new_name)
-=> parent::	in FF
+- parent::	in FF
+- $new_name [string]
+
 Change name of file/folder<br>
-$new_name [string]
 
 ```php
 $file = new \FileManager\File("root/aaa/bbb/file.txt");
@@ -48,9 +51,10 @@ $file->url->getString => "root/aaa/bbb/ffile.txt"
 ```
 
 ## move($new_dir)
-=> parent::	in FF
+- parent::	in FF
+- $new_dir [string]
+
 Change dir, not name of file/folder<br>
-$new_dir [string]
 
 ```php
 $file = new \FileManager\File("root/aaa/bbb/file.txt");
@@ -69,7 +73,8 @@ $file->url->getString => "root/aaa/b/file.txt"
 
 
 ## copy($copy_name = null)
-$copy_name [string]<br>
+- $copy_name [string]
+
 Copy File in the same folder. If you don't use $copy_name of new file, the file get "-copy" <br>
 
 ```php
@@ -85,7 +90,8 @@ $copy_file->getString() => "root/aaa/bbb/new_file.txt"
 ```
 
 ## upload(File $local_file)
-$local_file [File]<br>
+- $local_file [File]
+
 take uploaded, **temporary**, file and upload it into new "empty" File
 
 ```html

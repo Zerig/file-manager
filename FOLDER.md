@@ -19,7 +19,7 @@ public $dir  => \UrlParser\Url::getString() => "root/aaa/bbb"
 
 ```
 
-## exist()
+## exist(), isDir(), isFile()
 - parent::	in FF
 - @return [boolean]
 

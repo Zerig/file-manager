@@ -14,9 +14,10 @@ public $mode => 0777
 public $dir => \UrlParser\Url::getString() => "root/aaa/bbb"
 ```
 
-## exist()
+## exist(), isDir(), isFile()
+- @return [boolean]
+
 Check if File/Folder really exist<br>
-@return [boolean]
 
 ```php
 $ff = new \FileManager\FF("root/aaa/bbb/file.txt");
@@ -27,8 +28,9 @@ $ff->exist() => 1	// when doesn't exist
 
 
 ## rename($new_name)
-Change name of file/folder<br>
-$new_name [string]
+- $new_name [string]
+
+Change name of file/folder
 
 ```php
 $ff = new \FileManager\FF("root/aaa/bbb/file.txt");
@@ -37,9 +39,9 @@ $ff->url->getString => "root/aaa/bbb/ffile.txt"
 ```
 
 ## move($new_dir)
-Change dir, not name of file/folder<br>
-$new_dir [string]
+- $new_dir [string]
 
+Change dir, not name of file/folder<br>
 ```php
 $ff = new \FileManager\FF("root/aaa/bbb/file.txt");
 // BOTH variant are possile ↓
