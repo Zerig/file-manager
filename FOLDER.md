@@ -1,25 +1,21 @@
-# FILE MANAGER \ FILE
+# FILE MANAGER \ FOLDER
 - class File extends **\FileManager\FF**
 - needs **\UrlParser\Url** class
-works with Files
+- needs **\FileManager\File** class
+works with Folder and has information about files/folders inside
 
 
 ```php
 // BOTH variant are possile ↓
-$file = new \FileManager\File("root/aaa/bbb/file.txt");
-$file = new \FileManager\File( new \UrlParser\Url("root/aaa/bbb/file.txt") );
+$folder = new \FileManager\Folder("root/aaa/bbb/folder");
+$folder = new \FileManager\Folder( new \UrlParser\Url("root/aaa/bbb/folder") );
 
 // These ↓ are in parent class FF
-public $url => \UrlParser\Url::getString() => "root/aaa/bbb/file.txt"
-public $size => 80
-public $name => "file.txt"
+public $url => \UrlParser\Url::getString() => "root/aaa/bbb/folder"
+public $size => 0
+public $name => "folder"
 public $mode => 0777
 public $dir => \UrlParser\Url::getString() => "root/aaa/bbb"
-
-// These are specific for File class
-public $filename	=> "file"
-public $extension	=> "txt"
-public $mime		=> "text/plain"
 
 ```
 
@@ -29,10 +25,10 @@ Check if File/Folder really exist<br>
 @return [boolean]
 
 ```php
-$file = new \FileManager\File("root/aaa/bbb/file.txt");
-$file->exist();
-$file->mode => 0666	// when exist
-$file->mode => null	// when doesn't exist
+$folder = new \FileManager\Folder("root/aaa/bbb/folder");
+$folder->exist();
+$folder->mode => 0777	// when exist
+$folder->mode => null	// when doesn't exist
 ```
 
 
@@ -42,9 +38,9 @@ Change name of file/folder<br>
 $new_name [string]
 
 ```php
-$file = new \FileManager\File("root/aaa/bbb/file.txt");
-$file->rename("ffile.txt");
-$file->url->getString => "root/aaa/bbb/ffile.txt"
+$folder = new \FileManager\Folder("root/aaa/bbb/folder");
+$folder->rename("ffile.txt");
+$folder->url->getString => "root/aaa/bbb/ffile.txt"
 ```
 
 ## move($new_dir)
@@ -53,12 +49,12 @@ Change dir, not name of file/folder<br>
 $new_dir [string]
 
 ```php
-$file = new \FileManager\File("root/aaa/bbb/file.txt");
+$folder = new \FileManager\Folder("root/aaa/bbb/folder");
 // BOTH variant are possile ↓
-$file->move("root/aaa/b");
-$file->move(new \UrlParser\Url("root/aaa/b"));
+$folder->move("root/aaa/b");
+$folder->move(new \UrlParser\Url("root/aaa/b"));
 
-$file->url->getString => "root/aaa/b/file.txt"
+$folder->url->getString => "root/aaa/b/folder"
 ```
 
 

@@ -92,7 +92,8 @@ class File extends FF{
 
 
 	public function delete(){
-		$file_url =	$this->url;
+		$file_url = $this->url->getString();
 		unlink($file_url);
+		//self::set($file_url);
 	}
 }

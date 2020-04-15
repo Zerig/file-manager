@@ -1,45 +1,22 @@
 <?php
 namespace FileManager;
-include_once 'functions.php';
-include_once 'class__url.php';
-include_once 'class__ff.php';
-
 
 
 class Folder extends FF{
-	public $url;			// www/_img/folder
+	public $url;			// UrlParser\Url::www/_img/folder
 	public $size;			// 79949
 	public $name;			// folder
 	public $mode;			// 0777
-
-	public $dir;			// www/_img/
+	public $dir;			// UrlParser\Url::www/_img/
 
 
 
 	public function __construct($folder_url){
 		parent::__construct($folder_url);	// SET obj without existing Folder
-
 		if(self::exist())	parent::set();
-		else  				throw new \FileException();
-	}
-
-	public function exist(){
-		return is_dir($this->url);
 	}
 
 
-
-	// PARENT::FF
-	public function rename($new_name){
-		$target_folder_url = parent::rename($new_name);	// Do rename in PARENT obj
-		self::set($target_folder_url);					// reset OBJ on new rename obj
-	}
-
-	// PARENT::FF
-	public function move($new_dir){
-		$target_folder_url = parent::move($new_dir);
-		self::set($target_folder_url);
-	}
 
 	public function copy(){
 		$from_folder_url =	$url;

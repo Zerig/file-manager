@@ -15,7 +15,9 @@ echo '$GLOBALS["server_root"] = '.$GLOBALS["server_root"]->getString().'<br>';
 echo "<br>---------------------------------------------<br><br>";
 echo "<br>---------------------------------------------<br><br>";
 
-/*
+
+
+
 $file = new \FileManager\File(new \UrlParser\Url("root/aaa/bbb/file.txt"));
 echo print_r($file);
 echo "<br>---------------------------------------------<br><br>";
@@ -38,29 +40,28 @@ $copy_name_file = $file->copy("my_name_file.txt");
 echo print_r($copy_file);
 echo "<br>---------------------------------------------<br><br>";
 echo print_r($copy_name_file);
-*/
+
 
 echo "<br>---------------------------------------------<br><br> UPLOAD";
 echo "<br>---------------------------------------------<br><br>";
 
+if(isset($_POST["submit"])){
+	$files = my__multipleFiles($_FILES);
 
-$files = my__multipleFiles($_FILES);
 
 
+	foreach($files as $file){
+		$local_file = new \FileManager\File( $file["tmp_name"] );
+		$server_file = new \FileManager\File(new \UrlParser\Url( ["root/a", $file["name"]] ));
 
-foreach($files as $file){
-	$local_file = new \FileManager\File( $file["tmp_name"] );
-	$server_file = new \FileManager\File(new \UrlParser\Url( ["root/a", $file["name"]] ));
+		echo $local_file->url->getString()." => ".$server_file->url->getString()."<br>";
+		$server_file->upload($local_file);
+		echo print_r($server_file);
+		echo "<br>---------------------------------------------<br><br>";
+	}
 
-	echo $local_file->url->getString()." => ".$server_file->url->getString()."<br>";
-	$server_file->upload($local_file);
-	echo print_r($server_file);
-	echo "<br>---------------------------------------------<br><br>";
+
 }
-
-
-
-
 function my__multipleFiles($_files){
 	$files = [];
 
@@ -81,3 +82,11 @@ function my__multipleFiles($_files){
 
 	return $files;
 }
+
+
+echo "<br>---------------------------------------------<br><br> DELETE";
+echo "<br>---------------------------------------------<br><br>";
+
+$file = new \FileManager\File(new \UrlParser\Url("root/aaa/bbb/ffile.txt"));
+$file->delete();
+echo print_r($file);
