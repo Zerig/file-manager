@@ -89,11 +89,8 @@ elete Folder and return array of all items inside
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");
 $scan_array = $folder->scan();
 
-foreach($scan_array as $scan_item){
-	$scan_item->url->getString();
-}
-=> "root/aaa/bbb/folder/file.txt"
-=> "root/aaa/bbb/folder/next_folder"
+$scan_array[0]->getString() => "root/aaa/bbb/folder/file.txt"
+$scan_array[1]->getString()=> "root/aaa/bbb/folder/next_folder"
 ```
 
 
@@ -104,5 +101,17 @@ Remove Folder and everything inside
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");
 $folder->delete();
 
-$folder->exist()	=> 0
+$folder->exist() => 0
+```
+
+
+## clean()
+Remove everything inside Folder. NOT the FOLDER
+
+```php
+$folder = new \FileManager\Folder("root/aaa/bbb/folder");
+$folder->clean();
+
+$folder->exist() => 1
+$scan_array = $folder->scan(); => empty
 ```

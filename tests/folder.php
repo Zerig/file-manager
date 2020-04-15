@@ -68,3 +68,19 @@ echo get_class($item)." EXIST? ".$folder->url->getString().": ".$folder->exist()
 foreach($scan_array as $key => $item){
 	echo "[".$key."] ".get_class($item)." EXIST? ".$item->url->getString().": ".$item->exist()."<br>";
 }
+
+
+echo "<br>---------------------------------------------<br><br> CLEAN";
+echo "<br>---------------------------------------------<br><br>";
+
+$folder = new \FileManager\Folder(new \UrlParser\Url("root/aaa/bbb/clean_folder"));
+echo "SCAN URL: ".$folder->url->getString()."<br>";
+$scan_array = $folder->scan();
+
+echo "CLEAN URL: ".$folder->url->getString()."<br>";
+$folder->clean();
+
+echo get_class($item)." EXIST? ".$folder->url->getString().": ".$folder->exist()."<br>";
+foreach($scan_array as $key => $item){
+	echo "[".$key."] ".get_class($item)." EXIST? ".$item->url->getString().": ".$item->exist()."<br>";
+}
