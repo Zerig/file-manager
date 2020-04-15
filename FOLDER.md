@@ -95,10 +95,14 @@ When column has value "name" scan returns array of names
 
 ```php
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");
-$scan_array = $folder->scan();
 
+$scan_array = $folder->scan();
 $scan_array[0]->getString() => "root/aaa/bbb/folder/file.txt"
 $scan_array[1]->getString()=> "root/aaa/bbb/folder/next_folder"
+
+$scan_array = $folder->scan("name");
+$scan_array[0] => "file.txt"
+$scan_array[1] => "next_folder"
 ```
 
 
