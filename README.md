@@ -34,6 +34,7 @@ class FF{
 }
 ```
 
+
 ```php
 // BOTH variant are possile ↓
 $ff = new \FileManager\FF("root/aaa/bbb/file.txt");
