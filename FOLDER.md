@@ -20,9 +20,10 @@ public $dir  => \UrlParser\Url::getString() => "root/aaa/bbb"
 ```
 
 ## exist()
-=> parent::	in FF
+- parent::	in FF
+- @return [boolean]
+
 Check if File/Folder really exist<br>
-@return [boolean]
 
 ```php
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");
@@ -64,7 +65,8 @@ $folder->url->getString => "root/aaa/b/folder"
 
 
 ## copy($copy_name = null)
-$copy_name [string]<br>
+- $copy_name [string]
+
 Copy Folder (and all Files/Folders inside) in the same dir place, but with new name. If you don't use $copy_name of new folder, the folder get "-copy"
 
 ```php
@@ -82,8 +84,9 @@ $copy_folder->getString() => "root/aaa/bbb/new_folder"
 
 
 ## scan($column = null)
-$column [string]	<br>
-@return [array of File/Folder / array of string]<br>
+- $column [string]
+- @return [array of File/Folder / array of string]
+
 Delete Folder and return array of all items inside<br>
 When column is null scan return array of obj File/FOLDER<br>
 When column has value "name" scan returns array of names
