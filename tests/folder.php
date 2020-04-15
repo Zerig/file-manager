@@ -42,5 +42,29 @@ echo "<br>---------------------------------------------<br><br>";
 
 $folder = new \FileManager\Folder(new \UrlParser\Url("root/aaa/bbb/folder"));
 echo "URL: ".$folder->url->getString()."<br>";
-$copy_folder = $folder->copy("ffolder");
+$copy_folder = $folder->copy();
 echo "COPY FFOLDER EXIST(): ".$copy_folder->exist()."<br>";
+
+
+
+echo "<br>---------------------------------------------<br><br> SCAN";
+echo "<br>---------------------------------------------<br><br>";
+
+$folder = new \FileManager\Folder(new \UrlParser\Url("root/aaa/bbb/folder-copy"));
+echo "SCAN URL: ".$folder->url->getString()."<br>";
+$scan_array = $folder->scan();
+foreach($scan_array as $key => $item){
+	echo "[".$key."] ".get_class($item)." EXIST? ".$item->url->getString().": ".$item->exist()."<br>";
+}
+
+
+echo "<br>---------------------------------------------<br><br> DELETE";
+echo "<br>---------------------------------------------<br><br>";
+
+$folder = new \FileManager\Folder(new \UrlParser\Url("root/aaa/bbb/folder-copy"));
+echo "DELETE URL: ".$folder->url->getString()."<br>";
+$folder->delete();
+echo get_class($item)." EXIST? ".$folder->url->getString().": ".$folder->exist()."<br>";
+foreach($scan_array as $key => $item){
+	echo "[".$key."] ".get_class($item)." EXIST? ".$item->url->getString().": ".$item->exist()."<br>";
+}

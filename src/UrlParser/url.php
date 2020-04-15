@@ -318,7 +318,17 @@ class Url{
 
 
 
+	public function isDir(){
+		return ( is_dir(self::getString()) );
+	}
 
+	public function isFile(){
+		return ( is_file(self::getString()) );
+	}
+
+	public function exist(){
+		return ( self::isDir() || self::isFile() );
+	}
 
 
 

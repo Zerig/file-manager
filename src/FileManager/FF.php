@@ -41,8 +41,16 @@ class FF{
 
 
 
+	public function isDir(){
+		return ( $this->url->isDir() );
+	}
+
+	public function isFile(){
+		return ( $this->url->isFile() );
+	}
+
 	public function exist(){
-		return ( is_dir($this->url->getString()) || is_file($this->url->getString()) );
+		return ( self::isDir() || self::isFile() );
 	}
 
 

@@ -50,6 +50,26 @@ class Folder extends FF{
 	}
 
 
+
+
+	public function scan(){
+		$array_file = array_diff( scandir($this->url->getString()), array('..', '.') );
+		$array_obj_file = [];
+
+		foreach($array_file as $file){
+			//$file_url = new \UrlParser\Url([$this->url, $file]);
+			$file_url = clone $this->url;		// \UrlParser\Url
+			$file_url->addPath($file);
+
+			$array_obj_file[] = ( $file_url->isDir() )? new Folder($file_url) : new File($file_url);
+		}
+
+		return $array_obj_file;
+	}
+
+
+
+
 	public function delete(){
 		$array_obj_child = self::scan();
 
@@ -60,7 +80,7 @@ class Folder extends FF{
 		}
 
 		// delete only IF folder is empty
-		if(empty(self::scan()))	rmdir($this->url);
+		if(empty(self::scan()))	rmdir($this->url->getString());
 	}
 
 
@@ -73,18 +93,7 @@ class Folder extends FF{
 
 
 
-	public function scan(){
-		$array_file = array_diff( scandir($this->url), array('..', '.') );
-		$array_obj_file = [];
 
-		foreach($array_file as $file){
-			$file_url = new Url([$this->url, $file]);
-
-			$array_obj_file[] = (is_dir($file_url->path))? new Folder($file_url->path) : new File($file_url->path);
-		}
-
-		return $array_obj_file;
-	}
 
 
 
