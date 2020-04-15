@@ -1,4 +1,6 @@
 # FILE MANAGER \ FF
+- needs **\UrlParser\Url** class
+
  parent class of every File and Folder => FF
 
 
