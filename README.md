@@ -44,7 +44,7 @@ public $dir => \UrlParser\Url::getString() => "root/aaa/bbb"
 <hr>
 <br>
 
-## FILE MANAGER \ File
+## FILE MANAGER \ FILE
 This class is inherits FF. It specializes in Files.
 
 ```php
@@ -72,6 +72,12 @@ class File inherits FF{
 
 	public function rename($new_name){}	// Rename File in the same folder
 	public function move($new_dir){}	// Move fole to another folder
+
+
+	public function isTemporary($file_url){}	// check if file is temporary => "***.tmp"
+	public function copy($copy_name = null){}	// copy file and return new obj
+	public function upload(File $local_file){}	// upload temporary file into object and folder
+	public function delete(){}		// delete file NOT obj
 
 
 }
