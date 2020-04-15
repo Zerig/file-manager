@@ -10,11 +10,11 @@ $file = new \FileManager\File("root/aaa/bbb/file.txt");
 $file = new \FileManager\File( new \UrlParser\Url("root/aaa/bbb/file.txt") );
 
 // These ↓ are in parent class FF
-public $url => \UrlParser\Url::getString() => "root/aaa/bbb/file.txt"
+public $url  => \UrlParser\Url::getString() => "root/aaa/bbb/file.txt"
 public $size => 80
 public $name => "file.txt"
 public $mode => 0777
-public $dir => \UrlParser\Url::getString() => "root/aaa/bbb"
+public $dir  => \UrlParser\Url::getString() => "root/aaa/bbb"
 
 // These are specific for File class
 public $filename	=> "file"
@@ -31,8 +31,8 @@ Check if File/Folder really exist<br>
 ```php
 $file = new \FileManager\File("root/aaa/bbb/file.txt");
 $file->exist();
-$file->mode => 0666	// when exist
-$file->mode => null	// when doesn't exist
+$file->exist() => 1	// when exist
+$file->exist() => 0	// when doesn't exist
 ```
 
 

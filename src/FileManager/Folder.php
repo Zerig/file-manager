@@ -13,19 +13,40 @@ class Folder extends FF{
 
 	public function __construct($folder_url){
 		parent::__construct($folder_url);	// SET obj without existing Folder
-		if(self::exist())	parent::set();
+		if(self::exist())	parent::set($folder_url);
 	}
 
 
 
-	public function copy(){
-		$from_folder_url =	$url;
-		$to_folder_url =	($url)."-copy";
+	public function copy($copy_name = null){
+		$from_folder_url =	$this->url;
+		$to_folder_url =	clone $this->dir;
+
+		// IF we have a COPY name, or NOT
+		if(is_null($copy_name))		$to_folder_url->addPath($this->name."-copy");
+		else   						$to_folder_url->addPath($copy_name);
 
 		//if(!$overwrite && folder_exists($to_folder_url))	return null;
 
-		recurse_copy($from_folder_url, $to_folder_url);
+		self::recurseCopy($from_folder_url->getString(), $to_folder_url->getString());
 		return new Folder($to_folder_url);
+	}
+
+
+	private function recurseCopy($src,$dst){
+	    $dir = opendir($src);
+	    @mkdir($dst);
+	    while(false !== ( $file = readdir($dir)) ) {
+	        if (( $file != '.' ) && ( $file != '..' )) {
+	            if ( is_dir($src . '/' . $file) ) {
+	                self::recurseCopy($src . '/' . $file,$dst . '/' . $file);
+	            }
+	            else {
+	                copy($src . '/' . $file,$dst . '/' . $file);
+	            }
+	        }
+	    }
+	    closedir($dir);
 	}
 
 

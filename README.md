@@ -21,8 +21,8 @@ Check if File/Folder really exist<br>
 ```php
 $ff = new \FileManager\FF("root/aaa/bbb/file.txt");
 $ff->exist();
-$ff->mode => 0666	// when exist
-$ff->mode => null	// when doesn't exist
+$ff->exist() => 0	// when exist
+$ff->exist() => 1	// when doesn't exist
 ```
 
 
