@@ -89,7 +89,7 @@ $copy_folder->getString() => "root/aaa/bbb/new_folder"
 - $column [string]
 - @return [array of File/Folder / array of string]
 
-Delete Folder and return array of all items inside<br>
+Scan current folder NOT subfolders<br>
 When column is null scan return array of obj File/FOLDER<br>
 When column has value "name" scan returns array of names
 
@@ -106,6 +106,52 @@ $scan_array = $folder->scan("name");
 $scan_array[0] => "file.txt"
 $scan_array[1] => "next_folder"
 ```
+
+
+
+
+## scanTree($column = null)
+- $column [string]
+- @return [array of File/Folder / array of string]
+
+Scan current folder and all subfolders<br>
+When column is null scan return array of obj File/FOLDER<br>
+When column has value "name" scan returns array of names
+
+```code
+folder/
+├── file.txt
+└── next_folder
+	├── next_file.txt
+	└── another_folder
+```
+
+```php
+$folder = new \FileManager\Folder("folder");
+
+// scan returns array of obj File/Folder
+$scan_array = $folder->scanTree();
+$scan_array[0]->getString() => "folder/file.txt"
+$scan_array[1][0]->getString()=> "folder/next_folder"
+$scan_array[1][0][0]->getString()=> "folder/next_file.txt"
+$scan_array[1][0][1]->getString()=> "folder/another_folder"
+
+// scan returns array of string from obj (name)
+$scan_array = $folder->scan("name");
+Array(
+	[0] => "file.txt"
+	[1] => Array(
+		[0] => "next_folder"
+		[1] => Array(
+			[0] => "next_file.txt"
+			[1] => "another_folder"
+		)
+	)
+)
+```
+
+
+
 
 
 ## delete()
