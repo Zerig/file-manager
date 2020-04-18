@@ -53,7 +53,8 @@ class Folder extends FF{
 
 
 	public function scan($column = null){
-		$array_file = array_diff( scandir($this->url->getString()), array('..', '.') );
+		$scanFolder = ($this->url->getString() == "")? "." : $this->url->getString();
+		$array_file = array_diff( scandir($scanFolder), array('..', '.') );
 		$array_obj_file = [];
 
 		foreach($array_file as $file){

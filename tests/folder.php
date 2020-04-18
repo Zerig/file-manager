@@ -8,10 +8,17 @@ require_once '../src/FileManager/Folder.php';
 
 $GLOBALS["server_root"] = new \UrlParser\Url("root");
 echo '$GLOBALS["server_root"] = '.$GLOBALS["server_root"]->getString().'<br>';
-echo "<br>---------------------------------------------<br><br>";
+echo "<br>---------------------------------------------<br><br>SCANDIR the same FOLDER";
 echo "<br>---------------------------------------------<br><br>";
 
-
+$folder = new \FileManager\Folder([]);
+echo "scandir FOLDER: ".$folder->url->getString()."\n";
+$array_ff = $folder->scan();
+foreach($array_ff as $ff){
+	echo $ff->url->getString()."\n";
+}
+echo "<br>---------------------------------------------<br><br>";
+echo "<br>---------------------------------------------<br><br>";
 
 
 $folder = new \FileManager\Folder(new \UrlParser\Url("root/aaa/bbb/folder"));
