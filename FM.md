@@ -158,8 +158,7 @@ $fm->add([
 
 
 
-## filter( $filter, $type = true, $key = "name")
-- **$array_ff [array of FileManager\FF]**
+## filter($filter, $type = 1, $key = "name")
 - **$filter [string]**
 - **$type [boolean]**
 - **$key [name]**
@@ -169,8 +168,20 @@ Filter array of *FF* by *filter* array<br>
 
 
 ### $filter [string]
-Set what you want to find and filter by it. And it is possible to use '%' just li *LIKE* in SQL
+Set what you want to find and filter by it. And it is possible to use '%' just li *LIKE* in SQL\n
 ```php
+NAME OF FILE: "myfile.html"
+FILTER:
+"my%"	 	=> it choose file
+"%html"		=> it choose file
+"%file%"		=> it choose file
+"myfile.html"	=> it choose file	
+```
+```php
+
+
+
+
 $array_ff = [ new \FileManager\File("root/aaa/bbb/myfile.html") ];
 $filter = 'my%';
 $array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
