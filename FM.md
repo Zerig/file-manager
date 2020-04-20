@@ -53,7 +53,7 @@ $ff[1]->url->getString() => "root/aaa/bbb"
 - **$obj [string]**	=> ["files" / "folders"]
 - @return [array of FileManager\FF]
 
-Return all *FF* which is real Files or Folders.
+Return all *FF* which is real Files or Folders. Which really exist in URL
 ```php
 // Returns all FF items
 $ff = $fm->getExist();
@@ -78,7 +78,21 @@ $ff[0]->url->getString() => "root/aaa/bbb/folder"
 $ff[1]->url->getString() => "root/aaa/bbb"
 
 ```
+<br>
+<hr>
+<br>
 
+## count($obj = null){
+- **$obj [string]**	=> ["files" / "folders"]
+- @return [array of FileManager\FF]
+
+Return all *FF* which is real Files or Folders. Which really exist in URL
+```php
+// Returns all FF items
+$fm->count()		=> 5
+$fm->count('files')	=> 3
+$fm->count('folders')	=> 2
+```
 
 
 ## ::filter($array_ff, $filter, $type = true, $key = "name")

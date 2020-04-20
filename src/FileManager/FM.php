@@ -55,37 +55,13 @@ class FM{
 		return $array_folder;
 	}
 
-	/*public function getExist(){
-		$array_exist_ff = [];
-		foreach($this->arrayFF as $ff){
-			if($ff->exist()) $array_exist_ff[] = $ff;
-		}
-
-		return $array_exist_ff;
-	}
-
-	public function getExistFiles(){
-		$array_file = [];
-		foreach($this->arrayFF as $ff){
-			if($ff->isFile()) $array_file[] = $ff;
-		}
-
-		return $array_file;
-	}
-
-	public function getExistFolders(){
-		$array_folder = [];
-		foreach($this->arrayFF as $ff){
-			if($ff->isFolder()) $array_folder[] = $ff;
-		}
-
-		return $array_folder;
-	}*/
 
 
+	public function count($obj = null){
+		if($obj == null) 		return count($this->arrayFF);
+		if($obj == "files") 	return count(self::getFiles());
+		if($obj == "folders") 	return count(self::getFolders());
 
-	public function count(){
-		return count($this->arrayFF);
 	}
 
 	/* POP

@@ -48,6 +48,11 @@ echo "::count() => ".$fm->count()."\n";
 echo "<br>---------------------------------------------<br><br>";
 
 $files = $fm->get("files");
+echo "::count() => ".$fm->count()."\n";
+echo "::count('files') => ".$fm->count('files')."\n";
+echo "::count('folders') => ".$fm->count('folders')."\n";
+echo "\n";
+
 echo "::get('files')<br>";
 foreach($files as $ff){
 	echo $ff->url->getString()."\n";
