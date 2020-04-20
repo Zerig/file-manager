@@ -7,6 +7,8 @@ Manage multiple *FF* files/Folders which cannot be in the same folder and cannot
 
 
 ```php
+// BOTH variant are possile ↓
+$fm = new \FileManager\FM( new \FileManager\File("root/aaa/bbb/aaa.html") );
 $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/aaa.html"),
 	new \FileManager\File("root/aaa/bbb/myfile.html"),
@@ -17,7 +19,7 @@ $fm = new \FileManager\FM([
 ```
 
 ## get($obj = null)
-- **$obj [string]**	=> ["files" / "folders"]
+- **$obj [string]**	=> [null / "files" / "folders"]
 - @return [array of FileManager\FF]
 
 Return all *FF* files/Folders in one array
@@ -50,7 +52,7 @@ $ff[1]->url->getString() => "root/aaa/bbb"
 
 
 ## getExist($obj = null){
-- **$obj [string]**	=> ["files" / "folders"]
+- **$obj [string]**	=> [null / "files" / "folders"]
 - @return [array of FileManager\FF]
 
 Return all *FF* which is real Files or Folders. Which really exist in URL
@@ -78,13 +80,21 @@ $ff[0]->url->getString() => "root/aaa/bbb/folder"
 $ff[1]->url->getString() => "root/aaa/bbb"
 
 ```
+
+
+
+
 <br>
 <hr>
 <br>
 
+
+
+
+
 ## count($obj = null){
-- **$obj [string]**	=> ["files" / "folders"]
-- @return [array of FileManager\FF]
+- **$obj [string]**	=> [null / "files" / "folders"]
+- @return [num]
 
 Return all *FF* which is real Files or Folders. Which really exist in URL
 ```php
@@ -94,8 +104,61 @@ $fm->count('files')	=> 3
 $fm->count('folders')	=> 2
 ```
 
+## pop($times = 1){
+- **$times [null / num]**
 
-## ::filter($array_ff, $filter, $type = true, $key = "name")
+Remove last *times* items from object
+```php
+$fm->count()	=> 5
+
+$fm->pop();
+$fm->count()	=> 4
+
+$fm->pop(2);
+$fm->count()	=> 2
+```
+
+## shift($times = 1){
+- **$times [null / num]**
+
+Remove first *times* items from object
+```php
+$fm->count()	=> 5
+
+$fm->shift();
+$fm->count()	=> 4
+
+$fm->shift(2);
+$fm->count()	=> 2
+```
+
+## add($array_ff){
+- **$array_ff [FileManager\FF / array of FileManager\FF]**
+- @return [array of FileManager\FF]
+
+Add *FileManager\FF* or *array of FileManager\FF* and add them in the end of object FF array *$arrayFF*
+```php
+// BOTH variant are possile ↓
+$fm->add(new \FileManager\File("root/aaa/bbb/new-file.html"));
+$fm->add([
+	new \FileManager\File("root/aaa/bbb/new-file.html"),
+	new \FileManager\Folder("root/aaa/bbb/new-folder")
+]);
+```
+
+
+
+
+
+<br>
+<hr>
+<br>
+
+
+
+
+
+## filter( $filter, $type = true, $key = "name")
 - **$array_ff [array of FileManager\FF]**
 - **$filter [string]**
 - **$type [boolean]**
