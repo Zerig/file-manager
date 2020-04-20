@@ -55,7 +55,7 @@ $ff->url->getString => "root/aaa/b/file.txt"
 
 
 
-## \FileManager\FF::filter($array_ff, $filter, $type = true, $key = "name")
+## ::filter($array_ff, $filter, $type = true, $key = "name")
 - **$array_ff [array of FileManager\FF]**
 - **$filter [string]**
 - **$type [boolean]**
@@ -88,10 +88,25 @@ $array_filtered_ff[]->url->getString() => "root/aaa/bbb/myfile.html";	// file wa
 $filter = 'aa%';
 $array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
 $array_filtered_ff => empty;	// file was NOT chosen
-
-
-
 ```
+
+
+### $type [boolean]
+Set if you want filter objects **accept** or **refuse**.
+```php
+$array_ff = [ new \FileManager\File("root/aaa/bbb/myfile.html") ];
+$filter = 'my%';
+
+$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
+$array_filtered_ff[]->url->getString() => "root/aaa/bbb/myfile.html";	// file was chosen
+
+$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter, 1);
+$array_filtered_ff[]->url->getString() => "root/aaa/bbb/myfile.html";	// file was chosen
+
+$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
+$array_filtered_ff => empty;	// file was NOT chosen
+```
+
 
 ```php
 $array_ff = [
