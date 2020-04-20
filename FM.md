@@ -3,19 +3,60 @@
 - use **\UrlParser\File** class
 - use **\UrlParser\Folder** class
 
-Manage multiple *FF* which cannot be in the same folder.
+Manage multiple *FF* files/Folders which cannot be in the same folder and cannot exist.
 
 
 ```php
-// BOTH variant are possile ↓
-$fm = new \FileManager\FM("root/aaa/bbb/file.txt");
-$ff = new \FileManager\FF( new \UrlParser\Url("root/aaa/bbb/file.txt") );
+$fm = new \FileManager\FM([
+	new \FileManager\File("root/aaa/bbb/aaa.html"),
+	new \FileManager\File("root/aaa/bbb/myfile.html"),
+	new \FileManager\File("root/aaa/bbb/file.txt"),
+	new \FileManager\Folder("root/aaa/bbb/folder"),
+	new \FileManager\Folder("root/aaa/bbb"),
+]);
+```
 
-public $url => \UrlParser\Url::getString() => "root/aaa/bbb/file.txt"
-public $size => 80
-public $name => "file.txt"
-public $mode => 0777
-public $dir => \UrlParser\Url::getString() => "root/aaa/bbb"
+## get($obj = null)
+- **$obj [string]**	=> ["files" / "folders"]
+- @return [array of FileManager\FF]
+
+Return all *FF* files/Folders in one array
+```php
+$ff = $fm->get();
+// Returns all FF items
+$ff[0]->url->getString()	=> "root/aaa/bbb/aaa.html"
+$ff[1]->url->getString()	=> "root/aaa/bbb/myfile.html"
+$ff[2]->url->getString()	=> "root/aaa/bbb/file.txt"
+$ff[3]->url->getString()	=> "root/aaa/bbb/folder"
+$ff[4]->url->getString()	=> "root/aaa/bbb"
+```
+```php
+$ff = $fm->get("files");
+// Returns only File items
+$ff[0]->url->getString()	=> "root/aaa/bbb/aaa.html"
+$ff[1]->url->getString()	=> "root/aaa/bbb/myfile.html"
+$ff[2]->url->getString()	=> "root/aaa/bbb/file.txt"
+```
+```php
+$ff = $fm->get("folders");
+// Returns only Folder items
+$ff[0]->url->getString()	=> "root/aaa/bbb/folder"
+$ff[1]->url->getString()	=> "root/aaa/bbb"
+
+```
+
+
+## getExist($obj = null){
+- **$obj [string]**	=> ["files" / "folders"]
+- @return [array of FileManager\FF]
+
+Return all *FF* which is real Files or Folders.
+```php
+$ff = $fm->getExist();
+
+$ff[2]->url->getString()	=> "root/aaa/bbb/file.txt"
+$ff[3]->url->getString()	=> "root/aaa/bbb/folder"
+$ff[4]->url->getString()	=> "root/aaa/bbb"
 ```
 
 

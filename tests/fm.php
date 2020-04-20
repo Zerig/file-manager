@@ -47,15 +47,15 @@ echo "::count() => ".$fm->count()."\n";
 
 echo "<br>---------------------------------------------<br><br>";
 
-$files = $fm->getFiles();
-echo "::getFiles()<br>";
+$files = $fm->get("files");
+echo "::get('files')<br>";
 foreach($files as $ff){
 	echo $ff->url->getString()."\n";
 }
 
 echo "\n";
-$folders = $fm->getFolders();
-echo "::getFolders()<br>";
+$folders = $fm->get("folders");
+echo "::get('folders')<br>";
 foreach($folders as $ff){
 	echo $ff->url->getString()."\n";
 }
@@ -66,6 +66,21 @@ echo "::getExist()<br>";
 foreach($array_ff as $ff){
 	echo $ff->url->getString()."\n";
 }
+
+echo "\n";
+$array_ff = $fm->getExist("folders");
+echo "::getExist('folders')<br>";
+foreach($array_ff as $ff){
+	echo $ff->url->getString()."\n";
+}
+
+echo "\n";
+$array_ff = $fm->getExist("files");
+echo "::getExist('files')<br>";
+foreach($array_ff as $ff){
+	echo $ff->url->getString()."\n";
+}
+
 
 echo "<br>---------------------------------------------<br><br>";
 echo "<br>---------------------------------------------<br><br>";

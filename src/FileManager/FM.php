@@ -13,11 +13,31 @@ class FM{
 		}
 	}
 
-	public function get(){
-		return $this->arrayFF;
+	public function get($obj = null){
+		if($obj == null) 		return $this->arrayFF;
+		if($obj == "files") 	return self::getFiles();
+		if($obj == "folders") 	return self::getFolders();
 	}
 
-	public function getFiles(){
+	public function getExist($obj = null){
+		$array_exist_ff = [];
+		foreach($this->arrayFF as $ff){
+			if($ff->exist()) $array_exist_ff[] = $ff;
+		}
+
+		if($obj == null)	return $array_exist_ff;
+		if($obj == "files"){
+			$fm = new FM($array_exist_ff);
+							return $fm->get("files");
+		}
+		if($obj == "folders"){
+			$fm = new FM($array_exist_ff);
+							return $fm->get("folders");
+		}
+
+	}
+
+	private function getFiles(){
 		$array_file = [];
 		foreach($this->arrayFF as $ff){
 			if(is_a($ff, "\FileManager\File")) $array_file[] = $ff;
@@ -26,7 +46,7 @@ class FM{
 		return $array_file;
 	}
 
-	public function getFolders(){
+	private function getFolders(){
 		$array_folder = [];
 		foreach($this->arrayFF as $ff){
 			if(is_a($ff, "\FileManager\Folder")) $array_folder[] = $ff;
@@ -35,7 +55,7 @@ class FM{
 		return $array_folder;
 	}
 
-	public function getExist(){
+	/*public function getExist(){
 		$array_exist_ff = [];
 		foreach($this->arrayFF as $ff){
 			if($ff->exist()) $array_exist_ff[] = $ff;
@@ -43,6 +63,24 @@ class FM{
 
 		return $array_exist_ff;
 	}
+
+	public function getExistFiles(){
+		$array_file = [];
+		foreach($this->arrayFF as $ff){
+			if($ff->isFile()) $array_file[] = $ff;
+		}
+
+		return $array_file;
+	}
+
+	public function getExistFolders(){
+		$array_folder = [];
+		foreach($this->arrayFF as $ff){
+			if($ff->isFolder()) $array_folder[] = $ff;
+		}
+
+		return $array_folder;
+	}*/
 
 
 
