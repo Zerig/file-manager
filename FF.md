@@ -80,9 +80,9 @@ $ff->name 	=> "myFile.html"
 $ff->filename 	=> "myFile"
 $ff->extension 	=> "html"
 
-$ff->filter('filename', 'name')		=> 0
-$ff->filter('filename', 'myfile')	=> 1
-$ff->filter('html', 'extension')	=> 1
+$ff->filter('filename', 'name')	  => 0
+$ff->filter('filename', 'myfile') => 1
+$ff->filter('html', 'extension')  => 1
 
 
 ```
