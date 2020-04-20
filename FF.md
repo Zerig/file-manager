@@ -64,10 +64,10 @@ Chceck if same value *key* of object contain
 Set what you want to find and filter by it. And you can use '%' just like *LIKE* in SQL
 ```php
 $ff = new \FileManager\FF("root/aaa/bbb/myfile.html");
-$ff->filter('my%')		=> 1
-$ff->filter('%html') 	=> 1
-$ff->filter('%file%') 	=> 1
-$ff->filter('myfile.html') => 1
+$ff->filter('my%')			=> 1
+$ff->filter('%html') 		=> 1
+$ff->filter('%file%') 		=> 1
+$ff->filter('myfile.html')	=> 1
 
 $ff->filter('aaa%') => 0
 ```
