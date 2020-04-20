@@ -22,8 +22,9 @@ $fm = new \FileManager\FM([
 
 Return all *FF* files/Folders in one array
 ```php
-$ff = $fm->get();
 // Returns all FF items
+$ff = $fm->get();
+
 $ff[0]->url->getString()	=> "root/aaa/bbb/aaa.html"
 $ff[1]->url->getString()	=> "root/aaa/bbb/myfile.html"
 $ff[2]->url->getString()	=> "root/aaa/bbb/file.txt"
@@ -31,15 +32,17 @@ $ff[3]->url->getString()	=> "root/aaa/bbb/folder"
 $ff[4]->url->getString()	=> "root/aaa/bbb"
 ```
 ```php
-$ff = $fm->get("files");
 // Returns only File items
+$ff = $fm->get("files");
+
 $ff[0]->url->getString()	=> "root/aaa/bbb/aaa.html"
 $ff[1]->url->getString()	=> "root/aaa/bbb/myfile.html"
 $ff[2]->url->getString()	=> "root/aaa/bbb/file.txt"
 ```
 ```php
-$ff = $fm->get("folders");
 // Returns only Folder items
+$ff = $fm->get("folders");
+
 $ff[0]->url->getString()	=> "root/aaa/bbb/folder"
 $ff[1]->url->getString()	=> "root/aaa/bbb"
 
