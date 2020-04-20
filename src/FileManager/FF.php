@@ -91,6 +91,8 @@ class FF{
 	 * $array_ff [array of \FileManager\FF]
 	 */
 	public function filter($filter, $key = "name"){
+		if(!isset($this->{$key})) return 0;
+
 		if($filter[0] == "%" && substr($filter, -1) == "%"){
 			$filter = str_replace("%", "", $filter);
 			return (stripos($this->{$key}, $filter) !== false);

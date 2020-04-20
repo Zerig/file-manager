@@ -1,12 +1,14 @@
-# FILE MANAGER \ FF
-- needs **\UrlParser\Url** class
+# FILE MANAGER \ FM
+- use **\UrlParser\FF** class
+- use **\UrlParser\File** class
+- use **\UrlParser\Folder** class
 
- parent class of every File and Folder => FF
+Manage multiple *FF* which cannot be in the same folder.
 
 
 ```php
 // BOTH variant are possile ↓
-$ff = new \FileManager\FF("root/aaa/bbb/file.txt");
+$fm = new \FileManager\FM("root/aaa/bbb/file.txt");
 $ff = new \FileManager\FF( new \UrlParser\Url("root/aaa/bbb/file.txt") );
 
 public $url => \UrlParser\Url::getString() => "root/aaa/bbb/file.txt"

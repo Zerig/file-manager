@@ -2,6 +2,7 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php'; // Autoload files using Composer autoload
 
+
 $GLOBALS["server_root"] = new \UrlParser\Url("root");
 echo '$GLOBALS["server_root"] = '.$GLOBALS["server_root"]->getString().'<br>';
 echo "<br>---------------------------------------------<br><br>";
@@ -29,7 +30,7 @@ echo "::filter('".$filter."', 'extension')	=> ".$file->filter($filter, 'extensio
 echo "<br>---------------------------------------------<br><br>";
 echo "<br>---------------------------------------------<br><br>";
 
-/*
+
 
 $ff = new \FileManager\FF(new \UrlParser\Url("root/aaa/bbb/file.txt"));
 echo print_r($ff);
@@ -60,4 +61,3 @@ echo "<br>";
 $ff = new \FileManager\FF("root/a");
 $ff->move("root/aa");
 echo print_r($ff);
-*/
