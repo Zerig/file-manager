@@ -55,11 +55,28 @@ $ff[1]->url->getString() => "root/aaa/bbb"
 
 Return all *FF* which is real Files or Folders.
 ```php
+// Returns all FF items
 $ff = $fm->getExist();
 
-$ff[2]->url->getString()	=> "root/aaa/bbb/file.txt"
-$ff[3]->url->getString()	=> "root/aaa/bbb/folder"
-$ff[4]->url->getString()	=> "root/aaa/bbb"
+$ff[0]->url->getString() => "root/aaa/bbb/aaa.html"
+$ff[1]->url->getString() => "root/aaa/bbb/myfile.html"
+$ff[2]->url->getString() => "root/aaa/bbb/file.txt"
+$ff[3]->url->getString() => "root/aaa/bbb/folder"
+$ff[4]->url->getString() => "root/aaa/bbb"
+```
+```php
+// Returns only File items
+$ff = $fm->getExist("files");
+
+$ff[0]->url->getString() => "root/aaa/bbb/file.txt"
+```
+```php
+// Returns only Folder items
+$ff = $fm->getExist("folders");
+
+$ff[0]->url->getString() => "root/aaa/bbb/folder"
+$ff[1]->url->getString() => "root/aaa/bbb"
+
 ```
 
 
