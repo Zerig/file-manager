@@ -6,16 +6,12 @@
 </form>
 
 <?php
-require_once '../src/UrlParser/url.php';
-require_once '../src/FileManager/FF.php';
-require_once '../src/FileManager/File.php';
+require_once __DIR__ . '/../vendor/autoload.php'; // Autoload files using Composer autoload
 
 $GLOBALS["server_root"] = new \UrlParser\Url("root");
 echo '$GLOBALS["server_root"] = '.$GLOBALS["server_root"]->getString().'<br>';
 echo "<br>---------------------------------------------<br><br>";
 echo "<br>---------------------------------------------<br><br>";
-
-
 
 
 $file = new \FileManager\File(new \UrlParser\Url("root/aaa/bbb/file.txt"));

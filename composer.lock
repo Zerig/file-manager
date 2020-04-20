@@ -1,0 +1,65 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "9461d6743f711b5a86fc92f7bf021799",
+    "packages": [
+        {
+            "name": "zerig/url-parser",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Zerig/url-parser.git",
+                "reference": "463e138823eb6e3678c8a42a80a685456e8ba255"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Zerig/url-parser/zipball/463e138823eb6e3678c8a42a80a685456e8ba255",
+                "reference": "463e138823eb6e3678c8a42a80a685456e8ba255",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0",
+                "zerig/url-parser": "@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "UrlParser\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeronym Pelikovsky",
+                    "email": "pelikovsky@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "class of object which parse url and can work with it.",
+            "keywords": [
+                "url",
+                "url parser"
+            ],
+            "time": "2020-04-19T13:18:59+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "zerig/url-parser": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.6.0"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
+}

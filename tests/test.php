@@ -1,7 +1,7 @@
 <code style="white-space: pre;">
 <?php
-//require_once __DIR__ . '/../vendor/autoload.php'; // Autoload files using Composer autoload
-require_once '../src/UrlParser/Url.php';
+require_once __DIR__ . '/../vendor/autoload.php'; // Autoload files using Composer autoload
+
 
 $GLOBALS["server_root"] = new \UrlParser\Url("root");
 echo '$GLOBALS["server_root"] = '.$GLOBALS["server_root"]->getString().'<br>';

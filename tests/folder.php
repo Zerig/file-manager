@@ -1,10 +1,8 @@
 <code style="white-space: pre;">
 
 <?php
-require_once '../src/UrlParser/Url.php';
-require_once '../src/FileManager/FF.php';
-require_once '../src/FileManager/File.php';
-require_once '../src/FileManager/Folder.php';
+require_once '../vendor/autoload.php';
+
 
 $GLOBALS["server_root"] = new \UrlParser\Url("root");
 echo '$GLOBALS["server_root"] = '.$GLOBALS["server_root"]->getString().'<br>';
@@ -19,7 +17,7 @@ foreach($array_ff as $ff){
 }
 echo "<br>---------------------------------------------<br><br>";
 echo "<br>---------------------------------------------<br><br>";
-echo "FILTERED FILES: \n";
+/*echo "FILTERED FILES: \n";
 $filter = 'file%';
 //$array_ff = array('!January', 'Febr!uary', 'March!');
 $array_filtered_ff = \FileManager\FF::filter($array_ff, $filter, 1);
@@ -27,7 +25,7 @@ foreach($array_filtered_ff as $ff){
 	echo $ff->url->getString()."\n";
 }
 echo "<br>---------------------------------------------<br><br>";
-echo "<br>---------------------------------------------<br><br>";
+echo "<br>---------------------------------------------<br><br>";*/
 
 
 $folder = new \FileManager\Folder(new \UrlParser\Url("root/aaa/bbb/folder"));

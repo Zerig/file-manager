@@ -53,72 +53,21 @@ $ff->move(new \UrlParser\Url("root/aaa/b"));
 $ff->url->getString => "root/aaa/b/file.txt"
 ```
 
-
-
-## ::filter($array_ff, $filter, $type = true, $key = "name")
-- **$array_ff [array of FileManager\FF]**
+## ::checkIf($filter, $key = "name")
 - **$filter [string]**
-- **$type [boolean]**
 - **$key [name]**
- - @return [array of FileManager\FF]
+* @return [boolean]
 
-Filter array of *FF* by *filter* array<br>
-
+Chceck if same value *key* of object contain
 
 ### $filter [string]
-Set what you want to find and filter by it. And it is possible to use '%' just li *LIKE* in SQL
+Set what you want to find and filter by it. And you can use '%' just like *LIKE* in SQL
 ```php
-$array_ff = [ new \FileManager\File("root/aaa/bbb/myfile.html") ];
-$filter = 'my%';
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
-$array_filtered_ff[]->url->getString() => "root/aaa/bbb/myfile.html";	// file was chosen
+$ff = new \FileManager\FF("root/aaa/bbb/myfile.html");
+$ff->filter('my%')	=> 1
+$ff->filter('%html') => 1
+$ff->filter('%file%') => 1
+$ff->filter('myfile.html') => 1
 
-$filter = '%html';
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
-$array_filtered_ff[]->url->getString() => "root/aaa/bbb/myfile.html";	// file was chosen
-
-$filter = '%file%';
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
-$array_filtered_ff[]->url->getString() => "root/aaa/bbb/myfile.html";	// file was chosen
-
-$filter = 'myfile.html';
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
-$array_filtered_ff[]->url->getString() => "root/aaa/bbb/myfile.html";	// file was chosen
-
-$filter = 'aa%';
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
-$array_filtered_ff => empty;	// file was NOT chosen
-```
-
-
-### $type [boolean]
-Set if you want filter objects **accept** or **refuse**.
-```php
-$array_ff = [ new \FileManager\File("root/aaa/bbb/myfile.html") ];
-$filter = 'my%';
-
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
-$array_filtered_ff[]->url->getString() => "root/aaa/bbb/myfile.html";	// file was chosen
-
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter, 1);
-$array_filtered_ff[]->url->getString() => "root/aaa/bbb/myfile.html";	// file was chosen
-
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
-$array_filtered_ff => empty;	// file was NOT chosen
-```
-
-
-```php
-$array_ff = [
-	new \FileManager\FF("root/aaa/bbb/file.txt"),
-	new \FileManager\File("root/aaa/bbb/myfile.html"),
-	new \FileManager\Folder("root/aaa/bbb"),
-	new \FileManager\Folder("root/aaa"),
-	new \FileManager\File("root/aaa/bbb/filename.html")
-];
-$filter = 'file%';
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter, 1);
-foreach($array_filtered_ff as $ff){
-	echo $ff->url->getString()."\n";
-}
+$ff->filter('aaa%') => 0
 ```
