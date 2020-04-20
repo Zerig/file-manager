@@ -117,4 +117,24 @@ class FM{
 		return ($type)? $filtered_array_positive : $filtered_array_negative;
 	}
 
+
+
+
+
+
+	public function delete(){
+		foreach($this->$arrayFF as $ff){
+			$ff->delete();
+		}
+	}
+
+
+	public function move($new_dir){
+		foreach($this->$arrayFF as $ff){
+			$ff->move($new_dir);
+		}
+	}
+
+
+
 }

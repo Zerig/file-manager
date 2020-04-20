@@ -211,17 +211,43 @@ $fm->filter("%html", 1, "name")	=> array with one File item: "root/aaa/bbb/myfil
 ```
 
 
+
+
+
+
+<br>
+<hr>
+<br>
+
+
+
+## delete()
+Delete all files inside of object, if they were existing.
 ```php
-$array_ff = [
-	new \FileManager\FF("root/aaa/bbb/file.txt"),
+$fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/myfile.html"),
-	new \FileManager\Folder("root/aaa/bbb"),
-	new \FileManager\Folder("root/aaa"),
-	new \FileManager\File("root/aaa/bbb/filename.html")
-];
-$filter = 'file%';
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter, 1);
-foreach($array_filtered_ff as $ff){
-	echo $ff->url->getString()."\n";
-}
+	new \FileManager\File("root/aaa/file.txt"),
+]);
+
+$fm->delete();
+$fm->get()[0]->exist()	=> 0
+$fm->get()[1]->exist()	=> 0
+
+```
+
+
+## move($new_dir)
+- $new_dir [string]
+
+Change dir path of all files, no matter where they were before.
+```php
+$fm = new \FileManager\FM([
+	new \FileManager\File("root/aaa/bbb/myfile.html"),
+	new \FileManager\File("root/aaa/file.txt"),
+]);
+
+$fm->move("root/aaa/bbb/ccc");
+$fm->get()[0]->url->getString()	=> "root/aaa/bbb/ccc/myfile.html"
+$fm->get()[1]->url->getString()	=> "root/aaa/bbb/ccc/file.txt"
+
 ```
