@@ -21,6 +21,10 @@ echo "::filter('".$filter."')	=> ".$file->filter($filter)."\n";
 echo "\n";
 $filter = 'anf%';
 echo "::filter('".$filter."')	=> ".$file->filter($filter)."\n";
+echo "\n";
+$filter = 'txt';
+echo "::filter('".$filter."', 'extension')	=> ".$file->filter($filter, 'extension')."\n";
+
 
 echo "<br>---------------------------------------------<br><br>";
 echo "<br>---------------------------------------------<br><br>";

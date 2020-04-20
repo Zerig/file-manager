@@ -69,5 +69,20 @@ $ff->filter('%html') 		=> 1
 $ff->filter('%file%') 		=> 1
 $ff->filter('myfile.html')	=> 1
 
-$ff->filter('aaa%') 	=> 0
+$ff->filter('aaa%') 		=> 0
+```
+
+### $key [string]
+You can choose which obj value you want to compare
+```php
+$ff = new \FileManager\File("root/aaa/bbb/myfile.html");
+$ff->name 		=> "myFile.html"
+$ff->filename 	=> "myFile"
+$ff->extension 	=> "html"
+
+$ff->filter('filename', 'name')		=> 0
+$ff->filter('filename', 'myfile')		=> 1
+$ff->filter('html', 'extension')		=> 1
+
+
 ```
