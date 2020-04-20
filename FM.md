@@ -174,51 +174,40 @@ NAME OF FILE: "myfile.html"
 FILTER:
 "my%"	 	=> it choose file
 "%html"		=> it choose file
-"%file%"		=> it choose file
-"myfile.html"	=> it choose file	
+"%file%"	=> it choose file
+"myfile.html"	=> it choose file
+
+$fm = new \FileManager\FM([
+	new \FileManager\File("root/aaa/bbb/myfile.html"),
+	new \FileManager\File("root/aaa/bbb/file.txt"),
+]);
+$fm->filter("my%")	=> array with one File item: "root/aaa/bbb/myfile.html"
 ```
-```php
-
-
-
-
-$array_ff = [ new \FileManager\File("root/aaa/bbb/myfile.html") ];
-$filter = 'my%';
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
-$array_filtered_ff[]->url->getString() => "root/aaa/bbb/myfile.html";	// file was chosen
-
-$filter = '%html';
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
-$array_filtered_ff[]->url->getString() => "root/aaa/bbb/myfile.html";	// file was chosen
-
-$filter = '%file%';
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
-$array_filtered_ff[]->url->getString() => "root/aaa/bbb/myfile.html";	// file was chosen
-
-$filter = 'myfile.html';
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
-$array_filtered_ff[]->url->getString() => "root/aaa/bbb/myfile.html";	// file was chosen
-
-$filter = 'aa%';
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
-$array_filtered_ff => empty;	// file was NOT chosen
-```
-
 
 ### $type [boolean]
-Set if you want filter objects **accept** or **refuse**.
+You can set if you want selected files / folders or not.
 ```php
-$array_ff = [ new \FileManager\File("root/aaa/bbb/myfile.html") ];
-$filter = 'my%';
+$fm = new \FileManager\FM([
+	new \FileManager\File("root/aaa/bbb/myfile.html"),
+	new \FileManager\File("root/aaa/bbb/file.txt"),
+]);
 
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
-$array_filtered_ff[]->url->getString() => "root/aaa/bbb/myfile.html";	// file was chosen
+$fm->filter("my%", 1)	=> array with one File item: "root/aaa/bbb/myfile.html"
+$fm->filter("my%", 0)	=> array with one File item: "root/aaa/bbb/file.txt"
+```
 
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter, 1);
-$array_filtered_ff[]->url->getString() => "root/aaa/bbb/myfile.html";	// file was chosen
+### $key [string]
+You can set which object value *$key* should be used in filtering
+```php
+$fm = new \FileManager\FM([
+	new \FileManager\File("root/aaa/bbb/myfile.html"),
+	new \FileManager\File("root/aaa/bbb/file.txt"),
+]);
 
-$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter);
-$array_filtered_ff => empty;	// file was NOT chosen
+$fm->filter("html", 1, "extension")	=> array with one File item: "root/aaa/bbb/myfile.html"
+$fm->filter("html", 1, "name")	=> empty
+$fm->filter("%html", 1, "name")	=> array with one File item: "root/aaa/bbb/myfile.html"
+
 ```
 
 
