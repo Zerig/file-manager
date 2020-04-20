@@ -19,6 +19,15 @@ foreach($array_ff as $ff){
 }
 echo "<br>---------------------------------------------<br><br>";
 echo "<br>---------------------------------------------<br><br>";
+echo "FILTERED FILES: \n";
+$filter = 'file%';
+//$array_ff = array('!January', 'Febr!uary', 'March!');
+$array_filtered_ff = \FileManager\FF::filter($array_ff, $filter, 1);
+foreach($array_filtered_ff as $ff){
+	echo $ff->url->getString()."\n";
+}
+echo "<br>---------------------------------------------<br><br>";
+echo "<br>---------------------------------------------<br><br>";
 
 
 $folder = new \FileManager\Folder(new \UrlParser\Url("root/aaa/bbb/folder"));

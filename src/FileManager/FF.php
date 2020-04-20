@@ -82,4 +82,37 @@ class FF{
 		self::set($target_ff_url);
 	}
 
+
+
+
+
+
+	/*
+	 * $array_ff [array of \FileManager\FF]
+	 */
+	public static function filter($array_ff, $filter, $type = true, $key = "name"){
+		if(!is_array($array_ff))	return null;
+		return array_filter($array_ff, function ($var) use ($filter, $type, $key) {
+			if($filter[0] == "%" && substr($filter, -1) == "%"){
+				$filter = str_replace("%", "", $filter);
+				$result = (stripos($var->$key, $filter) !== false);
+
+			}else if(substr($filter, -1) == "%"){
+				$filter = str_replace("%", "", $filter);
+				$result = $filter == substr($var->{$key}, 0, strlen($filter));
+
+			}else if($filter[0] == "%"){
+				$filter = str_replace("%", "", $filter);
+				$result = $filter == substr($var->{$key}, -strlen($filter), strlen($filter));
+
+			}else{
+				$result = ($var->{$key} == $filter);
+			}
+
+			return ($type)? $result : !$result;
+
+		});
+
+	}
+
 }

@@ -52,25 +52,6 @@ class Folder extends FF{
 
 
 
-	public function scan($column = null){
-		$scanFolder = ($this->url->getString() == "")? "." : $this->url->getString();
-		$array_file = array_diff( scandir($scanFolder), array('..', '.') );
-		$array_obj_file = [];
-
-		foreach($array_file as $file){
-			//$file_url = new \UrlParser\Url([$this->url, $file]);
-			$file_url = clone $this->url;		// \UrlParser\Url
-			$file_url->addPath($file);
-
-			if($column == null)	$array_obj_file[] = ( $file_url->isDir() )? new Folder($file_url) : new File($file_url);
-			else   				$array_obj_file[] = ( $file_url->isDir() )? (new Folder($file_url))->$column : (new File($file_url))->$column;
-		}
-
-		return $array_obj_file;
-	}
-
-
-
 
 	public function delete(){
 		$array_obj_child = self::scan();
@@ -95,7 +76,22 @@ class Folder extends FF{
 
 
 
+	public function scan($column = null){
+		$scanFolder = ($this->url->getString() == "")? "." : $this->url->getString();
+		$array_file = array_diff( scandir($scanFolder), array('..', '.') );
+		$array_obj_file = [];
 
+		foreach($array_file as $file){
+			//$file_url = new \UrlParser\Url([$this->url, $file]);
+			$file_url = clone $this->url;		// \UrlParser\Url
+			$file_url->addPath($file);
+
+			if($column == null)	$array_obj_file[] = ( $file_url->isDir() )? new Folder($file_url) : new File($file_url);
+			else   				$array_obj_file[] = ( $file_url->isDir() )? (new Folder($file_url))->$column : (new File($file_url))->$column;
+		}
+
+		return $array_obj_file;
+	}
 
 
 
@@ -120,6 +116,7 @@ class Folder extends FF{
 
 		return $array_tree;
 	}
+
 
 
 
