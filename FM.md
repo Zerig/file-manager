@@ -18,6 +18,7 @@ $fm = new \FileManager\FM([
 ]);
 ```
 <hr>
+
 # GET...()
 
 ## get($obj = null)
@@ -151,7 +152,7 @@ $fm->add([
 
 <br>
 <hr>
-<br>
+
 
 # REMOVE...()
 
@@ -285,7 +286,7 @@ $fm->get() => [
 
 <br>
 <hr>
-<br>
+
 
 # GET...()
 
