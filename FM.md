@@ -150,6 +150,7 @@ $fm->add([
 <br>
 <hr>
 <br>
+# REMOVE...()
 
 ## remove($fm = null)
 - **$fm [FileManager\FM / array of FileManager\FF / FileManager\FF]**
@@ -215,12 +216,10 @@ $fm->get() => [
 ## removeExist()
 Remove all existing *FF*. The same as [*removeNotExist()*](#removenotexist) but reverse.
 
-
 ```php
-$fm->removeExist();
+$fm->removeNotExist();
 $fm->get() => [
-	FileManager\File("root/aaa/file.txt"),
-	FileManager\Folder("root/aaa/folder")
+	new \FileManager\File("root/aaa/bbb/myfile.html")
 ]
 ```
 
@@ -259,7 +258,13 @@ $fm->get() => [
 ```
 
 ## removeFilter($filter, $type = 1, $key = "name")
-Find *FF* objects by *$filter* and remove them from *FM* - NOT from FTP
+- **$filter [string]**
+- **$type [boolean]**
+- **$key [name]**
+ - @return [array of FileManager\FF]
+
+Find *FF* objects by *$filter* and remove them from *FM* - NOT from FTP.\n
+Returns removed objects.
 ```php
 $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/myfile.html"),
@@ -267,11 +272,11 @@ $fm = new \FileManager\FM([
 	new \FileManager\Folder("root/aaa/folder")
 ]);
 ```
+Rules how to filter find in (*getFilter($filter, $type = 1, $key = "name")*)[#getfilterfilter-type--1-key--name]
 ```php
-$fm->removeFiles();
+$fm->removeFilter("%file%");
 $fm->get() => [
-	new \FileManager\File("root/aaa/bbb/myfile.html"),
-	new \FileManager\File("root/aaa/file.txt")
+	new \FileManager\Folder("root/aaa/folder")
 ]
 ```
 
@@ -279,11 +284,11 @@ $fm->get() => [
 <hr>
 <br>
 
+# GET...()
 
 
 
-
-## filter($filter, $type = 1, $key = "name")
+## getFilter($filter, $type = 1, $key = "name")
 - **$filter [string]**
 - **$type [boolean]**
 - **$key [name]**
