@@ -37,11 +37,11 @@ class FM{
 		if($obj == null)	return new \FileManager\FM($array_exist_ff);
 		if($obj == "files"){
 			$fm = new FM($array_exist_ff);
-							return $fm->get("files");
+							return $fm->getFiles();
 		}
 		if($obj == "folders"){
 			$fm = new FM($array_exist_ff);
-							return $fm->get("folders");
+							return $fm->getFolders();
 		}
 
 	}
@@ -70,7 +70,6 @@ class FM{
 		if($obj == null) 		return count($this->arrayFF);
 		if($obj == "files") 	return count(self::getFiles());
 		if($obj == "folders") 	return count(self::getFolders());
-
 	}
 
 	/* POP
@@ -104,19 +103,23 @@ class FM{
 	}
 
 	public function remove($fm = null){
-		$fm = (is_a($fm, "\FileManager\FF"))? [$fm] : $fm;
-		$fm = (is_array($fm))? new \FileMAnager\FM($fm) : $fm;
-		$new_arrayFF = [];
+		if($fm == null){
+			$this->arrayFF = [];
+		}else{
+			$fm = (is_a($fm, "\FileManager\FF"))? [$fm] : $fm;
+			$fm = (is_array($fm))? new \FileMAnager\FM($fm) : $fm;
+			$new_arrayFF = [];
 
-		foreach($this->arrayFF as $ff){
-			$save = true;
-			foreach($fm->get() as $f){
-				if($ff->url->getString() == $f->url->getString()) $save = false;
+			foreach($this->arrayFF as $ff){
+				$save = true;
+				foreach($fm->get() as $f){
+					if($ff->url->getString() == $f->url->getString()) $save = false;
+				}
+				if($save) $new_arrayFF[] = $ff;
 			}
-			if($save) $new_arrayFF[] = $ff;
-		}
 
-		$this->arrayFF = $new_arrayFF;
+			$this->arrayFF = $new_arrayFF;
+		}
 	}
 
 
@@ -125,7 +128,17 @@ class FM{
 	}
 
 	public function removeFiles(){
-		$this->arrayFF = self::getExist()->get();
+		$this->arrayFF = self::getFolders();
+	}
+
+	public function removeFolders(){
+		$this->arrayFF = self::getFiles();
+	}
+
+
+
+	public function removeFilter($filter, $type = 1, $key = "name"){
+		$this->arrayFF = self::getFilter($filter, !$type, $key = "name");
 	}
 
 
@@ -135,10 +148,6 @@ class FM{
 
 
 
-
-	/*
-	 * $array_ff [array of \FileManager\FF]
-	 */
 	public function getFilter($filter, $type = 1, $key = "name"){
 		$filtered_array_positive = [];
 		$filtered_array_negative = [];
@@ -152,20 +161,7 @@ class FM{
 	}
 
 
-	/*
-	 * $array_ff [array of \FileManager\FF]
-	 */
-	public function filter($filter, $type = 1, $key = "name"){
-		$filtered_array_positive = [];
-		$filtered_array_negative = [];
 
-		foreach($this->arrayFF as $ff){
-			if($ff->filter($filter, $key)) 	$filtered_array_positive[] = $ff;
-			else   							$filtered_array_negative[] = $ff;
-		}
-
-		$this->arrayFF = ($type)? $filtered_array_positive : $filtered_array_negative;
-	}
 
 
 

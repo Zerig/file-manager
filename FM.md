@@ -159,7 +159,7 @@ Remove *FF* Files/folders from obj *FM* - NOT from server
 $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/myfile.html"),
 	new \FileManager\File("root/aaa/file.txt"),
-	new \FileManager\Folder("root/aaa/folder"),
+	new \FileManager\Folder("root/aaa/folder")
 ]);
 ```
 
@@ -168,7 +168,7 @@ $fm = new \FileManager\FM([
 $fm->remove( new \FileManager\File("root/aaa/file.txt") );
 $fm->get() => [
 	FileManager\File("root/aaa/bbb/myfile.html"),
-	FileManager\Folder("root/aaa/folder"),
+	FileManager\Folder("root/aaa/folder")
 ]
 ```
 
@@ -176,7 +176,7 @@ $fm->get() => [
 // Remove multiple ff objects by ARRAY OF FF
 $fm->remove([
 	new \FileManager\File("root/aaa/file.txt"),
-	new \FileManager\Folder("root/aaa/folder"),
+	new \FileManager\Folder("root/aaa/folder")
 ]);
 $fm->get() => [
 	FileManager\File("root/aaa/bbb/myfile.html")
@@ -187,7 +187,7 @@ $fm->get() => [
 // Remove multiple ff objects by FM OBJECT
 $fm->remove(new \FileManager\FM([
 	new \FileManager\File("root/aaa/file.txt"),
-	new \FileManager\Folder("root/aaa/folder"),
+	new \FileManager\Folder("root/aaa/folder")
 ]));
 $fm->get() => [
 	FileManager\File("root/aaa/bbb/myfile.html")
@@ -195,6 +195,56 @@ $fm->get() => [
 
 ```
 
+## removeNotExist()
+Remove all *FF* Files/folders objects which **NOT EXIST** in FTP from *FM* - NOT from server
+```php
+$fm = new \FileManager\FM([
+	new \FileManager\File("root/aaa/bbb/myfile.html"),
+	new \FileManager\File("root/aaa/file.txt"),				// This FILE exist
+	new \FileManager\Folder("root/aaa/folder")				// This FOLDER exist
+]);
+```
+```php
+$fm->removeExist();
+$fm->get() => [
+	FileManager\File("root/aaa/file.txt"),
+	FileManager\Folder("root/aaa/folder")
+]
+```
+
+## removeFiles()
+Remove all *File* objects in FTP from *FM* - NOT from FTP
+```php
+$fm = new \FileManager\FM([
+	new \FileManager\File("root/aaa/bbb/myfile.html"),
+	new \FileManager\File("root/aaa/file.txt"),
+	new \FileManager\Folder("root/aaa/folder")
+]);
+```
+```php
+$fm->removeFiles();
+$fm->get() => [
+	FileManager\Folder("root/aaa/folder")
+]
+```
+
+
+## removeFolders()
+Remove all *Folder* objects in FTP from *FM* - NOT from FTP
+```php
+$fm = new \FileManager\FM([
+	new \FileManager\File("root/aaa/bbb/myfile.html"),
+	new \FileManager\File("root/aaa/file.txt"),
+	new \FileManager\Folder("root/aaa/folder")
+]);
+```
+```php
+$fm->removeFiles();
+$fm->get() => [
+	new \FileManager\File("root/aaa/bbb/myfile.html"),
+	new \FileManager\File("root/aaa/file.txt")
+]
+```
 
 <br>
 <hr>
