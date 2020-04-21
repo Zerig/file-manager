@@ -162,7 +162,7 @@ $fm = new \FileManager\FM([
 	new \FileManager\Folder("root/aaa/folder"),
 ]);
 ```
-# Remove one ff object
+### Remove one ff object
 ```php
 $fm->remove( new \FileManager\File("root/aaa/file.txt") );
 $fm->get() => [
@@ -170,7 +170,7 @@ $fm->get() => [
 	FileManager\Folder("root/aaa/folder"),
 ]
 ```
-# Remove multiple ff objects by ARRAY OF FF
+### Remove multiple ff objects by ARRAY OF FF
 ```php
 $fm->remove([
 	new \FileManager\File("root/aaa/file.txt"),
@@ -180,7 +180,7 @@ $fm->get() => [
 	FileManager\File("root/aaa/bbb/myfile.html")
 ]
 ```
-# Remove multiple ff objects by FM OBJECT
+### Remove multiple ff objects by FM OBJECT
 ```php
 $fm->remove(new \FileManager\FM([
 	new \FileManager\File("root/aaa/file.txt"),
