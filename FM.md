@@ -17,6 +17,8 @@ $fm = new \FileManager\FM([
 	new \FileManager\Folder("root/aaa/bbb"),
 ]);
 ```
+<hr>
+# GET...()
 
 ## get($obj = null)
 - **$obj [string]**	=> [null / "files" / "folders"]
