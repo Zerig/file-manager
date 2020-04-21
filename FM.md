@@ -212,8 +212,20 @@ $fm->get() => [
 ]
 ```
 
+## removeExist()
+Remove all existing *FF*. The same as [*removeNotExist()*](#removenotexist) but reverse.
+
+
+```php
+$fm->removeExist();
+$fm->get() => [
+	FileManager\File("root/aaa/file.txt"),
+	FileManager\Folder("root/aaa/folder")
+]
+```
+
 ## removeFiles()
-Remove all *File* objects in FTP from *FM* - NOT from FTP
+Remove all *File* objects from *FM* - NOT from FTP
 ```php
 $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/myfile.html"),
@@ -230,7 +242,24 @@ $fm->get() => [
 
 
 ## removeFolders()
-Remove all *Folder* objects in FTP from *FM* - NOT from FTP
+Remove all *Folder* objects from *FM* - NOT from FTP
+```php
+$fm = new \FileManager\FM([
+	new \FileManager\File("root/aaa/bbb/myfile.html"),
+	new \FileManager\File("root/aaa/file.txt"),
+	new \FileManager\Folder("root/aaa/folder")
+]);
+```
+```php
+$fm->removeFiles();
+$fm->get() => [
+	new \FileManager\File("root/aaa/bbb/myfile.html"),
+	new \FileManager\File("root/aaa/file.txt")
+]
+```
+
+## removeFilter($filter, $type = 1, $key = "name")
+Find *FF* objects by *$filter* and remove them from *FM* - NOT from FTP
 ```php
 $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/myfile.html"),

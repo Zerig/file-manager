@@ -46,6 +46,24 @@ class FM{
 
 	}
 
+	public function getNotExist($obj = null){
+		$array_exist_ff = [];
+		foreach($this->arrayFF as $ff){
+			if(!$ff->exist()) $array_exist_ff[] = $ff;
+		}
+
+		if($obj == null)	return new \FileManager\FM($array_exist_ff);
+		if($obj == "files"){
+			$fm = new FM($array_exist_ff);
+							return $fm->getFiles();
+		}
+		if($obj == "folders"){
+			$fm = new FM($array_exist_ff);
+							return $fm->getFolders();
+		}
+
+	}
+
 	public function getFiles(){
 		$array_file = [];
 		foreach($this->arrayFF as $ff){
@@ -125,20 +143,29 @@ class FM{
 
 	public function removeNotExist(){
 		$this->arrayFF = self::getExist()->get();
+		return self::getNotExist()->get();
+	}
+
+	public function removeExist(){
+		$this->arrayFF = self::getNotExist()->get();
+		return self::getExist()->get();
 	}
 
 	public function removeFiles(){
 		$this->arrayFF = self::getFolders();
+		return self::getFiles();	// return what was removed
 	}
 
 	public function removeFolders(){
 		$this->arrayFF = self::getFiles();
+		return self::getFolders();	// return what was removed
 	}
 
 
 
 	public function removeFilter($filter, $type = 1, $key = "name"){
 		$this->arrayFF = self::getFilter($filter, !$type, $key = "name");
+		return self::getFilter($filter, $type, $key = "name");	// return what was removed
 	}
 
 
