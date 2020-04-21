@@ -147,7 +147,47 @@ $fm->add([
 ```
 
 
+<br>
+<hr>
+<br>
 
+## remove($fm = null)
+- **$fm [FileManager\FM / array of FileManager\FF / FileManager\FF]**
+
+Remove *FF* Files/folders from obj *FM* - NOT from server
+```php
+$fm = new \FileManager\FM([
+	new \FileManager\File("root/aaa/bbb/myfile.html"),
+	new \FileManager\File("root/aaa/file.txt"),
+	new \FileManager\Folder("root/aaa/folder"),
+]);
+
+// Remove one ff object
+$fm->remove( new \FileManager\File("root/aaa/file.txt") );
+$fm->get() => [
+	FileManager\File("root/aaa/bbb/myfile.html"),
+	FileManager\Folder("root/aaa/folder"),
+]
+
+// Remove multiple ff objects by ARRAY OF FF
+$fm->remove([
+	new \FileManager\File("root/aaa/file.txt"),
+	new \FileManager\Folder("root/aaa/folder"),
+]);
+$fm->get() => [
+	FileManager\File("root/aaa/bbb/myfile.html")
+]
+
+// Remove multiple ff objects by FM OBJECT
+$fm->remove(new \FileManager\FM([
+	new \FileManager\File("root/aaa/file.txt"),
+	new \FileManager\Folder("root/aaa/folder"),
+]));
+$fm->get() => [
+	FileManager\File("root/aaa/bbb/myfile.html")
+]
+
+```
 
 
 <br>
@@ -215,14 +255,28 @@ $fm->filter("%html", 1, "name")	=> array with one File item: "root/aaa/bbb/myfil
 
 
 
+
 <br>
 <hr>
 <br>
 
+## upload(FM $local_files_fm)
+Delete all files inside of object, if they were existing.
+```php
+$fm = new \FileManager\FM([
+	new \FileManager\File("root/aaa/bbb/myfile.html"),
+	new \FileManager\File("root/aaa/file.txt"),
+]);
+
+$fm->delete();
+$fm->get()[0]->exist()	=> 0
+$fm->get()[1]->exist()	=> 0
+
+```
 
 
 ## delete()
-Delete all files inside of object, if they were existing.
+Delete all files inside of object - NOT OBJ.
 ```php
 $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/myfile.html"),

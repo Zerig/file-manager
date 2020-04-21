@@ -9,6 +9,11 @@ class FF{
 	public $dir;			// UrlParser\Url::www/_img/
 
 
+	function __clone(){
+		$this->url = clone $this->url;
+		$this->dir = clone $this->dir;
+    }
+
 	public function __construct($ff_url){
 		self::set($ff_url);
 	}

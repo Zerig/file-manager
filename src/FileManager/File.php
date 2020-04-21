@@ -27,7 +27,6 @@ class File extends FF{
 		if(self::isTemporary($file_url)) 	parent::set( new \UrlParser\Url($file_url, '\\') );	// universal settings -> set \UrlParser\Url obj in $this->url
 		else   								parent::set( $file_url );
 
-
 		$path_info = pathinfo($this->url->getString());
 		$this->filename = 	$path_info["filename"];
 		$this->extension =	$path_info["extension"];
