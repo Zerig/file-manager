@@ -46,7 +46,7 @@ class FM{
 
 	}
 
-	private function getFiles(){
+	public function getFiles(){
 		$array_file = [];
 		foreach($this->arrayFF as $ff){
 			if(is_a($ff, "\FileManager\File")) $array_file[] = $ff;
@@ -55,7 +55,7 @@ class FM{
 		return $array_file;
 	}
 
-	private function getFolders(){
+	public function getFolders(){
 		$array_folder = [];
 		foreach($this->arrayFF as $ff){
 			if(is_a($ff, "\FileManager\Folder")) $array_folder[] = $ff;
