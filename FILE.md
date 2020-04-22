@@ -42,7 +42,7 @@ public $mime		=> "text/plain"
 ## copy($copy_name = null)
 - $copy_name [string]
 
-Copy File in the same folder. If you don't use $copy_name of new file, the file get "-copy" <br>
+Copy File in the same folder. If fileName already exist script add "-copy[num]" with notexisting variant of number.
 ```php
 // OLD name with "-copy"
 $file = new \FileManager\File("root/aaa/bbb/file.txt");

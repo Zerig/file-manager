@@ -34,18 +34,23 @@ public $dir  => UrlParser\Url("root/aaa/bbb")
 ## copy($copy_name = null)
 - $copy_name [string]
 
-Copy Folder (and all Files/Folders inside) in the same dir place, but with new name. If you don't use $copy_name of new folder, the folder get "-copy"
-
+Copy Folder (and all Files/Folders inside) in the same dir place. If folder name already exist script add "-copy[num]" with notexisting variant of number.
 ```php
 // OLD name with "-copy"
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");
 $copy_folder = $folder->copy();
-$copy_folder->url->getString => "root/aaa/bbb/folder-copy"
+$copy_folder->url->getString => "root/aaa/bbb/folder-copy1"
+
+$copy_folder = $folder->copy();
+$copy_folder->url->getString => "root/aaa/bbb/folder-copy2"
 
 // NEW name
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");
 $copy_folder = $folder->copy("new_folder");
 $copy_folder->url->getString => "root/aaa/bbb/new_folder"
+
+$copy_folder = $folder->copy("new_folder");
+$copy_folder->url->getString => "root/aaa/bbb/new_folder-copy1"
 ```
 
 <hr>
