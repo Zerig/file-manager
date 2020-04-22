@@ -47,12 +47,18 @@ Copy File in the same folder. If you don't use $copy_name of new file, the file 
 // OLD name with "-copy"
 $file = new \FileManager\File("root/aaa/bbb/file.txt");
 $copy_file = $file->copy();
-$copy_file->url->getString() => "root/aaa/bbb/file-copy.txt"
+$copy_file->url->getString() => "root/aaa/bbb/file-copy1.txt"
+
+$copy_file = $file->copy();
+$copy_file->url->getString() => "root/aaa/bbb/file-copy2.txt"
 
 // NEW name
 $file = new \FileManager\File("root/aaa/bbb/file.txt");
 $copy_file = $file->copy("new_file.txt");
 $copy_file->url->getString() => "root/aaa/bbb/new_file.txt"
+
+$copy_file = $file->copy("new_file.txt");
+$copy_file->url->getString() => "root/aaa/bbb/new_file-copy1.txt"
 ```
 
 ## upload(File $local_file)
