@@ -40,7 +40,8 @@ public $mime		=> "text/plain"
 
 
 ## copy($copy_name = null)
-- $copy_name [string]
+- **$copy_name [string]**
+* **@return [FileManager\File]** new instance with copied *File*
 
 Copy File in the same folder. If fileName already exist script add "-copy[num]" with notexisting variant of number.
 ```php
