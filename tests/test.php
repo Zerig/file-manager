@@ -1,7 +1,7 @@
 <code style="white-space: pre;">
 <?php
 require_once __DIR__ . '/../vendor/autoload.php'; // Autoload files using Composer autoload
-
+require_once '__reset.php';	// reset DIR structure for testing
 
 $GLOBALS["server_root"] = new \UrlParser\Url("root");
 echo '$GLOBALS["server_root"] = '.$GLOBALS["server_root"]->getString().'<br>';

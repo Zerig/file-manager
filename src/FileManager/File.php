@@ -61,16 +61,32 @@ class File extends FF{
 	 * $copy_name [string]
 	 */
 	public function copy($copy_name = null){
-		$from_file_url =	$this->url;		// \UrlParser\Url
-		// Create new URL object with right name
-		$to_file_url =		clone $this->dir;
+		// Create new FILE URL object with right name
+		$copyFile = (is_null($copy_name))? new \FileManager\File($this->url->getString()) : new \FileManager\File( new \UrlParser\Url([$this->dir->getString(), $copy_name]) );
 
-		// IF we have a COPY name, or NOT
-		if(is_null($copy_name))	$to_file_url->addPath($this->filename."-copy.".$this->extension);
-		else   				$to_file_url->addPath($copy_name);
 
-		copy($from_file_url->getString(), $to_file_url->getString());
-		return new File($to_file_url);
+		$copyFile = self::createName($copyFile);
+		copy($this->url->getString(), $copyFile->url->getString());
+		return $copyFile;
+	}
+
+
+	private function createName($ff, $i = 0){
+		$copy = "-copy";
+
+		if($i > 0){
+			$ff->url->pop();	// remove last part of URL (the file NAME)
+			// clean filename from all "-copy[num]"
+			$ff->filename = substr($ff->filename, 0, (strpos($ff->filename, $copy) == 0)? strlen($ff->filename) : strpos($ff->filename, $copy));
+			$ff->url->addPath($ff->filename.$copy.$i.".".$ff->extension);	// add new "-copy[num]" with higher number
+
+			$ff->set($ff->url->getString());	// RESET all FF object by new URL
+		}
+
+		// when NEW FILE NAME not EXIST cycling END
+		$i++;
+		if($ff->exist())	$ff = self::createName($ff, $i);
+		return $ff;
 	}
 
 

@@ -22,14 +22,31 @@ class Folder extends FF{
 		$from_folder_url =	$this->url;
 		$to_folder_url =	clone $this->dir;
 
-		// IF we have a COPY name, or NOT
-		if(is_null($copy_name))		$to_folder_url->addPath($this->name."-copy");
-		else   						$to_folder_url->addPath($copy_name);
+		$copyFolder = (is_null($copy_name))? new \FileManager\Folder($this->url->getString()) : new \FileManager\Folder( new \UrlParser\Url([$this->dir->getString(), $copy_name]) );
 
-		//if(!$overwrite && folder_exists($to_folder_url))	return null;
-
-		self::recurseCopy($from_folder_url->getString(), $to_folder_url->getString());
+		$copyFolder = self::createName($copyFolder);
+		self::recurseCopy($this->url->getString(), $copyFolder->url->getString());
 		return new Folder($to_folder_url);
+	}
+
+
+
+	private function createName($ff, $i = 0){
+		$copy = "-copy";
+
+		if($i > 0){
+			$ff->url->pop();	// remove last part of URL (the file NAME)
+			// clean name from all "-copy[num]"
+			$ff->name = substr($ff->name, 0, (strpos($ff->name, $copy) == 0)? strlen($ff->name) : strpos($ff->name, $copy));
+			$ff->url->addPath($ff->name.$copy.$i);	// add new "-copy[num]" with higher number
+
+			$ff->set($ff->url->getString());	// RESET all FF object by new URL
+		}
+
+		// when NEW FILE NAME not EXIST cycling END
+		$i++;
+		if($ff->exist())	$ff = self::createName($ff, $i);
+		return $ff;
 	}
 
 
