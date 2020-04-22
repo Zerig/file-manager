@@ -16,6 +16,8 @@ public $mode => 0777
 public $dir => \UrlParser\Url::getString() => "root/aaa/bbb"
 ```
 
+
+
 ## exist()
 - @return [boolean]
 
@@ -26,6 +28,7 @@ $folder->exist() => 1	// when exist
 $folder->exist() => 0	// when doesn't exist
 ```
 
+
 ## isFolder()
 - @return [boolean]
 
@@ -35,6 +38,8 @@ $folder = new \FileManager\Folder("root/aaa/bbb/folder");
 $folder->isFolder() => 1	// when Folder really exist
 $folder->isFolder() => 0	// when Folder doesn't exist
 ```
+
+
 
 ## isFile()
 - @return [boolean]
@@ -47,6 +52,9 @@ $folder->idFile() => 0	// when File doesn't exist
 ```
 
 
+
+
+
 ## rename($new_name)
 - $new_name [string]
 
@@ -56,6 +64,10 @@ $folder = new \FileManager\Folder("root/aaa/bbb/folder");
 $folder->rename("ffile.txt");
 $folder->url => FileManager\Folder("root/aaa/bbb/ffile.txt")
 ```
+
+
+
+
 
 ## move($new_dir)
 - $new_dir [string]
@@ -70,15 +82,19 @@ $folder->move(new \UrlParser\Url("root/aaa/b"));
 $folder->url => FileManager\Folder("root/aaa/b/folder")
 ```
 
+
+
+
+
 ## has($filter, $key = "name")
 - **$filter [string]**
 - **$key [name]**
 * @return [boolean]
 
-Chceck if object *key* contains *filter* expression.
+Chceck if object *$key* contains *$filter* expression.
 
 ### $filter [string]
-Set what you want to find in *key*.You can use *'%'* just like operator *LIKE* in SQL
+Set what you want to find in *$key*.You can use *'%'* just like operator *LIKE* in SQL
 ```php
 $ff = new \FileManager\FF("root/aaa/bbb/myfile.html");
 $ff->has("my%")         => 1

@@ -24,6 +24,7 @@ public $dir  => UrlParser\Url("root/aaa/bbb")
 - [**isFile()**](https://github.com/Zerig/file-manager/blob/master/FF.md#isfile) Check if *File* really exist!
 - [**rename($new_name)**](https://github.com/Zerig/file-manager/blob/master/FF.md#renamenew_name) Change name of file/folder
 - [**move($new_dir)**](https://github.com/Zerig/file-manager/blob/master/FF.md#movenew_dir) Change dir, not name of *FF* (file/folder)
+- [**has($filter, $key = "name")**](https://github.com/Zerig/file-manager/blob/master/FF.md#hasfilter-key--name) Chceck if object *$key* contains *$filter* expression.
 
 <br>
 <hr>
