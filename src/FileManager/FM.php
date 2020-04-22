@@ -13,11 +13,6 @@ class FM{
 
 	public function __construct($array_ff = null){
 		if($array_ff != null)	self::add($array_ff);
-		/*$array_ff = (is_array($array_ff))? $array_ff : [$array_ff];
-
-		foreach($array_ff as $ff){
-			if(is_a($ff, "\FileManager\FF"))	$this->arrayFF[] = $ff;
-		}*/
 	}
 
 
