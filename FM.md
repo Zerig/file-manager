@@ -187,13 +187,30 @@ $fm->getFilter("%html", 1, "name")		=> [ FileManager\File("root/aaa/bbb/myfile.h
 
 Remove last *times* items from object.
 ```php
-$fm->count() => 5
+$fm->get() => [
+	[0] => FileManager\File("root/aaa/bbb/aaa.html"),
+	[1] => FileManager\File("root/aaa/bbb/myfile.html"),
+	[2] => FileManager\File("root/aaa/bbb/file.txt"),
+	[3] => FileManager\File("root/aaa/bbb/ccc/ddd"),
+	[4] => FileManager\File("root/aaa/bbb/folder"),
+	[5] => FileManager\File("root/aaa/bbb")
+]
+```
+```php
+$fm->pop()
+$fm->get() => [
+	[0] => FileManager\File("root/aaa/bbb/aaa.html"),
+	[1] => FileManager\File("root/aaa/bbb/myfile.html"),
+	[2] => FileManager\File("root/aaa/bbb/file.txt"),
+	[3] => FileManager\File("root/aaa/bbb/ccc/ddd"),
+	[4] => FileManager\File("root/aaa/bbb/folder")
+]
 
-$fm->pop();
-$fm->count() => 4
-
-$fm->pop(2);
-$fm->count() => 2
+$fm->pop(3)
+$fm->get() => [
+	[0] => FileManager\File("root/aaa/bbb/aaa.html"),
+	[0] => FileManager\File("root/aaa/bbb/myfile.html")
+]
 ```
 
 ## shift($times = 1){
@@ -201,13 +218,20 @@ $fm->count() => 2
 
 Remove first *times* items from object.
 ```php
-$fm->count() => 5
+$fm->shift()
+$fm->get() => [
+	[0] => FileManager\File("root/aaa/bbb/myfile.html"),
+	[1] => FileManager\File("root/aaa/bbb/file.txt"),
+	[2] => FileManager\File("root/aaa/bbb/ccc/ddd"),
+	[3] => FileManager\File("root/aaa/bbb/folder"),
+	[4] => FileManager\File("root/aaa/bbb")
+]
 
-$fm->shift();
-$fm->count() => 4
-
-$fm->shift(2);
-$fm->count() => 2
+$fm->shift(3)
+$fm->get() => [
+	[0] => FileManager\File("root/aaa/bbb/folder"),
+	[1] => FileManager\File("root/aaa/bbb")
+]
 ```
 
 ## add($array_ff){
