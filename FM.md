@@ -164,7 +164,7 @@ $fm->filter("%html", 1, "name")		=> [ FileManager\File("root/aaa/bbb/myfile.html
 
 
 
-
+# arrayFF MODIFICATION
 
 ## count($obj = null){
 - **$obj [string]**	=> [null / "files" / "folders"]
