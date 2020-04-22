@@ -135,8 +135,8 @@ $fm = new \FileManager\FM([
 ]);
 
 $fm->filter("html", 1, "extension")	=> [ FileManager\File("root/aaa/bbb/myfile.html") ]
-$fm->filter("html", 1, "name")	=> []
-$fm->filter("%html", 1, "name")	=> [ FileManager\File("root/aaa/bbb/myfile.html") ]
+$fm->filter("html", 1, "name")		=> []
+$fm->filter("%html", 1, "name")		=> [ FileManager\File("root/aaa/bbb/myfile.html") ]
 
 ```
 
