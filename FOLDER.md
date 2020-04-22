@@ -40,12 +40,12 @@ Copy Folder (and all Files/Folders inside) in the same dir place, but with new n
 // OLD name with "-copy"
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");
 $copy_folder = $folder->copy();
-$copy_folder->url => FileManager\Folder("root/aaa/bbb/folder-copy")
+$copy_folder->url->getString => "root/aaa/bbb/folder-copy"
 
 // NEW name
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");
 $copy_folder = $folder->copy("new_folder");
-$copy_folder->url => FileManager\Folder("root/aaa/bbb/new_folder")
+$copy_folder->url->getString => "root/aaa/bbb/new_folder"
 ```
 
 <hr>

@@ -23,21 +23,21 @@ if(isset($_POST["submit"])){
 	$server_fm->upload($local_fm);
 }
 
-echo '$server_fm->get() => ['."\n";
+echo '<b>$server_fm->get() => [</b>'."\n";
 foreach($server_fm->get() as $key => $val){
 	echo "	".'['.$key.'] => '.$val->url->getString()."\n";
 }
 echo ']'."\n";
 
 echo "\n";
-echo '$local_fm->get() => ['."\n";
+echo '<b>$local_fm->get() => [</b>'."\n";
 foreach($local_fm->get() as $key => $val){
 	echo "	".'['.$key.'] => '.$val->url->getString()."\n";
 }
 echo ']'."\n";
 
 echo "\n";
-echo '$server_fm->exist() => ['."\n";
+echo '<b>$server_fm->exist() => [</b>'."\n";
 foreach($server_fm->exist() as $key => $val){
 	echo "	".'['.$key.'] => '.$val."\n";
 }
@@ -51,7 +51,7 @@ $delete_fm->delete();
 
 echo '$delete_fm = clone $server_fm'."\n";
 echo '$notFiltered_fm = $delete_fm->removeFilter("%zana%")'."\n";
-echo '$delete_fm->delete()'."\n";
+echo '<b>$delete_fm->delete()</b>'."\n";
 echo "\n";
 
 echo '$delete_fm->get() => ['."\n";
@@ -84,7 +84,7 @@ $move_fm->move("root/aa");
 
 echo '$move_fm = clone $server_fm'."\n";
 echo '$notFiltered_fm = $move_fm->removeFilter("%zana%", 0)'."\n";
-echo '$move_fm->move("root/aa")'."\n";
+echo '<b>$move_fm->move("root/aa")</b>'."\n";
 
 echo "\n";
 echo '$move_fm->get() => ['."\n";

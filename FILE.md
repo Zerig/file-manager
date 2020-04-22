@@ -43,41 +43,30 @@ public $mime		=> "text/plain"
 - $copy_name [string]
 
 Copy File in the same folder. If you don't use $copy_name of new file, the file get "-copy" <br>
-
 ```php
 // OLD name with "-copy"
 $file = new \FileManager\File("root/aaa/bbb/file.txt");
 $copy_file = $file->copy();
-$copy_file->getString() => "root/aaa/bbb/file-copy.txt"
+$copy_file->url->getString() => "root/aaa/bbb/file-copy.txt"
 
 // NEW name
 $file = new \FileManager\File("root/aaa/bbb/file.txt");
 $copy_file = $file->copy("new_file.txt");
-$copy_file->getString() => "root/aaa/bbb/new_file.txt"
+$copy_file->url->getString() => "root/aaa/bbb/new_file.txt"
 ```
 
 ## upload(File $local_file)
 - $local_file [File]
 
 take uploaded, **temporary**, file and upload it into new "empty" File
-
 ```html
 <form method="POST" enctype="multipart/form-data">
 	<input type="file" name="file[]" multiple>
 	<input type="submit" value="Upload" name="submit">
 </form>
 ```
-
 ```php
-$files = my__multipleFiles($_FILES);
-
-foreach($files as $file){
-	$local_file = 	new \FileManager\File( $file["tmp_name"] );
-	$server_file = 	new \FileManager\File( new \UrlParser\Url( ["root/a", $file["name"]] ) );
-
-	$server_file->upload($local_file);	// upload file into "root/a"
-}
-
+// FUNCTION FOR TRANSFORM $_FILES form <form> INTO RIGHT ARRAY FORM
 function my__multipleFiles($_files){
 	$files = [];
 
@@ -98,6 +87,19 @@ function my__multipleFiles($_files){
 
 	return $files;
 }
+```
+```php
+$files = my__multipleFiles($_FILES);
+
+foreach($files as $file){
+	$local_file = 	new \FileManager\File( $file["tmp_name"] );	// local TMP file => "C:\xampp\tmp\php9351.tmp"
+	$server_file = 	new \FileManager\File( new \UrlParser\Url( ["root/a", $file["name"]] ) ); // server URL and NAME of uploaded file => "root/a/dave-greco-elemental.jpg"
+
+	$server_file->upload($local_file);	// upload file into "root/a"
+}
+$server_file->exist() => 1 // when file was UPLOADED
+$server_file->exist() => 0 // when file was NOT UPLOADED
+
 ```
 
 
