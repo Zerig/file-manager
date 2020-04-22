@@ -17,9 +17,9 @@ public $mode => 0777
 public $dir  => \UrlParser\Url::getString() => "root/aaa/bbb"
 
 // These are specific for File class
-public $filename	=> "file"
-public $extension	=> "txt"
-public $mime		=> "text/plain"
+public $filename  => "file"
+public $extension => "txt"
+public $mime      => "text/plain"
 
 ```
 
