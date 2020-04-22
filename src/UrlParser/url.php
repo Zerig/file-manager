@@ -318,7 +318,7 @@ class Url{
 
 
 
-	public function isDir(){
+	public function isFolder(){
 		return ( is_dir(self::getString()) );
 	}
 
@@ -327,7 +327,7 @@ class Url{
 	}
 
 	public function exist(){
-		return ( self::isDir() || self::isFile() );
+		return ( self::isFolder() || self::isFile() );
 	}
 
 

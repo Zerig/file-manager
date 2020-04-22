@@ -16,16 +16,34 @@ public $mode => 0777
 public $dir => \UrlParser\Url::getString() => "root/aaa/bbb"
 ```
 
-## exist(), isDir(), isFile()
+## exist()
 - @return [boolean]
 
-Check if File/Folder really exist<br>
-
+Check if *FF* (*File*, *Folder*) really exist
 ```php
-$ff = new \FileManager\FF("root/aaa/bbb/file.txt");
-$ff->exist();
-$ff->exist() => 0	// when exist
-$ff->exist() => 1	// when doesn't exist
+$folder = new \FileManager\Folder("root/aaa/bbb/folder");
+$folder->exist() => 1	// when exist
+$folder->exist() => 0	// when doesn't exist
+```
+
+## isFolder()
+- @return [boolean]
+
+Check if *Folder* really exist!
+```php
+$folder = new \FileManager\Folder("root/aaa/bbb/folder");
+$folder->isFolder() => 1	// when Folder really exist
+$folder->isFolder() => 0	// when Folder doesn't exist
+```
+
+## isFile()
+- @return [boolean]
+
+Check if *File* really exist!
+```php
+$folder = new \FileManager\Folder("root/aaa/bbb/folder");
+$folder->idFile() => 1	// when File really exist
+$folder->idFile() => 0	// when File doesn't exist
 ```
 
 
@@ -33,24 +51,23 @@ $ff->exist() => 1	// when doesn't exist
 - $new_name [string]
 
 Change name of file/folder
-
 ```php
-$ff = new \FileManager\FF("root/aaa/bbb/file.txt");
-$ff->rename("ffile.txt");
-$ff->url->getString => "root/aaa/bbb/ffile.txt"
+$folder = new \FileManager\Folder("root/aaa/bbb/folder");
+$folder->rename("ffile.txt");
+$folder->url => FileManager\Folder("root/aaa/bbb/ffile.txt")
 ```
 
 ## move($new_dir)
 - $new_dir [string]
 
-Change dir, not name of file/folder<br>
+Change dir, not name of *FF* (file/folder)
 ```php
-$ff = new \FileManager\FF("root/aaa/bbb/file.txt");
+$folder = new \FileManager\Folder("root/aaa/bbb/folder");
 // BOTH variant are possile ↓
-$ff->move("root/aaa/b");
-$ff->move(new \UrlParser\Url("root/aaa/b"));
+$folder->move("root/aaa/b");
+$folder->move(new \UrlParser\Url("root/aaa/b"));
 
-$ff->url->getString => "root/aaa/b/file.txt"
+$folder->url => FileManager\Folder("root/aaa/b/folder")
 ```
 
 ## ::checkIf($filter, $key = "name")

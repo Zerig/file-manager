@@ -86,8 +86,8 @@ class Folder extends FF{
 			$file_url = clone $this->url;		// \UrlParser\Url
 			$file_url->addPath($file);
 
-			if($column == null)	$array_obj_file[] = ( $file_url->isDir() )? new Folder($file_url) : new File($file_url);
-			else   				$array_obj_file[] = ( $file_url->isDir() )? (new Folder($file_url))->$column : (new File($file_url))->$column;
+			if($column == null)	$array_obj_file[] = ( $file_url->isFolder() )? new Folder($file_url) : new File($file_url);
+			else   				$array_obj_file[] = ( $file_url->isFolder() )? (new Folder($file_url))->$column : (new File($file_url))->$column;
 		}
 
 		return $array_obj_file;
@@ -103,7 +103,7 @@ class Folder extends FF{
 
 		foreach($array_obj_child as $child){
 			// IF finded children is FOLDER
-			if($child->url->isDir() && !empty($child->scan()) ){
+			if($child->url->isFolder() && !empty($child->scan()) ){
 				if($column == null) $array_tree[] = [$child, $child->scanTree($column)];
 				else   				$array_tree[] = [$child->$column, $child->scanTree($column)];
 

@@ -23,7 +23,7 @@ public $mime		=> "text/plain"
 
 ```
 
-## exist(), isDir(), isFile()
+## exist(), isFolder(), isFile()
 - parent::	in FF
 - @return [boolean]
 

@@ -25,7 +25,7 @@ class FF{
 	public function set($ff_url){}		// set all init class variables
 	public function setUrl($ff_url){}	// set URL variable as obj \UrlParser\Url
 
-	public function isDir(){}	// check if URL is existing FOLDER
+	public function isFolder(){}	// check if URL is existing FOLDER
 	public function isFile(){}	// check if URL is existing FILE
 	public function exist(){}	// check if URL is real File OR Folder
 
@@ -75,7 +75,7 @@ class File extends FF{
 	public function set($ff_url){}		// set all init class variables
 	public function setUrl($ff_url){}	// set URL variable as obj \UrlParser\Url
 
-	public function isDir(){}	// check if URL is existing FOLDER
+	public function isFolder(){}	// check if URL is existing FOLDER
 	public function isFile(){}	// check if URL is existing FILE
 	public function exist(){}	// check if URL is real File OR Folder
 
@@ -138,7 +138,7 @@ class Folder extends FF{
 	public function set($ff_url){}		// set all init class variables
 	public function setUrl($ff_url){}	// set URL variable as obj \UrlParser\Url
 
-	public function isDir(){}	// check if URL is existing FOLDER
+	public function isFolder(){}	// check if URL is existing FOLDER
 	public function isFile(){}	// check if URL is existing FILE
 	public function exist(){}	// check if URL is real File OR Folder
 

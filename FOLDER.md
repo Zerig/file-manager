@@ -18,48 +18,12 @@ public $mode => 0777
 public $dir  => UrlParser\Url("root/aaa/bbb")
 
 ```
-
-## exist(), isDir(), isFile()
-- parent::	in FF
-- @return [boolean]
-
-Check if File/Folder really exist<br>
-
-```php
-$folder = new \FileManager\Folder("root/aaa/bbb/folder");
-$folder->exist() => 1	// when exist
-$folder->exist() => 0	// when doesn't exist
-```
-
-
-## rename($new_name)
-- parent::	in FF
-- $new_name [string]
-
-Change name of file/folder<br>
-
-```php
-$folder = new \FileManager\Folder("root/aaa/bbb/folder");
-$folder->rename("ffile.txt");
-$folder->url => FileManager\Folder("root/aaa/bbb/ffile.txt")
-```
-
-## move($new_dir)
-- parent::	in FF
-- $new_dir [string]
-
-Change dir, not name of file/folder<br>
-
-```php
-$folder = new \FileManager\Folder("root/aaa/bbb/folder");
-// BOTH variant are possile ↓
-$folder->move("root/aaa/b");
-$folder->move(new \UrlParser\Url("root/aaa/b"));
-
-$folder->url => FileManager\Folder("root/aaa/b/folder")
-```
-
-
+## FF INHERITS METHOD
+- [**exist()**](https://github.com/Zerig/file-manager/blob/master/FF.md#exist) Check if *FF* (*File*, *Folder*) really exist
+- [**isFolder()**](https://github.com/Zerig/file-manager/blob/master/FF.md#isfolder) Check if *Folder* really exist!
+- [**isFile()**](https://github.com/Zerig/file-manager/blob/master/FF.md#isfile) Check if *File* really exist!
+- [**rename($new_name)**](https://github.com/Zerig/file-manager/blob/master/FF.md#renamenew_name) Change name of file/folder
+- [**move($new_dir)**](https://github.com/Zerig/file-manager/blob/master/FF.md#movenew_dir) Change dir, not name of *FF* (file/folder)
 
 <br>
 <hr>

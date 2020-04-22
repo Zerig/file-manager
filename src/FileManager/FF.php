@@ -46,8 +46,8 @@ class FF{
 
 
 
-	public function isDir(){
-		return ( $this->url->isDir() );
+	public function isFolder(){
+		return ( $this->url->isFolder() );
 	}
 
 	public function isFile(){
@@ -55,7 +55,7 @@ class FF{
 	}
 
 	public function exist(){
-		return ( self::isDir() || self::isFile() );
+		return ( self::isFolder() || self::isFile() );
 	}
 
 

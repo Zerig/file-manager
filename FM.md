@@ -68,7 +68,7 @@ $fm->get(-2) => FileManager\File("root/aaa/bbb/folder")
 ## getFiles()
 - @return [array of FileManager\FF]
 
-Return all *FF* objects which are *File*
+Return all *FF* objects which are *File* objects. They cannot exist!
 ```php
 // Returns only File items
 $fm->getFiles() => [
@@ -81,7 +81,7 @@ $fm->getFiles() => [
 ## getFolders()
 - @return [array of FileManager\FF]
 
-Return all *FF* objects which are *Folder*
+Return all *FF* objects which are *Folder* objects. They cannot exist!
 ```php
 // Returns only Folder items
 $fm->getFolders()	=> [
