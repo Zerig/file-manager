@@ -29,7 +29,7 @@ $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/aaa.html"),
 	new \FileManager\File("root/aaa/bbb/myfile.html"),
 	new \FileManager\File("root/aaa/bbb/file.txt"),		// File realy Exists in dir
-	new \FileManager\Folder("root/aaa/bbb/ccc/ddd"),	
+	new \FileManager\Folder("root/aaa/bbb/ccc/ddd"),
 	new \FileManager\Folder("root/aaa/bbb/folder"),		// Folder realy Exists in dir
 	new \FileManager\Folder("root/aaa/bbb")			// Folder realy Exists in dir
 ]);
@@ -87,8 +87,9 @@ Return all *FF* objects which are *Folder* objects. They cannot exist!
 ```php
 // Returns only Folder items
 $fm->getFolders()	=> [
-	[0] => FileManager\Folder("root/aaa/bbb/folder"),
-	[1] => FileManager\Folder("root/aaa/bbb")
+	[0] => FileManager\Folder("root/aaa/bbb/ccc/ddd"),
+	[1] => FileManager\Folder("root/aaa/bbb/folder"),
+	[2] => FileManager\Folder("root/aaa/bbb")
 ]
 ```
 
@@ -115,6 +116,7 @@ Return all *FF* which is real Files or Folders. Which really exist in URL
 $fm->getExist() => [
 	[0] => FileManager\File("root/aaa/bbb/aaa.html"),
 	[1] => FileManager\File("root/aaa/bbb/myfile.html"),
+	[2] => FileManager\File("root/aaa/bbb/ccc/ddd")
 ]
 ```
 
@@ -140,36 +142,39 @@ FILTER:
 "myfile.html"	=> "myfile.html" file was chosen
 ```
 ```php
-$fm = new \FileManager\FM([
-	new \FileManager\File("root/aaa/bbb/myfile.html"),
-	new \FileManager\File("root/aaa/bbb/file.txt")
-]);
-$fm->getFilter("my%") => [	FileManager\File("root/aaa/bbb/myfile.html") ]
+$fm->getFilter("%file%") => [ 	
+	[0] => FileManager\File("root/aaa/bbb/myfile.html"),
+	[1] => FileManager\File("root/aaa/bbb/file.txt")
+]
 ```
 
 ### $type [boolean]
 You can set if you want selected files / folders or not.
 ```php
-$fm = new \FileManager\FM([
-	new \FileManager\File("root/aaa/bbb/myfile.html"),
-	new \FileManager\File("root/aaa/bbb/file.txt"),
-]);
-
-$fm->getFilter("my%", 1) => [ FileManager\File("root/aaa/bbb/myfile.html") ]
-$fm->getFilter("my%", 0) => [ FileManager\File("root/aaa/bbb/file.txt") ]
+$fm->getFilter("my%", 1) => [
+	[0] => FileManager\File("root/aaa/bbb/myfile.html"),
+	[1] => FileManager\File("root/aaa/bbb/file.txt")
+]
+$fm->getFilter("my%", 0) => [
+	[0] => FileManager\File("root/aaa/bbb/aaa.html"),
+	[1] => FileManager\File("root/aaa/bbb/ccc/ddd"),
+	[2] => FileManager\Folder("root/aaa/bbb/folder"),
+	[3] => FileManager\Folder("root/aaa/bbb")
+]
 ```
 
 ### $key [string]
 You can set which object value *$key* should be used in filtering
 ```php
-$fm = new \FileManager\FM([
-	new \FileManager\File("root/aaa/bbb/myfile.html"),
-	new \FileManager\File("root/aaa/bbb/file.txt"),
-]);
-
-$fm->getFilter("html", 1, "extension")	=> [ FileManager\File("root/aaa/bbb/myfile.html") ]
-$fm->getFilter("html", 1, "name")		=> []
-$fm->getFilter("%html", 1, "name")		=> [ FileManager\File("root/aaa/bbb/myfile.html") ]
+$fm->getFilter("html", 1, "extension") => [
+	[0] => FileManager\File("root/aaa/bbb/aaa.html"),
+	[1] => FileManager\File("root/aaa/bbb/myfile.html")
+]
+$fm->getFilter("html", 1, "name")  => []
+$fm->getFilter("%html", 1, "name") => [
+	[0] => FileManager\File("root/aaa/bbb/aaa.html"),
+	[1] => FileManager\File("root/aaa/bbb/myfile.html")
+]
 
 ```
 
