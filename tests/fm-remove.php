@@ -22,10 +22,15 @@ echo '$fm->'."count() => ".$fm->count()."\n";
 echo "<br>---------------------------------------------";
 echo "<br>---------------------------------------------<br><br>";
 
-$fm->remove();
-echo '<b>$fm->'."remove()</b>\n";
+$removed_fm = $fm->remove();
+echo '<b>$removed_fm = $fm->'."remove()</b>\n";
 echo '$fm->get() => [<br>';
 foreach($fm->get() as $ff){
+	echo "	".$ff->url->getString()."\n";
+}
+echo "]\n";
+echo '$removed_fm->get() => [<br>';
+foreach($removed_fm->get() as $ff){
 	echo "	".$ff->url->getString()."\n";
 }
 echo "]\n";
@@ -33,10 +38,15 @@ echo "]\n";
 echo "<br>---------------------------------------------<br><br>";
 
 $fm = new \FileManager\FM($array_ff);
-$fm->remove(new \FileManager\File("root/aaa/bbb/file.txt"));
-echo '<b>$fm->'."remove(new \FileManager\File('root/aaa/bbb/file.txt'))</b>\n";
+$removed_fm = $fm->remove(new \FileManager\File("root/aaa/bbb/file.txt"));
+echo '<b>$removed_fm = $fm->'."remove(new \FileManager\File('root/aaa/bbb/file.txt'))</b>\n";
 echo '$fm->get() => [<br>';
 foreach($fm->get() as $ff){
+	echo "	".$ff->url->getString()."\n";
+}
+echo "]\n";
+echo '$removed_fm->get() => [<br>';
+foreach($removed_fm->get() as $ff){
 	echo "	".$ff->url->getString()."\n";
 }
 echo "]\n";
@@ -50,10 +60,15 @@ foreach($remove_array as $ff){
 }
 echo "]\n";
 echo "\n";
-$fm->remove($remove_array);
-echo '<b>$fm->remove(new \FileManager\File($remove_array))</b>'."\n";
+$removed_fm = $fm->remove($remove_array);
+echo '<b>$removed_fm = $fm->remove(new \FileManager\File($remove_array))</b>'."\n";
 echo '$fm->get() => [<br>';
 foreach($fm->get() as $ff){
+	echo "	".$ff->url->getString()."\n";
+}
+echo "]\n";
+echo '$removed_fm->get() => [<br>';
+foreach($removed_fm->get() as $ff){
 	echo "	".$ff->url->getString()."\n";
 }
 echo "]\n";
@@ -68,10 +83,15 @@ foreach($remove_fm->get() as $ff){
 	echo "	".$ff->url->getString()."\n";
 }
 echo "]\n";
-$fm->remove($remove_fm);
-echo '<b>$fm->remove($remove_fm)</b>'."\n";
+$removed_fm = $fm->remove($remove_fm);
+echo '<b>$removed_fm = $fm->remove($remove_fm)</b>'."\n";
 echo '$fm->get() => [<br>';
 foreach($fm->get() as $ff){
+	echo "	".$ff->url->getString()."\n";
+}
+echo "]\n";
+echo '$removed_fm->get() => [<br>';
+foreach($removed_fm->get() as $ff){
 	echo "	".$ff->url->getString()."\n";
 }
 echo "]\n";
@@ -79,28 +99,45 @@ echo "]\n";
 echo "<br>---------------------------------------------<br><br>";
 
 $fm = new \FileManager\FM($array_ff);
-$fm->removeFiles();
-echo '<b>$fm->'."removeFiles()</b>\n";
+$removed_fm = $fm->removeFiles();
+echo '<b>$removed_fm = $fm->'."removeFiles()</b>\n";
 echo '$fm->get() => [<br>';
 foreach($fm->get() as $ff){
 	echo "	".$ff->url->getString()."\n";
 }
 echo "]\n";
+echo '$removed_fm->get() => [<br>';
+foreach($removed_fm->get() as $ff){
+	echo "	".$ff->url->getString()."\n";
+}
+echo "]\n";
+
+
 
 echo "\n";
-$fm->removeNotExist();
-echo '<b>$fm->'."removeNotExist()</b>\n";
+echo '<b>$removed_fm = $fm->'."removeNotExist()</b>\n";
+$removed_fm = $fm->removeNotExist();
 echo '$fm->get() => [<br>';
 foreach($fm->get() as $ff){
 	echo "	".$ff->url->getString()."\n";
 }
 echo "]\n";
+echo '$removed_fm->get() => [<br>';
+foreach($removed_fm->get() as $ff){
+	echo "	".$ff->url->getString()."\n";
+}
+echo "]\n";
 
 echo "\n";
-$fm->removeFolders();
-echo '<b>$fm->'."removeFolder()</b>\n";
+$removed_fm = $fm->removeFolders();
+echo '<b>$removed_fm = $fm->'."removeFolder()</b>\n";
 echo '$fm->get() => [<br>';
 foreach($fm->get() as $ff){
+	echo "	".$ff->url->getString()."\n";
+}
+echo "]\n";
+echo '$removed_fm->get() => [<br>';
+foreach($removed_fm->get() as $ff){
 	echo "	".$ff->url->getString()."\n";
 }
 echo "]\n";
@@ -108,10 +145,15 @@ echo "]\n";
 echo "<br>---------------------------------------------<br><br>";
 
 $fm = new \FileManager\FM($array_ff);
-$fm->removeFilter("%html");
-echo '<b>$fm->'."removeFilter()</b>\n";
+$removed_fm = $fm->removeFilter("%html");
+echo '<b>$removed_fm = $fm->'."removeFilter()</b>\n";
 echo '$fm->get() => [<br>';
 foreach($fm->get() as $ff){
 	echo "	".$ff->url->getString()."\n";
 }
 echo "]";
+echo '$removed_fm->get() => [<br>';
+foreach($removed_fm->get() as $ff){
+	echo "	".$ff->url->getString()."\n";
+}
+echo "]\n";

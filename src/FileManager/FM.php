@@ -62,6 +62,37 @@ class FM{
 
 
 
+
+	public function getFilter($filter, $type = 1, $key = "name"){
+		$filtered_array_positive = [];
+		$filtered_array_negative = [];
+
+		foreach($this->arrayFF as $ff){
+			if($ff->filter($filter, $key)) 	$filtered_array_positive[] = $ff;
+			else   							$filtered_array_negative[] = $ff;
+		}
+
+		return ($type)? $filtered_array_positive : $filtered_array_negative;
+	}
+
+
+
+
+
+	public function exist(){
+		$array_exist = [];
+		foreach($this->arrayFF as $ff){
+			if($ff->exist()) $array_exist[] = 1;
+			else  			 $array_exist[] = 0;
+		}
+		return $array_exist;
+	}
+
+
+
+
+
+
 	public function count($obj = null){
 		if($obj == null) 		return count($this->arrayFF);
 		if($obj == "files") 	return count(self::getFiles());
@@ -98,71 +129,74 @@ class FM{
 		}
 	}
 
+
+
+
+
+
+
+
+
+
+
+
 	public function remove($fm = null){
-		if($fm == null){
+		if(is_null($fm)){
+			$return = new \FileManager\FM($this->arrayFF);
 			$this->arrayFF = [];
+			return $return;
 		}else{
 			$fm = (is_a($fm, "\FileManager\FF"))? [$fm] : $fm;
 			$fm = (is_array($fm))? new \FileMAnager\FM($fm) : $fm;
 			$new_arrayFF = [];
+			$return_arrayFF = [];
 
 			foreach($this->arrayFF as $ff){
 				$save = true;
 				foreach($fm->get() as $f){
 					if($ff->url->getString() == $f->url->getString()) $save = false;
 				}
-				if($save) $new_arrayFF[] = $ff;
+				if($save) 	$new_arrayFF[] = $ff;
+				else  		$return_arrayFF[] = $ff;
 			}
 
+			$return = new \FileManager\FM($return_arrayFF);
 			$this->arrayFF = $new_arrayFF;
+			return $return;
 		}
 	}
 
 
 	public function removeNotExist(){
-		$this->arrayFF = self::getExist()->get();
-		return self::getNotExist()->get();
+		$return = new \FileManager\FM(self::getNotExist());
+		$this->arrayFF = self::getExist();
+		return $return;
 	}
 
 	public function removeExist(){
-		$this->arrayFF = self::getNotExist()->get();
-		return self::getExist()->get();
+		$return = new \FileManager\FM(self::getExist());
+		$this->arrayFF = self::getNotExist();
+		return $return;
 	}
 
 	public function removeFiles(){
+		$return = new \FileManager\FM(self::getFiles());	// return what was removed
 		$this->arrayFF = self::getFolders();
-		return self::getFiles();	// return what was removed
+		return $return;
 	}
 
 	public function removeFolders(){
+		$return = new \FileManager\FM(self::getFolders());	// return what was removed
 		$this->arrayFF = self::getFiles();
-		return self::getFolders();	// return what was removed
+		return $return;
 	}
 
 
 
 	public function removeFilter($filter, $type = 1, $key = "name"){
-		$this->arrayFF = self::getFilter($filter, !$type, $key = "name");
-		return self::getFilter($filter, $type, $key = "name");	// return what was removed
-	}
-
-
-
-
-
-
-
-
-	public function getFilter($filter, $type = 1, $key = "name"){
-		$filtered_array_positive = [];
-		$filtered_array_negative = [];
-
-		foreach($this->arrayFF as $ff){
-			if($ff->filter($filter, $key)) 	$filtered_array_positive[] = $ff;
-			else   							$filtered_array_negative[] = $ff;
-		}
-
-		return ($type)? $filtered_array_positive : $filtered_array_negative;
+		$return = new \FileManager\FM(self::getFilter($filter, !$type, $key));	// return what was removed
+		$this->arrayFF = self::getFilter($filter, $type, $key);
+		return $return;
 	}
 
 

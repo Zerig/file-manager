@@ -12,9 +12,9 @@ $fm = new \FileManager\FM( new \FileManager\File("root/aaa/bbb/aaa.html") );
 $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/aaa.html"),
 	new \FileManager\File("root/aaa/bbb/myfile.html"),
-	new \FileManager\File("root/aaa/bbb/file.txt"),		// File Exists
-	new \FileManager\Folder("root/aaa/bbb/folder"),		// Folder Exists
-	new \FileManager\Folder("root/aaa/bbb")			// Folder Exists
+	new \FileManager\File("root/aaa/bbb/file.txt"),		// File realy Exists in dir
+	new \FileManager\Folder("root/aaa/bbb/folder"),		// Folder realy Exists in dir
+	new \FileManager\Folder("root/aaa/bbb")			// Folder realy Exists in dir
 ]);
 ```
 <hr>
@@ -29,11 +29,11 @@ Return all *FF* files/Folders in one array, when *i* is NULL.
 ```php
 // Returns all FF items
 $fm->get() => [
-	FileManager\File("root/aaa/bbb/aaa.html"),
-	FileManager\File("root/aaa/bbb/myfile.html"),
-	FileManager\File("root/aaa/bbb/file.txt"),
-	FileManager\Folder("root/aaa/bbb/folder"),
-	FileManager\Folder("root/aaa/bbb")
+	[0] => FileManager\File("root/aaa/bbb/aaa.html"),
+	[1] => FileManager\File("root/aaa/bbb/myfile.html"),
+	[2] => FileManager\File("root/aaa/bbb/file.txt"),
+	[3] => FileManager\Folder("root/aaa/bbb/folder"),
+	[4] => FileManager\Folder("root/aaa/bbb")
 ]
 ```
 
@@ -56,9 +56,9 @@ Return all *FF* objects which are *File*
 ```php
 // Returns only File items
 $fm->getFiles() => [
-	FileManager\File("root/aaa/bbb/aaa.html"),
-	FileManager\File("root/aaa/bbb/myfile.html"),
-	FileManager\File("root/aaa/bbb/file.txt")
+	[0] => FileManager\File("root/aaa/bbb/aaa.html"),
+	[1] => FileManager\File("root/aaa/bbb/myfile.html"),
+	[2] => FileManager\File("root/aaa/bbb/file.txt")
 ]
 ```
 
@@ -69,8 +69,8 @@ Return all *FF* objects which are *Folder*
 ```php
 // Returns only Folder items
 $fm->getFolders()	=> [
-	FileManager\Folder("root/aaa/bbb/folder"),
-	FileManager\Folder("root/aaa/bbb")
+	[0] => FileManager\Folder("root/aaa/bbb/folder"),
+	[1] => FileManager\Folder("root/aaa/bbb")
 ]
 ```
 
@@ -82,9 +82,9 @@ Return all *FF* which is real Files or Folders. Which really exist in URL
 ```php
 // Returns all FF items
 $fm->getExist() => [
-	FileManager\File("root/aaa/bbb/file.txt"),
-	FileManager\Folder("root/aaa/bbb/folder"),
-	FileManager\Folder("root/aaa/bbb")
+	[0] => FileManager\File("root/aaa/bbb/file.txt"),
+	[1] => FileManager\Folder("root/aaa/bbb/folder"),
+	[2] => FileManager\Folder("root/aaa/bbb")
 ]
 ```
 
@@ -95,8 +95,8 @@ Return all *FF* which is real Files or Folders. Which really exist in URL
 ```php
 // Returns all FF items
 $fm->getExist() => [
-	FileManager\File("root/aaa/bbb/aaa.html"),
-	FileManager\File("root/aaa/bbb/myfile.html"),
+	[0] => FileManager\File("root/aaa/bbb/aaa.html"),
+	[1] => FileManager\File("root/aaa/bbb/myfile.html"),
 ]
 ```
 
@@ -181,29 +181,29 @@ $fm->count('folders')	=> 2
 ## pop($times = 1){
 - **$times [null / num]**
 
-Remove last *times* items from object
+Remove last *times* items from object.
 ```php
-$fm->count()	=> 5
+$fm->count() => 5
 
 $fm->pop();
-$fm->count()	=> 4
+$fm->count() => 4
 
 $fm->pop(2);
-$fm->count()	=> 2
+$fm->count() => 2
 ```
 
 ## shift($times = 1){
 - **$times [null / num]**
 
-Remove first *times* items from object
+Remove first *times* items from object.
 ```php
-$fm->count()	=> 5
+$fm->count() => 5
 
 $fm->shift();
-$fm->count()	=> 4
+$fm->count() => 4
 
 $fm->shift(2);
-$fm->count()	=> 2
+$fm->count() => 2
 ```
 
 ## add($array_ff){
@@ -229,6 +229,7 @@ $fm->add([
 
 ## remove($fm = null)
 - **$fm [FileManager\FM / array of FileManager\FF / FileManager\FF]**
+ - @return [FileManager\FM]
 
 Remove *FF* Files/folders from obj *FM* - NOT from server
 ```php
@@ -243,8 +244,8 @@ $fm = new \FileManager\FM([
 // Remove one ff object
 $fm->remove( new \FileManager\File("root/aaa/file.txt") );
 $fm->get() => [
-	FileManager\File("root/aaa/bbb/myfile.html"),
-	FileManager\Folder("root/aaa/folder")
+	[0] => FileManager\File("root/aaa/bbb/myfile.html"),
+	[1] => FileManager\Folder("root/aaa/folder")
 ]
 ```
 
@@ -255,7 +256,7 @@ $fm->remove([
 	new \FileManager\Folder("root/aaa/folder")
 ]);
 $fm->get() => [
-	FileManager\File("root/aaa/bbb/myfile.html")
+	[0] => FileManager\File("root/aaa/bbb/myfile.html")
 ]
 ```
 
@@ -266,12 +267,14 @@ $fm->remove(new \FileManager\FM([
 	new \FileManager\Folder("root/aaa/folder")
 ]));
 $fm->get() => [
-	FileManager\File("root/aaa/bbb/myfile.html")
+	[0] => FileManager\File("root/aaa/bbb/myfile.html")
 ]
 
 ```
 
 ## removeNotExist()
+ - @return [FileManager\FM]
+
 Remove all *FF* Files/folders objects which **NOT EXIST** in FTP from *FM* - NOT from server
 ```php
 $fm = new \FileManager\FM([
@@ -283,12 +286,14 @@ $fm = new \FileManager\FM([
 ```php
 $fm->removeExist();
 $fm->get() => [
-	FileManager\File("root/aaa/file.txt"),
-	FileManager\Folder("root/aaa/folder")
+	[0] => FileManager\File("root/aaa/file.txt"),
+	[1] => FileManager\Folder("root/aaa/folder")
 ]
 ```
 
 ## removeExist()
+ - @return [FileManager\FM]
+
 Remove all existing *FF*. The same as [*removeNotExist()*](#removenotexist) but reverse.
 
 ```php
@@ -299,6 +304,8 @@ $fm->get() => [
 ```
 
 ## removeFiles()
+ - @return [FileManager\FM]
+
 Remove all *File* objects from *FM* - NOT from FTP
 ```php
 $fm = new \FileManager\FM([
@@ -310,12 +317,14 @@ $fm = new \FileManager\FM([
 ```php
 $fm->removeFiles();
 $fm->get() => [
-	FileManager\Folder("root/aaa/folder")
+	[0] => FileManager\Folder("root/aaa/folder")
 ]
 ```
 
 
 ## removeFolders()
+ - @return [FileManager\FM]
+
 Remove all *Folder* objects from *FM* - NOT from FTP
 ```php
 $fm = new \FileManager\FM([
@@ -336,7 +345,7 @@ $fm->get() => [
 - **$filter [string]**
 - **$type [boolean]**
 - **$key [name]**
- - @return [array of FileManager\FF]
+ - @return [FileManager\FM]
 
 Find *FF* objects by *$filter* and remove them from *FM* - NOT from FTP.\n
 Returns removed objects.
@@ -358,8 +367,9 @@ $fm->get() => [
 
 <br>
 <hr>
-<br>
 
+
+# FTP
 ## upload(FM $local_files_fm)
 Delete all files inside of object, if they were existing.
 ```php
@@ -384,8 +394,10 @@ $fm = new \FileManager\FM([
 ]);
 
 $fm->delete();
-$fm->get()[0]->exist()	=> 0
-$fm->get()[1]->exist()	=> 0
+$fm->exist() => [
+	[0] => 0,
+	[1] => 0
+]
 
 ```
 
@@ -401,7 +413,10 @@ $fm = new \FileManager\FM([
 ]);
 
 $fm->move("root/aaa/bbb/ccc");
-$fm->get()[0]->url->getString()	=> "root/aaa/bbb/ccc/myfile.html"
-$fm->get()[1]->url->getString()	=> "root/aaa/bbb/ccc/file.txt"
+$fm->get() => [
+	[0] => FileManager\File("root/aaa/bbb/ccc/myfile.html"),
+	[1] => FileManager\File("root/aaa/bbb/ccc/file.txt")
+]
+
 
 ```
