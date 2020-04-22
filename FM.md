@@ -410,7 +410,7 @@ Change dir path of all files, no matter where they were before.
 $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/myfile.html"),
 	new \FileManager\File("root/aaa/file.txt"),
-]);
+])
 
 $fm->move("root/aaa/bbb/ccc");
 $fm->get() => [
