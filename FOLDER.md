@@ -18,7 +18,7 @@ public $mode => 0777
 public $dir  => UrlParser\Url("root/aaa/bbb")
 
 ```
-## FF INHERITS METHOD
+## FF - INHERITED METHOD
 - [**exist()**](https://github.com/Zerig/file-manager/blob/master/FF.md#exist) Check if *FF* (*File*, *Folder*) really exist
 - [**isFolder()**](https://github.com/Zerig/file-manager/blob/master/FF.md#isfolder) Check if *Folder* really exist!
 - [**isFile()**](https://github.com/Zerig/file-manager/blob/master/FF.md#isfile) Check if *File* really exist!

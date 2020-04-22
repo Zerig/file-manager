@@ -95,26 +95,28 @@ class FF{
 	/*
 	 * $array_ff [array of \FileManager\FF]
 	 */
-	public function filter($filter, $key = "name"){
-		if(!isset($this->{$key})) return 0;
+	public function has($filter, $key = "name"){
+		if(!isset($this->{$key})) return 0;		// When key doesnt exists
 
+		// "%" char in the BEGINNING and END of $filter
 		if($filter[0] == "%" && substr($filter, -1) == "%"){
 			$filter = str_replace("%", "", $filter);
 			return (stripos($this->{$key}, $filter) !== false);
 
+		// "%" char in the END of $filter
 		}else if(substr($filter, -1) == "%"){
 			$filter = str_replace("%", "", $filter);
 			return $filter == substr($this->{$key}, 0, strlen($filter));
 
+		// "%" char in the BEGINNING of $filter
 		}else if($filter[0] == "%"){
 			$filter = str_replace("%", "", $filter);
 			return $filter == substr($this->{$key}, -strlen($filter), strlen($filter));
 
+		// "%" char is not in $filter
 		}else{
 			return ($this->{$key} == $filter);
 		}
-
-		//return ($type)? $result : !$result;
 	}
 
 }

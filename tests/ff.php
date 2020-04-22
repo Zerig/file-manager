@@ -12,19 +12,19 @@ echo "FILTERED FILES: \n";
 $file = new \FileManager\File(new \UrlParser\Url("root/aaa/bbb/myfile.txt"));
 echo "FF: ".$file->url->getString()."\n";
 $filter = 'my%';
-echo "::filter('".$filter."')		=> ".$file->filter($filter)."\n";
+echo "::has('".$filter."')		=> ".$file->has($filter)."\n";
 $filter = '%txt';
-echo "::filter('".$filter."')	=> ".$file->filter($filter)."\n";
+echo "::has('".$filter."')	=> ".$file->has($filter)."\n";
 $filter = '%file%';
-echo "::filter('".$filter."')	=> ".$file->filter($filter)."\n";
+echo "::has('".$filter."')	=> ".$file->has($filter)."\n";
 $filter = 'myfile.txt';
-echo "::filter('".$filter."')	=> ".$file->filter($filter)."\n";
+echo "::has('".$filter."')	=> ".$file->has($filter)."\n";
 echo "\n";
 $filter = 'anf%';
-echo "::filter('".$filter."')	=> ".$file->filter($filter)."\n";
+echo "::has('".$filter."')	=> ".$file->has($filter)."\n";
 echo "\n";
 $filter = 'txt';
-echo "::filter('".$filter."', 'extension')	=> ".$file->filter($filter, 'extension')."\n";
+echo "::has('".$filter."', 'extension')	=> ".$file->has($filter, 'extension')."\n";
 
 
 echo "<br>---------------------------------------------<br><br>";

@@ -70,23 +70,23 @@ $folder->move(new \UrlParser\Url("root/aaa/b"));
 $folder->url => FileManager\Folder("root/aaa/b/folder")
 ```
 
-## ::checkIf($filter, $key = "name")
+## has($filter, $key = "name")
 - **$filter [string]**
 - **$key [name]**
 * @return [boolean]
 
-Chceck if same value *key* of object contain
+Chceck if object *key* contains *filter* expression.
 
 ### $filter [string]
-Set what you want to find and filter by it. And you can use '%' just like *LIKE* in SQL
+Set what you want to find in *key*.You can use *'%'* just like operator *LIKE* in SQL
 ```php
 $ff = new \FileManager\FF("root/aaa/bbb/myfile.html");
-$ff->filter('my%')         => 1
-$ff->filter('%html')       => 1
-$ff->filter('%file%')      => 1
-$ff->filter('myfile.html') => 1
+$ff->has('my%')         => 1
+$ff->has('%html')       => 1
+$ff->has('%file%')      => 1
+$ff->has('myfile.html') => 1
 
-$ff->filter('aaa%')        => 0
+$ff->has('aaa%')        => 0
 ```
 
 ### $key [string]
@@ -97,10 +97,10 @@ $ff->name 	=> "myFile.html"
 $ff->filename 	=> "myFile"
 $ff->extension 	=> "html"
 
-$ff->filter('filename', 'name')	  => 0
-$ff->filter('filename%', 'name')  => 1
-$ff->filter('filename', 'myfile') => 1
-$ff->filter('html', 'extension')  => 1
+$ff->has('filename', 'name')   => 0
+$ff->has('filename%', 'name')  => 1
+$ff->has('filename', 'myfile') => 1
+$ff->has('html', 'extension')  => 1
 
 
 ```

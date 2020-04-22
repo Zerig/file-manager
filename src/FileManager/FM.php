@@ -68,7 +68,7 @@ class FM{
 		$filtered_array_negative = [];
 
 		foreach($this->arrayFF as $ff){
-			if($ff->filter($filter, $key)) 	$filtered_array_positive[] = $ff;
+			if($ff->has($filter, $key)) 	$filtered_array_positive[] = $ff;
 			else   							$filtered_array_negative[] = $ff;
 		}
 

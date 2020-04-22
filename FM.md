@@ -123,7 +123,7 @@ $fm->getExist() => [
 - **$key [name]**
  - @return [array of FileManager\FF]
 
-Filter array of *FF* by *filter* array<br>
+Filter array of *FF* by *filter* array\n
 Primary it choose files which accept *$filter* expression. And the expression is primary searched in *$key* **name**.
 
 
@@ -142,7 +142,7 @@ $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/myfile.html"),
 	new \FileManager\File("root/aaa/bbb/file.txt")
 ]);
-$fm->filter("my%") => [	FileManager\File("root/aaa/bbb/myfile.html") ]
+$fm->getFilter("my%") => [	FileManager\File("root/aaa/bbb/myfile.html") ]
 ```
 
 ### $type [boolean]
@@ -153,8 +153,8 @@ $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/file.txt"),
 ]);
 
-$fm->filter("my%", 1) => [ FileManager\File("root/aaa/bbb/myfile.html") ]
-$fm->filter("my%", 0) => [ FileManager\File("root/aaa/bbb/file.txt") ]
+$fm->getFilter("my%", 1) => [ FileManager\File("root/aaa/bbb/myfile.html") ]
+$fm->getFilter("my%", 0) => [ FileManager\File("root/aaa/bbb/file.txt") ]
 ```
 
 ### $key [string]
@@ -165,9 +165,9 @@ $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/file.txt"),
 ]);
 
-$fm->filter("html", 1, "extension")	=> [ FileManager\File("root/aaa/bbb/myfile.html") ]
-$fm->filter("html", 1, "name")		=> []
-$fm->filter("%html", 1, "name")		=> [ FileManager\File("root/aaa/bbb/myfile.html") ]
+$fm->getFilter("html", 1, "extension")	=> [ FileManager\File("root/aaa/bbb/myfile.html") ]
+$fm->getFilter("html", 1, "name")		=> []
+$fm->getFilter("%html", 1, "name")		=> [ FileManager\File("root/aaa/bbb/myfile.html") ]
 
 ```
 

@@ -98,7 +98,7 @@ echo "<br>---------------------------------------------<br><br>";
 echo "<br>---------------------------------------------<br><br>";
 
 $filter = "%f%";
-echo "::filter('".$filter."')<br>";
+echo "::has('".$filter."')<br>";
 $filtered = $fm->getFilter($filter);
 foreach($filtered as $ff){
 	echo $ff->url->getString()."\n";
@@ -107,7 +107,7 @@ echo "\n";
 
 $filter = "%f%";
 $type = 0;
-echo "::filter('".$filter."', ".$type.")<br>";
+echo "::has('".$filter."', ".$type.")<br>";
 $filtered = $fm->getFilter($filter, $type);
 foreach($filtered as $ff){
 	echo $ff->url->getString()."\n";
@@ -117,7 +117,7 @@ echo "\n";
 $filter = "txt";
 $type = 1;
 $key = "extension";
-echo "::filter('".$filter."', ".$type.", '".$key."')<br>";
+echo "::has('".$filter."', ".$type.", '".$key."')<br>";
 $filtered = $fm->getFilter($filter, $type, $key);
 foreach($filtered as $ff){
 	echo $ff->url->getString()."\n";
@@ -193,7 +193,7 @@ echo "<br>---------------------------------------------<br><br>";
 
 
 $fm_delete = clone $server_fm;
-$fm_delete->filter("%zana%");
+$fm_delete->has("%zana%");
 $fm_delete->delete();
 foreach($fm_delete->get() as $ff){
 	echo $ff->url->getString()."\n";
@@ -201,7 +201,7 @@ foreach($fm_delete->get() as $ff){
 echo "<br>---------------------------------------------<br><br>MOVE";
 echo "<br>---------------------------------------------<br><br>";
 $fm_move = clone $server_fm;
-$fm_move->filter("%zana%", 0);
+$fm_move->has("%zana%", 0);
 
 $fm_move->move("root/aa");
 foreach($fm_move->get() as $ff){
