@@ -32,7 +32,8 @@ public $dir  => UrlParser\Url("root/aaa/bbb")
 
 
 ## copy($copy_name = null)
-- $copy_name [string]
+- **$copy_name [string]** name of copied *Folder*
+* **@return [FileManager\Folder]** new instance with copied *Folder*
 
 Copy Folder (and all Files/Folders inside) in the same dir place. If folder name already exist script add "-copy[num]" with notexisting variant of number.
 ```php
