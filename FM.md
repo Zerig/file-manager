@@ -107,9 +107,11 @@ FILTER:
 ```php
 $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/myfile.html"),
-	new \FileManager\File("root/aaa/bbb/file.txt"),
+	new \FileManager\File("root/aaa/bbb/file.txt")
 ]);
-$fm->filter("my%")	=> array with one File item: "root/aaa/bbb/myfile.html"
+$fm->filter("my%") => [
+	FileManager\File("root/aaa/bbb/myfile.html")
+]
 ```
 
 ### $type [boolean]
@@ -120,8 +122,8 @@ $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/file.txt"),
 ]);
 
-$fm->filter("my%", 1)	=> array with one File item: "root/aaa/bbb/myfile.html"
-$fm->filter("my%", 0)	=> array with one File item: "root/aaa/bbb/file.txt"
+$fm->filter("my%", 1) => [ FileManager\File("root/aaa/bbb/myfile.html") ]
+$fm->filter("my%", 0) => [ FileManager\File("root/aaa/bbb/file.txt") ]
 ```
 
 ### $key [string]
@@ -132,9 +134,9 @@ $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/file.txt"),
 ]);
 
-$fm->filter("html", 1, "extension")	=> array with one File item: "root/aaa/bbb/myfile.html"
-$fm->filter("html", 1, "name")	=> empty
-$fm->filter("%html", 1, "name")	=> array with one File item: "root/aaa/bbb/myfile.html"
+$fm->filter("html", 1, "extension")	=> [ FileManager\File("root/aaa/bbb/myfile.html") ]
+$fm->filter("html", 1, "name")	=> []
+$fm->filter("%html", 1, "name")	=> [ FileManager\File("root/aaa/bbb/myfile.html") ]
 
 ```
 
