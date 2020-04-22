@@ -29,6 +29,7 @@ $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/aaa.html"),
 	new \FileManager\File("root/aaa/bbb/myfile.html"),
 	new \FileManager\File("root/aaa/bbb/file.txt"),		// File realy Exists in dir
+	new \FileManager\Folder("root/aaa/bbb/ccc/ddd"),	
 	new \FileManager\Folder("root/aaa/bbb/folder"),		// Folder realy Exists in dir
 	new \FileManager\Folder("root/aaa/bbb")			// Folder realy Exists in dir
 ]);
@@ -48,8 +49,9 @@ $fm->get() => [
 	[0] => FileManager\File("root/aaa/bbb/aaa.html"),
 	[1] => FileManager\File("root/aaa/bbb/myfile.html"),
 	[2] => FileManager\File("root/aaa/bbb/file.txt"),
-	[3] => FileManager\Folder("root/aaa/bbb/folder"),
-	[4] => FileManager\Folder("root/aaa/bbb")
+	[3] => FileManager\File("root/aaa/bbb/ccc/ddd"),
+	[4] => FileManager\Folder("root/aaa/bbb/folder"),
+	[5] => FileManager\Folder("root/aaa/bbb")
 ]
 ```
 
@@ -187,16 +189,6 @@ $fm->getFilter("%html", 1, "name")		=> [ FileManager\File("root/aaa/bbb/myfile.h
 
 Remove last *times* items from object.
 ```php
-$fm->get() => [
-	[0] => FileManager\File("root/aaa/bbb/aaa.html"),
-	[1] => FileManager\File("root/aaa/bbb/myfile.html"),
-	[2] => FileManager\File("root/aaa/bbb/file.txt"),
-	[3] => FileManager\File("root/aaa/bbb/ccc/ddd"),
-	[4] => FileManager\File("root/aaa/bbb/folder"),
-	[5] => FileManager\File("root/aaa/bbb")
-]
-```
-```php
 $fm->pop()
 $fm->get() => [
 	[0] => FileManager\File("root/aaa/bbb/aaa.html"),
@@ -217,16 +209,6 @@ $fm->get() => [
 - **$times [null / num]**
 
 Remove first *times* items from object.
-```php
-$fm->get() => [
-	[0] => FileManager\File("root/aaa/bbb/aaa.html"),
-	[1] => FileManager\File("root/aaa/bbb/myfile.html"),
-	[2] => FileManager\File("root/aaa/bbb/file.txt"),
-	[3] => FileManager\File("root/aaa/bbb/ccc/ddd"),
-	[4] => FileManager\File("root/aaa/bbb/folder"),
-	[5] => FileManager\File("root/aaa/bbb")
-]
-```
 ```php
 $fm->shift()
 $fm->get() => [
