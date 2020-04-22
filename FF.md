@@ -81,12 +81,12 @@ Chceck if object *key* contains *filter* expression.
 Set what you want to find in *key*.You can use *'%'* just like operator *LIKE* in SQL
 ```php
 $ff = new \FileManager\FF("root/aaa/bbb/myfile.html");
-$ff->has('my%')         => 1
-$ff->has('%html')       => 1
-$ff->has('%file%')      => 1
-$ff->has('myfile.html') => 1
+$ff->has("my%")         => 1
+$ff->has("%html")       => 1
+$ff->has("%file%")      => 1
+$ff->has("myfile.html") => 1
 
-$ff->has('aaa%')        => 0
+$ff->has("aaa%")        => 0
 ```
 
 ### $key [string]
@@ -97,10 +97,10 @@ $ff->name 	=> "myFile.html"
 $ff->filename 	=> "myFile"
 $ff->extension 	=> "html"
 
-$ff->has('filename', 'name')   => 0
-$ff->has('filename%', 'name')  => 1
-$ff->has('filename', 'myfile') => 1
-$ff->has('html', 'extension')  => 1
+$ff->has("filename", "name")   => 0
+$ff->has("filename%", "name")  => 1
+$ff->has("filename", "myfile") => 1
+$ff->has("html", "extension")  => 1
 
 
 ```
