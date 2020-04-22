@@ -16,47 +16,30 @@ class FM{
 	}
 
 
-	public function get($obj = null){
-		if($obj == null) 		return $this->arrayFF;
-		if($obj == "files") 	return self::getFiles();
-		if($obj == "folders") 	return self::getFolders();
+	public function get($i = null){
+		if(is_null($i)) 	return $this->arrayFF;
+		if($i >= 0)			return $this->arrayFF[$i];
+		if($i < 0)			return $this->arrayFF[self::count() + $i];
+
 	}
 
 
-	public function getExist($obj = null){
+	public function getExist(){
 		$array_exist_ff = [];
 		foreach($this->arrayFF as $ff){
 			if($ff->exist()) $array_exist_ff[] = $ff;
 		}
 
-		if($obj == null)	return new \FileManager\FM($array_exist_ff);
-		if($obj == "files"){
-			$fm = new FM($array_exist_ff);
-							return $fm->getFiles();
-		}
-		if($obj == "folders"){
-			$fm = new FM($array_exist_ff);
-							return $fm->getFolders();
-		}
-
+		return $array_exist_ff;
 	}
 
-	public function getNotExist($obj = null){
+	public function getNotExist(){
 		$array_exist_ff = [];
 		foreach($this->arrayFF as $ff){
 			if(!$ff->exist()) $array_exist_ff[] = $ff;
 		}
 
-		if($obj == null)	return new \FileManager\FM($array_exist_ff);
-		if($obj == "files"){
-			$fm = new FM($array_exist_ff);
-							return $fm->getFiles();
-		}
-		if($obj == "folders"){
-			$fm = new FM($array_exist_ff);
-							return $fm->getFolders();
-		}
-
+		return $array_exist_ff;
 	}
 
 	public function getFiles(){

@@ -21,11 +21,11 @@ $fm = new \FileManager\FM([
 
 # GET...()
 
-## get($obj = null)
-- **$obj [string]**	=> [null / "files" / "folders"]
-- @return [array of FileManager\FF]
+## get($i = null)
+- **$i [num]**	=> [null / num]
+- @return [array of FileManager\FF / FileManager\FF]
 
-Return all *FF* files/Folders in one array
+Return all *FF* files/Folders in one array, when *i* is NULL.
 ```php
 // Returns all FF items
 $fm->get() => [
@@ -36,51 +36,86 @@ $fm->get() => [
 	FileManager\Folder("root/aaa/bbb")
 ]
 ```
+
+Return one *FF* file/Folder, when *i* is num.
+```php
+// Returns all FF items
+$fm->get(0)  => FileManager\File("root/aaa/bbb/aaa.html")
+$fm->get(1)  => FileManager\File("root/aaa/bbb/myfile.html")
+
+$fm->get(-1) => FileManager\File("root/aaa/bbb")
+$fm->get(-2) => FileManager\File("root/aaa/bbb/folder")
+
+```
+
+
+## getFiles()
+- @return [array of FileManager\FF]
+
+Return all *FF* objects which are *File*
 ```php
 // Returns only File items
-$fm->get("files") => [
+$fm->getFiles() => [
 	FileManager\File("root/aaa/bbb/aaa.html"),
 	FileManager\File("root/aaa/bbb/myfile.html"),
 	FileManager\File("root/aaa/bbb/file.txt")
 ]
 ```
+
+## getFolders()
+- @return [array of FileManager\FF]
+
+Return all *FF* objects which are *Folder*
 ```php
 // Returns only Folder items
-$fm->get("folders")	=> [
+$fm->getFolders()	=> [
 	FileManager\Folder("root/aaa/bbb/folder"),
 	FileManager\Folder("root/aaa/bbb")
 ]
 ```
 
 
-## getExist($obj = null){
-- **$obj [string]**	=> [null / "files" / "folders"]
+## getExist(){
 - @return [array of FileManager\FF]
 
 Return all *FF* which is real Files or Folders. Which really exist in URL
 ```php
-// Returns all FF items
-$fm->getExist() => [
+$fm->get() => [
 	FileManager\File("root/aaa/bbb/aaa.html"),
 	FileManager\File("root/aaa/bbb/myfile.html"),
+	FileManager\File("root/aaa/bbb/file.txt"),		// File Exists
+	FileManager\Folder("root/aaa/bbb/folder"),		// Folder Exists
+	FileManager\Folder("root/aaa/bbb")				// Folder Exists
+]
+```
+```php
+// Returns all FF items
+$fm->getExist() => [
 	FileManager\File("root/aaa/bbb/file.txt"),
 	FileManager\Folder("root/aaa/bbb/folder"),
 	FileManager\Folder("root/aaa/bbb")
 ]
 ```
+
+## getNotExist(){
+- @return [array of FileManager\FF]
+
+Return all *FF* which is real Files or Folders. Which really exist in URL
 ```php
-// Returns only File items
-$fm->getExist("files") => [
-	FileManager\File("root/aaa/bbb/file.txt")
+$fm->get() => [
+	FileManager\File("root/aaa/bbb/aaa.html"),
+	FileManager\File("root/aaa/bbb/myfile.html"),
+	FileManager\File("root/aaa/bbb/file.txt"),		// File Exists
+	FileManager\Folder("root/aaa/bbb/folder"),		// Folder Exists
+	FileManager\Folder("root/aaa/bbb")				// Folder Exists
 ]
 ```
 ```php
-// Returns only Folder items
-$fm->getExist("folders") => [
-	FileManager\Folder("root/aaa/bbb/folder"),
-	FileManager\Folder("root/aaa/bbb")
+// Returns all FF items
+$fm->getExist() => [
+	FileManager\File("root/aaa/bbb/aaa.html"),
+	FileManager\File("root/aaa/bbb/myfile.html"),
 ]
-
 ```
 
 
@@ -109,9 +144,7 @@ $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/myfile.html"),
 	new \FileManager\File("root/aaa/bbb/file.txt")
 ]);
-$fm->filter("my%") => [
-	FileManager\File("root/aaa/bbb/myfile.html")
-]
+$fm->filter("my%") => [	FileManager\File("root/aaa/bbb/myfile.html") ]
 ```
 
 ### $type [boolean]
