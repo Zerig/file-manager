@@ -218,6 +218,16 @@ $fm->get() => [
 
 Remove first *times* items from object.
 ```php
+$fm->get() => [
+	[0] => FileManager\File("root/aaa/bbb/aaa.html"),
+	[1] => FileManager\File("root/aaa/bbb/myfile.html"),
+	[2] => FileManager\File("root/aaa/bbb/file.txt"),
+	[3] => FileManager\File("root/aaa/bbb/ccc/ddd"),
+	[4] => FileManager\File("root/aaa/bbb/folder"),
+	[5] => FileManager\File("root/aaa/bbb")
+]
+```
+```php
 $fm->shift()
 $fm->get() => [
 	[0] => FileManager\File("root/aaa/bbb/myfile.html"),
