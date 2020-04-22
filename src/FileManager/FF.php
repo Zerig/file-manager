@@ -72,6 +72,8 @@ class FF{
 
 		rename($source_ff_url->getString(), $target_ff_url->getString());
 		self::set($target_ff_url);
+
+		return new \FileManager\FF($source_ff_url);
 	}
 
 	/**
@@ -85,6 +87,8 @@ class FF{
 
 		rename($source_ff_url->getString(), $target_ff_url->getString());
 		self::set($target_ff_url);
+
+		return new \FileManager\FF($source_ff_url);
 	}
 
 

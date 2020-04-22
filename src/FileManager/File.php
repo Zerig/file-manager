@@ -37,6 +37,20 @@ class File extends FF{
 
 
 
+	public function rename($new_name){
+		$source_ff = parent::rename($new_name);
+		return new \FileManager\File($source_ff->url->getString());
+	}
+
+
+	public function move($new_dir){
+		$source_ff = parent::move($new_dir);
+		return new \FileManager\File($source_ff->url->getString());
+	}
+
+
+
+
 
 
 	/*

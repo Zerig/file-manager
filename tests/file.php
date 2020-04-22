@@ -25,11 +25,11 @@ echo '<b>EXISTING FILE:</b>'."\n";
 $file = new \FileManager\File(new \UrlParser\Url("root/aaa/bbb/file.txt"));
 echo '<b>$file->url->getString() => '.$file->url->getString()."</b>\n";
 echo '$file->name      => '.$file->name."\n";
-echo '$file->filename  => '.$file->filename."\n";
-echo '$file->extension => '.$file->extension."\n";
 echo '$file->size      => '.$file->size."\n";
 echo '$file->mode      => '.$file->mode."\n";
 echo "\n";
+echo '$file->filename  => '.$file->filename."\n";
+echo '$file->extension => '.$file->extension."\n";
 echo '$file->mime      => '.$file->mime."\n";
 
 echo "<br>---------------------------------------------<br><br>";

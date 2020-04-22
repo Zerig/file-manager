@@ -17,6 +17,18 @@ class Folder extends FF{
 	}
 
 
+	public function rename($new_name){
+		$source_ff = parent::rename($new_name);
+		return new \FileManager\Folder($source_ff->url->getString());
+	}
+
+
+	public function move($new_dir){
+		$source_ff = parent::move($new_dir);
+		return new \FileManager\Folder($source_ff->url->getString());
+	}
+
+
 
 	public function copy($copy_name = null){
 		$from_folder_url =	$this->url;
