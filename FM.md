@@ -12,9 +12,9 @@ $fm = new \FileManager\FM( new \FileManager\File("root/aaa/bbb/aaa.html") );
 $fm = new \FileManager\FM([
 	new \FileManager\File("root/aaa/bbb/aaa.html"),
 	new \FileManager\File("root/aaa/bbb/myfile.html"),
-	new \FileManager\File("root/aaa/bbb/file.txt"),
-	new \FileManager\Folder("root/aaa/bbb/folder"),
-	new \FileManager\Folder("root/aaa/bbb"),
+	new \FileManager\File("root/aaa/bbb/file.txt"),		// File Exists
+	new \FileManager\Folder("root/aaa/bbb/folder"),		// Folder Exists
+	new \FileManager\Folder("root/aaa/bbb")			// Folder Exists
 ]);
 ```
 <hr>
@@ -80,15 +80,6 @@ $fm->getFolders()	=> [
 
 Return all *FF* which is real Files or Folders. Which really exist in URL
 ```php
-$fm->get() => [
-	FileManager\File("root/aaa/bbb/aaa.html"),
-	FileManager\File("root/aaa/bbb/myfile.html"),
-	FileManager\File("root/aaa/bbb/file.txt"),		// File Exists
-	FileManager\Folder("root/aaa/bbb/folder"),		// Folder Exists
-	FileManager\Folder("root/aaa/bbb")				// Folder Exists
-]
-```
-```php
 // Returns all FF items
 $fm->getExist() => [
 	FileManager\File("root/aaa/bbb/file.txt"),
@@ -101,15 +92,6 @@ $fm->getExist() => [
 - @return [array of FileManager\FF]
 
 Return all *FF* which is real Files or Folders. Which really exist in URL
-```php
-$fm->get() => [
-	FileManager\File("root/aaa/bbb/aaa.html"),
-	FileManager\File("root/aaa/bbb/myfile.html"),
-	FileManager\File("root/aaa/bbb/file.txt"),		// File Exists
-	FileManager\Folder("root/aaa/bbb/folder"),		// Folder Exists
-	FileManager\Folder("root/aaa/bbb")				// Folder Exists
-]
-```
 ```php
 // Returns all FF items
 $fm->getExist() => [
