@@ -109,6 +109,7 @@ Remove concrete File not object
 ```php
 $file = new \FileManager\File("root/aaa/bbb/file.txt");
 $file->exist() => 1
+
 $file->delete();
 $file->exist() => 0
 ```
