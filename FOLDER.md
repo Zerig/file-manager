@@ -11,11 +11,11 @@ $folder = new \FileManager\Folder("root/aaa/bbb/folder");
 $folder = new \FileManager\Folder( new \UrlParser\Url("root/aaa/bbb/folder") );
 
 // These ↓ are in parent class FF
-public $url  => \UrlParser\Url::getString() => "root/aaa/bbb/folder"
+public $url  => UrlParser\Url("root/aaa/bbb/folder")
 public $size => 0
 public $name => "folder"
 public $mode => 0777
-public $dir  => \UrlParser\Url::getString() => "root/aaa/bbb"
+public $dir  => UrlParser\Url("root/aaa/bbb")
 
 ```
 
@@ -41,7 +41,7 @@ Change name of file/folder<br>
 ```php
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");
 $folder->rename("ffile.txt");
-$folder->url->getString => "root/aaa/bbb/ffile.txt"
+$folder->url => FileManager\Folder("root/aaa/bbb/ffile.txt")
 ```
 
 ## move($new_dir)
@@ -56,7 +56,7 @@ $folder = new \FileManager\Folder("root/aaa/bbb/folder");
 $folder->move("root/aaa/b");
 $folder->move(new \UrlParser\Url("root/aaa/b"));
 
-$folder->url->getString => "root/aaa/b/folder"
+$folder->url => FileManager\Folder("root/aaa/b/folder")
 ```
 
 
@@ -75,12 +75,12 @@ Copy Folder (and all Files/Folders inside) in the same dir place, but with new n
 // OLD name with "-copy"
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");
 $copy_folder = $folder->copy();
-$copy_folder->getString() => "root/aaa/bbb/folder-copy"
+$copy_folder->url => FileManager\Folder("root/aaa/bbb/folder-copy")
 
 // NEW name
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");
 $copy_folder = $folder->copy("new_folder");
-$copy_folder->getString() => "root/aaa/bbb/new_folder"
+$copy_folder->url => FileManager\Folder("root/aaa/bbb/new_folder")
 ```
 
 <hr>
@@ -97,14 +97,16 @@ When column has value "name" scan returns array of names
 $folder = new \FileManager\Folder("root/aaa/bbb/folder");
 
 // scan returns array of obj File/Folder
-$scan_array = $folder->scan();
-$scan_array[0]->getString() => "root/aaa/bbb/folder/file.txt"
-$scan_array[1]->getString()=> "root/aaa/bbb/folder/next_folder"
+$folder->scan() => [
+	[0] => FileManager\File("root/aaa/bbb/folder/file.txt"),
+	[1] => FileManager\Folder("root/aaa/bbb/folder/next_folder")
+]
 
 // scan returns array of string from obj (name)
-$scan_array = $folder->scan("name");
-$scan_array[0] => "file.txt"
-$scan_array[1] => "next_folder"
+$folder->scan("name") => [
+	[0] => "file.txt"
+	[1] => "next_folder"
+]
 ```
 
 
@@ -120,10 +122,10 @@ When column has value "name" scan returns array of names
 
 ```code
 folder/
-├── file.txt
 └── next_folder
 │	├── next_file.txt
 │	└── another_folder
+├── file.txt
 └── second_file.txt
 ```
 
@@ -131,26 +133,30 @@ folder/
 $folder = new \FileManager\Folder("folder");
 
 // scan returns array of obj File/Folder
-$scan_array = $folder->scanTree();
-$scan_array[0]->getString() => "folder/file.txt"
-$scan_array[1][0]->getString()=> "folder/next_folder"
-$scan_array[1][0][0]->getString()=> "folder/next_file.txt"
-$scan_array[1][0][1]->getString()=> "folder/another_folder"
-$scan_array[2]->getString() => "folder/second_file.txt"
+$folder->scanTree() => [
+	[0] => FileManager\File("folder/file.txt"),
+	[1] => [
+		[0] => FileManager\Folder("folder/next_folder"),
+		[1] => [
+			[0] => FileManager\File("folder/next_file.txt"),
+			[1] => FileManager\Folder("folder/another_folder")
+		]
+	],
+	[2] => FileManager\File("folder/second_file.txt")
+]
 
 // scan returns array of string from obj (name)
-$scan_array = $folder->scan("name");
-$scan_array => Array(
+$folder->scan("name") => [
 	[0] => "file.txt"
-	[1] => Array(
+	[1] => [
 		[0] => "next_folder"
-		[1] => Array(
+		[1] => [
 			[0] => "next_file.txt"
 			[1] => "another_folder"
-		)
-	)
+		]
+	]
 	[2] => "second_file.txt"
-)
+]
 ```
 
 
@@ -176,5 +182,5 @@ $folder = new \FileManager\Folder("root/aaa/bbb/folder");
 $folder->clean();
 
 $folder->exist() => 1
-$scan_array = $folder->scan(); => empty
+$folder->scan()  => []
 ```

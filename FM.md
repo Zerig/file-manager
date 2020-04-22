@@ -5,7 +5,23 @@
 
 Manage multiple *FF* files/Folders which cannot be in the same folder and cannot exist.
 
-
+```code
+root/
+└── a/
+└── aa/
+└── aaa/
+	├── b/
+	├── bb/
+	└── bbb/
+		├── clean_folder/
+		│	├── next_folder/
+		│	└── file.txt
+		├── empty_folder/
+		├── folder/
+		│	├── next_folder/
+		│	└── file.txt
+		└── file.txt
+```
 ```php
 // BOTH variant are possile ↓
 $fm = new \FileManager\FM( new \FileManager\File("root/aaa/bbb/aaa.html") );
