@@ -402,19 +402,82 @@ $fm->get() => [
 
 
 # FTP
-## upload(FM $local_files_fm)
-Delete all files inside of object, if they were existing.
-```php
-$fm = new \FileManager\FM([
-	new \FileManager\File("root/aaa/bbb/myfile.html"),
-	new \FileManager\File("root/aaa/file.txt"),
-]);
+## upload($local_files_fm)
+- **$local_files_fm [FileManager\FM]** temporary files
 
-$fm->delete();
-$fm->get()[0]->exist()	=> 0
-$fm->get()[1]->exist()	=> 0
+Upload all *FF* items in object *FM* *$local_files_fm* into server.
+```html
+<form method="POST" enctype="multipart/form-data">
+	<input type="file" name="file[]" multiple>
+	<input type="submit" value="Upload" name="submit">
+</form>
+```
+```php
+// FUNCTION FOR TRANSFORM $_FILES form <form> INTO RIGHT ARRAY FORM
+function my__multipleFiles($_files){
+	$files = [];
+
+	if(is_array($_files["file"]["tmp_name"])){
+		for($i = 0; $i < count($_files["file"]["tmp_name"]); $i++){
+			$files[] = [
+				"name" => $_files["file"]["name"][$i],
+				"type" => $_files["file"]["type"][$i],
+				"tmp_name" => $_files["file"]["tmp_name"][$i],
+				"error" => $_files["file"]["error"][$i],
+				"size" => $_files["file"]["size"][$i]
+			];
+
+		}
+	}else{
+		$files[] = $_files["file"];
+	}
+
+	return $files;
+}
+```
+```php
+$server_fm = new \FileManager\FM();
+$local_fm = new \FileManager\FM();
+
+if(isset($_POST["submit"])){
+	$files = my__multipleFiles($_FILES);
+
+	foreach($files as $file){
+		$server_fm->add( new \FileManager\File(new \UrlParser\Url(["root/a", $file["name"]])) ); // server URL and NAME of uploaded files => "root/a/dave-greco-elemental.jpg"
+		$local_fm->add( new \FileManager\File($file["tmp_name"]) );	// local TMP files => "C:\xampp\tmp\php9351.tmp"
+	}
+	$server_fm->upload($local_fm);
+}
+
+$server_fm->get() => [
+	[0] => FileManager\File("root/a/dave-greco-elemental.jpg"),
+	[1] => FileManager\File("root/a/eytan-zana-art-of-uncharted-re-cover.jpg"),
+	[2] => FileManager\File("root/a/eytan-zana-fallengod-web.jpg"),
+	[3] => FileManager\File("root/a/eytan-zana-forest-god4.jpg"),
+	[4] => FileManager\File("root/a/forgestoker_dragon__promo__by_lucasgraciano-d9qd928.jpg"),
+	[5] => FileManager\File("root/a/Grzegorz-Rutkowski-19.jpg")
+]
+
+$local_fm->get() => [
+	[0] => FileManager\File("C:\xampp\tmp\php9106.tmp"),
+	[1] => FileManager\File("C:\xampp\tmp\php9117.tmp"),
+	[2] => FileManager\File("C:\xampp\tmp\php9118.tmp"),
+	[3] => FileManager\File("C:\xampp\tmp\php9119.tmp"),
+	[4] => FileManager\File("C:\xampp\tmp\php911A.tmp"),
+	[5] => FileManager\File("C:\xampp\tmp\php912B.tmp")
+]
+
+$server_fm->exist() => [
+	[0] => 1
+	[1] => 1
+	[2] => 1
+	[3] => 1
+	[4] => 1
+	[5] => 1
+]
 
 ```
+
 
 
 ## delete()
