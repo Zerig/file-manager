@@ -67,44 +67,26 @@ $copy_file->url->getString() => "root/aaa/bbb/new_file-copy1.txt"
 take uploaded, **temporary**, file and upload it into new "empty" File
 ```html
 <form method="POST" enctype="multipart/form-data">
-	<input type="file" name="file[]" multiple>
+	<input type="file" name="file">
 	<input type="submit" value="Upload" name="submit">
 </form>
 ```
 ```php
-// FUNCTION FOR TRANSFORM $_FILES form <form> INTO RIGHT ARRAY FORM
-function my__multipleFiles($_files){
-	$files = [];
+$server_file;
+$local_file;
 
-	if(is_array($_files["file"]["tmp_name"])){
-		for($i = 0; $i < count($_files["file"]["tmp_name"]); $i++){
-			$files[] = [
-				"name" => $_files["file"]["name"][$i],
-				"type" => $_files["file"]["type"][$i],
-				"tmp_name" => $_files["file"]["tmp_name"][$i],
-				"error" => $_files["file"]["error"][$i],
-				"size" => $_files["file"]["size"][$i]
-			];
+if(isset($_POST["submit"])){
+	$server_file = new \FileManager\File(new \UrlParser\Url(["root/a", $_FILES["file"]["name"]]));
+	$local_file = new \FileManager\File($_FILES["file"]["tmp_name"]);
 
-		}
-	}else{
-		$files[] = $_files["file"];
-	}
-
-	return $files;
+	$server_file->upload($local_file);
 }
-```
-```php
-$files = my__multipleFiles($_FILES);
 
-foreach($files as $file){
-	$local_file = 	new \FileManager\File( $file["tmp_name"] );	// local TMP file => "C:\xampp\tmp\php9351.tmp"
-	$server_file = 	new \FileManager\File( new \UrlParser\Url( ["root/a", $file["name"]] ) ); // server URL and NAME of uploaded file => "root/a/dave-greco-elemental.jpg"
+$server_file->url->getString() => "root/a/eytan-zana-fallengod-web.jpg"
+$local_file->url->getString()  => "C:\xampp\tmp\phpF2AC.tmp"
+$server_file->exist() => 1
+$local_file->exist()  =>
 
-	$server_file->upload($local_file);	// upload file into "root/a"
-}
-$server_file->exist() => 1 // when file was UPLOADED
-$server_file->exist() => 0 // when file was NOT UPLOADED
 
 ```
 
