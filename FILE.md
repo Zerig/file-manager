@@ -85,7 +85,7 @@ if(isset($_POST["submit"])){
 $server_file->url->getString() => "root/a/eytan-zana-fallengod-web.jpg"
 $local_file->url->getString()  => "C:\xampp\tmp\phpF2AC.tmp"
 $server_file->exist() => 1
-$local_file->exist()  =>
+$local_file->exist()  => 0
 
 
 ```
