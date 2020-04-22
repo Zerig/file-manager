@@ -166,18 +166,6 @@ $fm->filter("%html", 1, "name")		=> [ FileManager\File("root/aaa/bbb/myfile.html
 
 # ARRAY FF MODIFICATION
 
-## count($obj = null){
-- **$obj [string]**	=> [null / "files" / "folders"]
-- @return [num]
-
-Return all *FF* which is real Files or Folders. Which really exist in URL
-```php
-// Returns all FF items
-$fm->count()		=> 5
-$fm->count('files')	=> 3
-$fm->count('folders')	=> 2
-```
-
 ## pop($times = 1){
 - **$times [null / num]**
 
@@ -218,6 +206,34 @@ $fm->add([
 	new \FileManager\File("root/aaa/bbb/new-file.html"),
 	new \FileManager\Folder("root/aaa/bbb/new-folder")
 ]);
+```
+
+
+## count($obj = null){
+- **$obj [string]**	=> [null / "files" / "folders"]
+- @return [num]
+
+Return all *FF* which is real Files or Folders. Which really exist in URL
+```php
+// Returns all FF items
+$fm->count()		=> 5
+$fm->count('files')	=> 3
+$fm->count('folders')	=> 2
+```
+
+
+## exist(){
+- @return [array of Boolean]
+
+Return array of *1/0* specifying which *FF* really exist.
+```php
+$fm->exist() => [
+	[0] => 0,
+	[1] => 0,
+	[2] => 1,
+	[3] => 1,
+	[4] => 1
+]
 ```
 
 
