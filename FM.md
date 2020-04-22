@@ -95,14 +95,14 @@ Primary it choose files which accept *$filter* expression. And the expression is
 
 
 ### $filter [string]
-Set what you want to find and filter by it. And it is possible to use '%' just like operator *LIKE* in SQL\n
+Set what you want to find. You can use *'%'* just like operator *LIKE* in SQL\n
 ```code
 NAME OF FILE: "myfile.html"
 FILTER:
-"my%"	 	=> it choose file
-"%html"		=> it choose file
-"%file%"	=> it choose file
-"myfile.html"	=> it choose file
+"my%"	 	=> "myfile.html" file was chosen
+"%html"		=> "myfile.html" file was chosen
+"%file%"	=> "myfile.html" file was chosen
+"myfile.html"	=> "myfile.html" file was chosen
 ```
 ```php
 $fm = new \FileManager\FM([
