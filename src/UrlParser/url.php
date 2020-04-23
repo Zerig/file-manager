@@ -293,14 +293,14 @@ class Url{
 
 
 
-	public function hasFile(){
+	public function hasExtension(){
 		return strpos(end($this->path), ".") !== false;
 	}
 
 	public function getDepth(){
 		$depth = sizeof($this->path);
 
-		if(self::hasFile()) return $depth - 1;
+		if(self::hasExtension()) return $depth - 1;
 		else    			return $depth;
 	}
 
@@ -342,7 +342,7 @@ class Url{
 		$string = self::makeItString($add_part);
 		$array = explode($this->sign, $string);
 
-		if(self::hasFile()){
+		if(self::hasExtension()){
 			$i = count($this->path) - 1;
 			$array_file = explode(".", $this->path[$i]);
 			$this->path[$i] = $array_file[0];
