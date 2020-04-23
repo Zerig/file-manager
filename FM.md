@@ -303,7 +303,7 @@ $fm->get() => [
 ]
 
 // save removed FF in this special FM instance
-$$removed_fm->get() => [
+$removed_fm->get() => [
 	[0] => FileManager\File("root/aaa/file.txt")
 ]
 ```
