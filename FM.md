@@ -253,9 +253,9 @@ $fm->add([
 Return all *FF* which is real Files or Folders. Which really exist in URL
 ```php
 // Returns all FF items
-$fm->count()		=> 5
-$fm->count('files')	=> 3
-$fm->count('folders')	=> 2
+$fm->count()          => 5
+$fm->count('files')   => 3
+$fm->count('folders') => 2
 ```
 
 
@@ -268,8 +268,9 @@ $fm->exist() => [
 	[0] => 0,
 	[1] => 0,
 	[2] => 1,
-	[3] => 1,
-	[4] => 1
+	[3] => 0,
+	[4] => 1,
+	[5] => 1
 ]
 ```
 
@@ -295,33 +296,51 @@ $fm = new \FileManager\FM([
 
 ```php
 // Remove one ff object
-$fm->remove( new \FileManager\File("root/aaa/file.txt") );
+$removed_fm = $fm->remove( new \FileManager\File("root/aaa/file.txt") );
 $fm->get() => [
 	[0] => FileManager\File("root/aaa/bbb/myfile.html"),
 	[1] => FileManager\Folder("root/aaa/folder")
+]
+
+// save removed FF in this special FM instance
+$$removed_fm->get() => [
+	[0] => FileManager\File("root/aaa/file.txt")
 ]
 ```
 
 ```php
 // Remove multiple ff objects by ARRAY OF FF
-$fm->remove([
+$removed_fm = $fm->remove([
 	new \FileManager\File("root/aaa/file.txt"),
 	new \FileManager\Folder("root/aaa/folder")
 ]);
 $fm->get() => [
 	[0] => FileManager\File("root/aaa/bbb/myfile.html")
 ]
+
+// save removed FF in this special FM instance
+$removed_fm->get => [
+	[0] => FileManager\File("root/aaa/file.txt"),
+	[1] => FileManager\Folder("root/aaa/folder")
+];
 ```
 
 ```php
 // Remove multiple ff objects by FM OBJECT
-$fm->remove(new \FileManager\FM([
+$removed_fm = $fm->remove(new \FileManager\FM([
 	new \FileManager\File("root/aaa/file.txt"),
 	new \FileManager\Folder("root/aaa/folder")
 ]));
 $fm->get() => [
 	[0] => FileManager\File("root/aaa/bbb/myfile.html")
 ]
+
+// save removed FF in this special FM instance
+$removed_fm->get() => [
+	[0] => FileManager\File("root/aaa/file.txt"),
+	[0] => FileManager\Folder("root/aaa/folder")
+]
+
 
 ```
 
@@ -337,10 +356,15 @@ $fm = new \FileManager\FM([
 ]);
 ```
 ```php
-$fm->removeExist();
+$removed_fm = $fm->removeExist();
 $fm->get() => [
 	[0] => FileManager\File("root/aaa/file.txt"),
 	[1] => FileManager\Folder("root/aaa/folder")
+]
+
+// save removed FF in this special FM instance
+$removed_fm->get() => [
+	[0] => FileManager\File("root/aaa/bbb/myfile.html")
 ]
 ```
 
@@ -350,9 +374,15 @@ $fm->get() => [
 Remove all existing *FF*. The same as [*removeNotExist()*](#removenotexist) but reverse.
 
 ```php
-$fm->removeNotExist();
+$removed_fm = $fm->removeNotExist();
 $fm->get() => [
 	new \FileManager\File("root/aaa/bbb/myfile.html")
+]
+
+// save removed FF in this special FM instance
+$removed_fm->get() => [
+	[0] => FileManager\File("root/aaa/file.txt"),
+	[1] => FileManager\Folder("root/aaa/folder")
 ]
 ```
 
@@ -368,9 +398,15 @@ $fm = new \FileManager\FM([
 ]);
 ```
 ```php
-$fm->removeFiles();
+$removed_fm = $fm->removeFiles();
 $fm->get() => [
 	[0] => FileManager\Folder("root/aaa/folder")
+]
+
+// save removed FF in this special FM instance
+$removed_fm->get() => [
+	[0] => FileManager\File("root/aaa/bbb/myfile.html"),
+	[1] => FileManager\File("root/aaa/file.txt"),
 ]
 ```
 
@@ -387,10 +423,15 @@ $fm = new \FileManager\FM([
 ]);
 ```
 ```php
-$fm->removeFiles();
+$removed_fm = $fm->removeFiles();
 $fm->get() => [
 	new \FileManager\File("root/aaa/bbb/myfile.html"),
 	new \FileManager\File("root/aaa/file.txt")
+]
+
+// save removed FF in this special FM instance
+$removed_fm->get() => [
+	[0] => FileManager\Folder("root/aaa/folder")
 ]
 ```
 
@@ -411,9 +452,15 @@ $fm = new \FileManager\FM([
 ```
 Rules how to filter find in (*getFilter($filter, $type = 1, $key = "name")*)[#getfilterfilter-type--1-key--name]
 ```php
-$fm->removeFilter("%file%");
+$removed_fm = $fm->removeFilter("%file%");
 $fm->get() => [
 	new \FileManager\Folder("root/aaa/folder")
+]
+
+// save removed FF in this special FM instance
+$removed_fm->get() => [
+	[0] => FileManager\File("root/aaa/bbb/myfile.html"),
+	[1] => FileManager\File("root/aaa/file.txt")
 ]
 ```
 
